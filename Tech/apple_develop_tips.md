@@ -487,6 +487,10 @@ xcrun simctl list devicetypes
 
 デフォルトは `/Users/(ユーザー名)/Library/Developer/Xcode/DerivedData/`
 
+## Xcodeのビルド設定項目
+
+[Build Settings Reference | Apple Developer Documentation](https://developer.apple.com/documentation/xcode/build-settings-reference)
+
 ## メモ
 
 ```.swift
