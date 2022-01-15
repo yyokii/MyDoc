@@ -4,11 +4,24 @@
 
 ## [Creative Croud](https://helpx.adobe.com/jp/download-install/kb/creative-cloud-desktop-app-download.html)
 
-アカウントが必要（直近はgmailを使用）
-
 ## [Docker](https://docs.docker.com/docker-for-mac/apple-m1/)
 
 ## Github テンプレート設定
+
+* '.zprofile' などにエイリアスを設定する
+
+```
+alias gs="git status"
+alias gd="git diff"
+alias gb="git branch"
+alias gco="git checkout" 
+alias gcm="git commit"
+alias gca="git commit --amend"
+alias glo="git log --oneline"
+alias gdel="git branch --merged|egrep -v '\*|develop|release|master'|xargs git branch -d"
+alias gt="git tag"
+alias gtp="git push origin --tags"
+```
 
 * コミットテンプレート設定
   * `git config --global commit.template {テンプレート用のファイル}`
@@ -20,6 +33,18 @@
 ## [Jetbrains Toolbox](https://www.jetbrains.com/ja-jp/toolbox-app/download/#section=mac)
 
 ## PlantUML
+
+### (Visual Studio Code) ローカル
+
+```
+$ brew install graphviz
+$ brew install adoptopenjdk --cask
+$ brew install plantuml
+```
+
+設定の「Plantuml: Render」でLocalを設定する
+
+### (Visual Studio Code) Dockerを利用
 
 Dockerイメージをローカルで起動  
 `$ docker run -d -p 8080:8080 plantuml/plantuml-server:jetty`
