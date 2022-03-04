@@ -39,6 +39,7 @@ Define architecture with separation of interests in mind.
 
 ## Performance & Tooling
 Define how you will gather data and metrics to see how the app is performing — memory utilization, CPU utilization.
+ex. Slack integration
 
 ## Accessibility
 Make sure you define the accessibility feature and how the app will be made accessible.
