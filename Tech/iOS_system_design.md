@@ -43,3 +43,6 @@ ex. Slack integration
 
 ## Accessibility
 Make sure you define the accessibility feature and how the app will be made accessible.
+
+## Licence
+ライセンス表記が必要なのは適切に表示されるか。
