@@ -1,3 +1,7 @@
+## キャリア
+
+* [Why iOS Developers Feel Stuck In Their Careers & What To Do — Essential Developer](https://www.essentialdeveloper.com/articles/why-ios-developers-feel-stuck-in-their-careers-and-what-to-do)
+
 ## デバイスとCPUアーキテクチャとチップ
 
 | アーキテクチャ                                | チップ                                                       | 32/64bit | 端末                                                         |
