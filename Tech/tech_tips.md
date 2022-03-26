@@ -41,6 +41,11 @@ SSL/TLS通信では、このハイブリッド方式が「デジタル署名」�
 
 [ベクター画像（vector image）とは - IT用語辞典 e-Words](https://e-words.jp/w/%E3%83%99%E3%82%AF%E3%82%BF%E3%83%BC%E7%94%BB%E5%83%8F.html)
 
+## カレンダー
+
+* [Your calendrical fallacy is thinking…](https://yourcalendricalfallacyis.com/)
+  * カレンダー関連の実装で気を付けるべきことが書かれている
+
 ## コードレビュー
 
 ### レビューの観点
