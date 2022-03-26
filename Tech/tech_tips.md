@@ -96,6 +96,7 @@ SSL/TLS通信では、このハイブリッド方式が「デジタル署名」�
 ### 参考
 
 * [アプリをURLで起動する](https://www.notion.so/URL-176950ae6f5241da892826148b66f601)
+* [モバイルアプリにおけるディープリンクとメルカリShopsでの実装 | メルカリエンジニアリング](https://engineering.mercari.com/blog/entry/20220224-deeplink-for-mercari-shops/)
 
 ## テスト
 
