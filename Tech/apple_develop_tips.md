@@ -1,3 +1,7 @@
+## キャリア
+
+* [Why iOS Developers Feel Stuck In Their Careers & What To Do — Essential Developer](https://www.essentialdeveloper.com/articles/why-ios-developers-feel-stuck-in-their-careers-and-what-to-do)
+
 ## デバイスとCPUアーキテクチャとチップ
 
 | アーキテクチャ                                | チップ                                                       | 32/64bit | 端末                                                         |
@@ -421,6 +425,10 @@ public var isActiveBinding: Binding<Bool> {
 
 // MARK: - Action
 ```
+
+## UIKit
+
+* [深く知りたい Core Animation まとめ1（レイヤー編）【iOS / Swift】 - SNOOZE LOG](https://snoozelag.hatenablog.com/entry/2021/12/18/003933)
 
 ## UX
 

@@ -41,6 +41,11 @@ SSL/TLS通信では、このハイブリッド方式が「デジタル署名」�
 
 [ベクター画像（vector image）とは - IT用語辞典 e-Words](https://e-words.jp/w/%E3%83%99%E3%82%AF%E3%82%BF%E3%83%BC%E7%94%BB%E5%83%8F.html)
 
+## カレンダー
+
+* [Your calendrical fallacy is thinking…](https://yourcalendricalfallacyis.com/)
+  * カレンダー関連の実装で気を付けるべきことが書かれている
+
 ## コードレビュー
 
 ### レビューの観点
@@ -96,6 +101,7 @@ SSL/TLS通信では、このハイブリッド方式が「デジタル署名」�
 ### 参考
 
 * [アプリをURLで起動する](https://www.notion.so/URL-176950ae6f5241da892826148b66f601)
+* [モバイルアプリにおけるディープリンクとメルカリShopsでの実装 | メルカリエンジニアリング](https://engineering.mercari.com/blog/entry/20220224-deeplink-for-mercari-shops/)
 
 ## テスト
 
@@ -199,6 +205,17 @@ XCTestだと`runActivity(named:block:)`でまとめることができる。
 ### 参考
 
 * 松尾 和昭，細沼 祐介，田中 賢治，平田 敏之，玉城 信悟，横田 孝次郎，加藤 寛人　（2019）．　iOSテスト全書　PEAKS出版
+
+## ドキュメント作成
+
+どうすれば良いドキュメントができるか
+
+> トップダウンでドキュメントが必須だと明確にチームに伝える
+開発する上で書く必要のあるドキュメントの種類を明確にする
+SSOT(Single Source Of Truth)を意識してドキュメントを更新し続ける
+チャットの履歴を一定期間しか残さない
+
+* [プロダクト開発でドキュメントを書かないとどうなるか](https://product-develop.com/2c981f18e9924410bb266a5fd87343c2)
 
 ## 認証と認可
 
