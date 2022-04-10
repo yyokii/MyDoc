@@ -28,6 +28,9 @@
 
 iPhone SE（640x1136）などの端末で実行した時に崩れたり、意図しない表示にならないか。
 
+iPadを利用してSplit View機能を利用すると様々なサイズに変えやすくて便利。
+[iOSアプリ開発時のシミュレータはiPadを使うと便利 - star__hoshi's diary](https://starhoshi.hatenablog.com/entry/2022/04/05/082348)
+
 ### Unwrapping の使用が適切か
 
 プロジェクトにもよるが、nilにならないケース（入力として数値のみしかあり得ない場合にStringをIntにキャストする場合や、viewDidLoadまでで値の存在が確定するもの）の場合はForced unwrappingを利用する。
