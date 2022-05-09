@@ -16,7 +16,7 @@
 Swift, Kotlin以外は触っていない期間が1年以上経つので習熟度は低いです。
 
 - Swift
-  - 3.0（2016年）から利用しています。
+  - 3.0（2016年）~
 - Kotlin
 - (Android) Java
 - Objective-C
@@ -97,18 +97,17 @@ Swift, Kotlin以外は触っていない期間が1年以上経つので習熟度
 
 ### 社外活動
 
-最近はSwiftUI, Combineのキャッチアップも兼ねて[アプリ](https://github.com/yyokii/SubscMemo)を開発しています。
+自分の備忘録と技術力発信の一環としていくつか記事を書いています。
 
-また、自分の備忘録と技術力発信の一環としていくつか記事を書いています。
-
-* [Qiita](https://qiita.com/yyokii)： 新卒1~3年目で書いたものが多いです。備忘録+承認欲求で書いていたところが多く記事内容は粗雑ですが、感慨深いので残しています。  
 * [Medium](https://yyokii.medium.com/)： 英語での発信に関心があり、最近はこちらに投稿しています。
+* [Zenn](https://zenn.dev/yyokii)： 日本語での発信で利用しています。
+* [Qiita](https://qiita.com/yyokii)： 新卒1~3年目で書いたものが多いです。備忘録+承認欲求で書いていたところが多く記事内容は粗雑ですが、感慨深いので残しています。  
 
-記事ではないですが、よく参照する事柄や教訓などは[gist](https://gist.github.com/yyokii)にpublicでまとめるようにしています。
+記事ではないですが、よく参照する事柄や教訓などをこのリポジトリでまとめています。
 
-* [tech_tips.md](https://gist.github.com/yyokii/a6aa3f6718188c67e1f2bf1615adf21f)：技術関連全般
-* [dsigne_tips.md](https://gist.github.com/yyokii/c5c0a2c41b20f7a8b88ed1bae600e697)：デザイン
-* [apple_develop_tips.md](https://gist.github.com/yyokii/9f0cad3b1ab5a18235f7b872dab444ad)：apple、とりわけiOSアプリ開発
+* [Tech](https://github.com/yyokii/MyDoc/tree/main/Tech)：技術関連全般
+* [Design](https://github.com/yyokii/MyDoc/tree/main/Design)：デザイン
+* [apple_develop_tips.md](https://github.com/yyokii/MyDoc/blob/main/Tech/apple_develop_tips.md)：apple、とりわけiOSアプリ開発
 
 などがあり、記事にするほどではないですがメモとして残しておきたいものをここで管理するようにしています。
 
