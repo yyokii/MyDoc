@@ -26,6 +26,12 @@
 | `-s`       | 進捗やエラーなどの出力をしない | `--silent`                 |
 | `-d`       | データを設定                   | `@-`標準入力をデータとする |
 
+### 試す
+
+[httpbin](https://httpbin.org/)
+
+> A simple HTTP Request & Response Service.
+
 ### curlでpostするサンプル
 
 ```curl
