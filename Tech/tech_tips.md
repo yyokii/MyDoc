@@ -268,3 +268,8 @@ SSOT(Single Source Of Truth)を意識してドキュメントを更新し続け�
     should (すべきか)
     need (する必要があるか)
     
+## Github
+
+* `git reset --hard origin/{develop}`
+
+リモートの任意のブランチと同じ状態（HEADの位置・インデックス・ワーキングツリーを一致させた状態）にする
