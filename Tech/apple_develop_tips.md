@@ -489,6 +489,12 @@ xcodebuild -showsdks
 xcrun simctl list devicetypes
 ```
 
+シミュレータでDeep Linkを試す
+
+```
+xcrun simctl openurl booted 'URL'
+```
+
 ## Xcodeのビルド結果出力先
 
 `Xcode -> Preferences -> Locations -> Derived Data` に設定されている場所に出力される。
