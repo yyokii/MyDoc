@@ -489,6 +489,12 @@ xcodebuild -showsdks
 xcrun simctl list devicetypes
 ```
 
+シミュレータでDeep Linkを試す
+
+```
+xcrun simctl openurl booted 'URL'
+```
+
 ## Xcodeのビルド結果出力先
 
 `Xcode -> Preferences -> Locations -> Derived Data` に設定されている場所に出力される。
@@ -499,16 +505,7 @@ xcrun simctl list devicetypes
 
 [Build Settings Reference | Apple Developer Documentation](https://developer.apple.com/documentation/xcode/build-settings-reference)
 
-## メモ
+## その他メモ
 
-```.swift
-private func logoImageView(imageName: String) -> UIImageView {
-        let logo = UIImage(named: imageName)
-        let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        logoImageView.contentMode = .scaleAspectFit
-        logoImageView.image = logo
-        logoImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        logoImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        return logoImageView
-    }
-```
+* CocoaPodsでローカルのpodspecを参照する
+`pod 'Demolivery', :podspec => "../development/Demolivery.podspec"`
