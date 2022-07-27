@@ -57,3 +57,11 @@ Storyboard上で容易に切り替えて確認できるので確認する
 
 * [ iOSアプリのコードレビューで見ているポイント 2020年5月版 ](https://cutmail.hatenablog.com/entry/2020/05/09/182304)
 * [自分がコードレビューで気をつけていること（2020.5 iOSアプリ開発版 ）](http://curiosity.co.jp/review202005ios/)
+
+---
+
+メモ
+
+*  ID型を作成して不要なインプットをさせない https://qiita.com/hicka04/items/a1a8c68f51e3edb23f09
+*  enumのrawvalueがintなら、その順に並べる
+*  条件が分かりにくい場合は変数化してその命名で明確にする
