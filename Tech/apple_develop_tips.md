@@ -162,12 +162,16 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## WebKit
 
-Apple のは iOS プラットフォーム上において WebKit 以外のブラウザエンジンを禁止している。  
+Apple は iOS プラットフォーム上において WebKit 以外のブラウザエンジンを禁止している。  
 そして WebKit はアプリケーションというよりかは「コンテンツエンジン」としての役割を担うことを目的としている。つまり、ネイティブアプリと同じような機能を WebKit ベースで実現することが難しくなるのも当然。  
 一方で Blink のミッションは「Web を世界の情報を体験するための最高のプラットフォームにし、世界で最も優れた Web プラットフォームの実装を提供する」というもの。その意味するところは、Blink が自社のエンジンをネイティブアプリと直接競合させ、コンシューマ向けインターネットの「最高のプラットフォーム」になることを望んでいる。実際に Android 上で動作する最新の PWA は、Android のネイティブアプリと[同じくらい優れた](https://web.dev/app-like-pwas/)ユーザ・エクスペリエンスを提供するようになってきている。  
 iOS ではブラウザエンジンの選択肢がないだけでなく、WebKit 自体がブラウザエンジンとして不十分だということです。現在、Microsoft Edge のパートナー・プログラム・マネージャーを務め、その前は Google Chrome のシニアエンジニアとして長年活躍してきたる[アレックス・ラッセル](https://twitter.com/slightlylate)は、[Apple の Web に対するアプローチ](https://infrequently.org/2021/08/webkit-ios-deep-dive/)について多くのことを書いている。彼はまだ Google に在籍していた頃、[WebKit に対する長い評論](https://infrequently.org/2021/04/progress-delayed/)を発表し、「Apple の Web エンジンは、互換性と機能の両方で一貫して他のエンジンを遅れをとっており、その結果、Apple のネイティブ・プラットフォームとの間には大きなギャップが持続している」と結論付けた。
 
 [ブログ: Apple のブラウザエンジン禁止は、Web アプリのイノベーションを妨げている](https://okuranagaimo.blogspot.com/2021/09/appleweb.html)
+
+## WKWebView vs SFSafariViewController
+
+[Appにおけるウェブビューを実現するには、WKWebViewとSFSafariViewControllerのどちらを使うべきですか - 見つける - Apple Developer](https://developer.apple.com/jp/news/?id=trjs0tcd)
 
 ## Xcode 関連のコマンド
 
