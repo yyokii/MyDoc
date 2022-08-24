@@ -8,7 +8,7 @@
 
 ## Github テンプレート設定
 
-* '.zprofile' などにエイリアスを設定する
+* `.zprofile` などにエイリアスを設定する
 
 ```
 alias gb="git branch"
@@ -34,7 +34,7 @@ alias gt="git tag"
 
 `brew install --cask iterm2`
 
-設定ファイルは下記にあります。
+設定ファイルは下記にあります。  
 https://github.com/yyokii/MyDoc/tree/main/Settings
 
 ## [Jetbrains Toolbox](https://www.jetbrains.com/ja-jp/toolbox-app/download/#section=mac)
