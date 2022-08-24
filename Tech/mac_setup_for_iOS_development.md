@@ -30,6 +30,10 @@ alias gtp="git push origin --tags"
 
 ## [Insomnia](https://insomnia.rest/download/)
 
+## [Iterm2](https://iterm2.com/)
+
+`brew install --cask iterm2`
+
 ## [Jetbrains Toolbox](https://www.jetbrains.com/ja-jp/toolbox-app/download/#section=mac)
 
 ## PlantUML
