@@ -11,16 +11,16 @@
 * '.zprofile' などにエイリアスを設定する
 
 ```
-alias gs="git status"
-alias gd="git diff"
 alias gb="git branch"
 alias gco="git checkout" 
 alias gcm="git commit"
 alias gca="git commit --amend"
-alias glo="git log --oneline"
 alias gdel="git branch --merged|egrep -v '\*|develop|release|master'|xargs git branch -d"
+alias gd="git diff"
+alias glo="git log --oneline"
+alias gph="git push origin HEAD"
+alias gs="git status"
 alias gt="git tag"
-alias gtp="git push origin --tags"
 ```
 
 * コミットテンプレート設定
