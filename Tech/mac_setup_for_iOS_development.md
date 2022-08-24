@@ -34,6 +34,9 @@ alias gt="git tag"
 
 `brew install --cask iterm2`
 
+設定ファイルは下記にあります。
+https://github.com/yyokii/MyDoc/tree/main/Settings
+
 ## [Jetbrains Toolbox](https://www.jetbrains.com/ja-jp/toolbox-app/download/#section=mac)
 
 ## PlantUML
