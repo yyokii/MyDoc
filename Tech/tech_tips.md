@@ -268,6 +268,13 @@ SSOT(Single Source Of Truth)を意識してドキュメントを更新し続け�
     should (すべきか)
     need (する必要があるか)
     
+## Data URI scheme
+
+データを直接埋め込む手段を提供するURIスキーム
+
+例えば下記をブラウザで実行するとデータが閲覧できる  
+data:image/svg+xml;base64,{base64エンコードされたデータ}
+
 ## Github
 
 * `git reset --hard origin/{develop}`
