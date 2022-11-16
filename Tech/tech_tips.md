@@ -26,6 +26,16 @@ SSL/TLS通信では、このハイブリッド方式が「デジタル署名」�
 * \r\n(CR+LF)：Windows系OS
 * \r(CR)：古いMac OS（9以前）
 
+## 開発のパフォーマンスについての指標
+
+Four Keysという指標がある。  
+開発のパフォーマンスを図るもので、科学的根拠のある 「LeanとDevOpsの科学」より
+
+* [DevOpsの4つのキーメトリクスの計測から学んだこと - 改善すべき領域の特定](https://www.infoq.com/jp/news/2021/[]08/measuring-four-key-metrics/)
+* [Four Keys 〜自分たちの開発レベルを定量化してイケてる DevOps チームになろう〜 - Tech Blog - Recruit Engineer](https://blog.recruit.co.jp/rls/2021-03-31-four-keys/)
+* [エンジニア組織の生産性の可視化とは？ 〜『DevOps指標』を活用しよう〜 | Findy Team+ Lab](https://blog.findy-team.io/posts/engineering_org_devops_metrics/)
+  * Findy Teamsの考えのベースになっている
+
 ## 画像形式
 
 ### ビットマップ画像
