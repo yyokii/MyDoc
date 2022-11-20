@@ -218,6 +218,12 @@ xcrun simctl list devicetypes
 xcrun simctl openurl booted 'URL'
 ```
 
+## Xcode デバッグについて
+
+* [Advanced Debugging with Xcode and LLDB - WWDC18 - Videos - Apple Developer](https://developer.apple.com/videos/play/wwdc2018/412 )
+サンプルアプリ使いながら実演しつつ説明してくれて分かりやすい
+* [LLDBデバッガで不具合の原因を特定して開発速度を上げよう by クウルス | トーク | iOSDC Japan 2019 #iosdc - fortee.jp](https://fortee.jp/iosdc-japan-2019/proposal/e04ea30b-0363-4fe9-8501-841ed3261918 )
+
 ## Xcode のビルド結果出力先
 
 `Xcode -> Preferences -> Locations -> Derived Data` に設定されている場所に出力される。
