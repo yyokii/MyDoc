@@ -75,6 +75,32 @@
 * [UIデザインをはじめよう - Speaker Deck](https://speakerdeck.com/kinakobooster/uidezainwohazimeyou)
 * [今日からできるUXデザイン - Speaker Deck](https://speakerdeck.com/kinakobooster/jin-ri-karadekiruuxdezain)
 
+## フロントエンドエンジニアとしてのデザイン確認
+
+* 画面サイズ
+  * 最大・最小サイズ（or 端末）でも崩れないか
+  * 画面構成要素ごとに可変・固定幅のルールが決まっている
+* フォント
+  * 使用するフォントは何か
+  * システム間でフォントは統一するか
+  * ライセンスに問題がない
+* テキスト
+  * 最大文字数が考慮されている
+  * 表示領域を超える文字数のテキストが入った場合の挙動が決まっている
+* アニメーション
+  * どこにどんなアニメーションが入るかのイメージが共有されている
+* UI
+  * 下記が定義されている
+    * Blank State（空っぽの状態）
+    * Loading State（ローディング状態）
+    * Partial State（部分達成状態）
+    * Error State（エラー状態）
+    * Ideal State（理想状態）
+* 画面パターン
+  * 特定のユーザーステータス、状況に応じてどの様に画面が変化するかが定義されているか
+* （追加開発の場合）既存機能への影響
+  * すでにあるデザインや機能に影響を与えるか
+
 ## The Obvious UI is Often the Best UI
 
 [The Obvious UI is Often the Best UI | by Susanna Zaraysky | Google Design | Medium](https://medium.com/google-design/the-obvious-ui-is-often-the-best-ui-7a25597d79fd) より
