@@ -653,6 +653,10 @@
 	</dict>
 	<key>SoundForEsc</key>
 	<false/>
+	<key>SplitPaneDimmingAmount</key>
+	<real>0.30331500303398057</real>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>4</integer>
 	<key>UseLionStyleFullscreen</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>
