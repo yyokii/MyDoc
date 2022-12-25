@@ -11,6 +11,15 @@
 
 ![Discoverable_design 008](https://user-images.githubusercontent.com/20992687/124152996-fa285f00-dace-11eb-8079-30b08e79ee45.jpeg)
 
+## テキストかアイコンか
+
+テキストで表示すると複数ステータスが生じた場合にテキストを変更する可能性がある。  
+そしてそれは仕様としてまとめる必要がある。  
+そのような場合にテキストではなくアイコンを利用することでアクションの抽象化、仕様のシンプル化を行える。  
+  
+→ 例: アクティブな目標値を削除する, 過去の目標値を削除する、という状態をボタンが持つ場合にそれぞれでテキストを考える余地が生まれる。しかし
+アイコンで🗑のようなものをおけば複数の状態に対応できる。
+
 ## デザインとは何か
 
 > ### デザインとは、デザインの定義
@@ -65,6 +74,32 @@
 * [これだけ守れば見やすくなるデザインの基礎 - Speaker Deck](https://speakerdeck.com/kinakobooster/koredakeshou-rebajian-yasukunarudezainfalseji-chu)
 * [UIデザインをはじめよう - Speaker Deck](https://speakerdeck.com/kinakobooster/uidezainwohazimeyou)
 * [今日からできるUXデザイン - Speaker Deck](https://speakerdeck.com/kinakobooster/jin-ri-karadekiruuxdezain)
+
+## フロントエンドエンジニアとしてのデザイン確認
+
+* 画面サイズ
+  * 最大・最小サイズ（or 端末）でも崩れないか
+  * 画面構成要素ごとに可変・固定幅のルールが決まっている
+* フォント
+  * 使用するフォントは何か
+  * システム間でフォントは統一するか
+  * ライセンスに問題がない
+* テキスト
+  * 最大文字数が考慮されている
+  * 表示領域を超える文字数のテキストが入った場合の挙動が決まっている
+* アニメーション
+  * どこにどんなアニメーションが入るかのイメージが共有されている
+* UI
+  * 下記が定義されている
+    * Blank State（空っぽの状態）
+    * Loading State（ローディング状態）
+    * Partial State（部分達成状態）
+    * Error State（エラー状態）
+    * Ideal State（理想状態）
+* 画面パターン
+  * 特定のユーザーステータス、状況に応じてどの様に画面が変化するかが定義されているか
+* （追加開発の場合）既存機能への影響
+  * すでにあるデザインや機能に影響を与えるか
 
 ## The Obvious UI is Often the Best UI
 
