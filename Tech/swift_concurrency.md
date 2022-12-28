@@ -2,6 +2,7 @@
 
 ## 参考
 
+* [swift-evolution/0306-actors.md at main · apple/swift-evolution](https://github.com/apple/swift-evolution/blob/main/proposals/0306-actors.md)
 * [Protect mutable state with Swift actors - WWDC21 - Videos - Apple Developer](https://developer.apple.com/videos/play/wwdc2021/10133/)
 * [[Swift] actor reentrancy のありがたみと注意点 - Qiita](https://qiita.com/maiyama18/items/c815f13f17d8e4095f68)
 
