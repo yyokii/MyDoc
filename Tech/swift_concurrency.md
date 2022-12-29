@@ -1,0 +1,17 @@
+
+
+## 参考
+
+* [swift-evolution/0306-actors.md at main · apple/swift-evolution](https://github.com/apple/swift-evolution/blob/main/proposals/0306-actors.md)
+* [Protect mutable state with Swift actors - WWDC21 - Videos - Apple Developer](https://developer.apple.com/videos/play/wwdc2021/10133/)
+* [Task.initのクロージャーに[weak self]はいらない。Task.detachedとTaskGroup.addTaskも同様](https://blog.personal-factory.com/2022/08/06/not-require-weak-self-in-task-init/)
+* [[Swift] actor reentrancy のありがたみと注意点 - Qiita](https://qiita.com/maiyama18/items/c815f13f17d8e4095f68)
+
+
+読み物リスト
+
+* 【同人誌版】Swift Concurrency入門 - Personal Factory - BOOTH
+* Swift Concurrency Next Step by shiz | トーク | iOSDC Japan 2022 - fortee.jp
+* Swift Concurrency by Example - free quick start tutorials for Swift developers
+* SwiftPodcast/Swift Concurrency WWDC22.md at main · stzn/SwiftPodcast
+* https://www.swiftbysundell.com/discover/concurrency/
