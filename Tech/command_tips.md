@@ -37,6 +37,7 @@
 ```curl
 curl -s -X POST "https://api.github.com/repos/${REPO}/git/refs" \
   -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Content-Type: application/json" \
   -d @- << EOS
 {
   "ref": "refs/tags/${TAG}",
