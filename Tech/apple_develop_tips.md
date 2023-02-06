@@ -236,5 +236,8 @@ xcrun simctl openurl booted 'URL'
 
 ## その他メモ
 
-- CocoaPods でローカルの podspec を参照する
-  `pod 'Demolivery', :podspec => "../development/Demolivery.podspec"`
+* [CocoaPods] podfile内でローカルの podspec を参照する
+`pod 'Demolivery', :podspec => "../development/Demolivery.podspec"`
+
+* [CocoaPods] podspecファイル内でローカルの podspec を参照する
+`spec.source = { :git => "file:///Users/{user name}/Desktop/{directory name}" }`
