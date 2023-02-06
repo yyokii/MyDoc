@@ -285,12 +285,6 @@ SSOT(Single Source Of Truth)を意識してドキュメントを更新し続け�
 例えば下記をブラウザで実行するとデータが閲覧できる  
 data:image/svg+xml;base64,{base64エンコードされたデータ}
 
-## Github
-
-* `git reset --hard origin/{develop}`
-
-リモートの任意のブランチと同じ状態（HEADの位置・インデックス・ワーキングツリーを一致させた状態）にする
-
 ## UML
 
 ### クラス図

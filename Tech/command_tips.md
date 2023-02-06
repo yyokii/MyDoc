@@ -1,4 +1,4 @@
-# ターミナルでよく利用するコマンド群
+## ターミナルでよく利用するコマンド群
 
 ターミナルでよく利用するコマンド群（Unix系OS、とりわけMac OSでの動作となります）
 
@@ -120,3 +120,21 @@ rwxrwxrwx → 777
 
 * [ファイルパーミッション - Wikipedia](https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%83%91%E3%83%BC%E3%83%9F%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3)
 * [「ls -l」コマンドの表示からファイルの属性を理解しよう：“応用力”をつけるためのLinux再入門（9）（1/4 ページ） - ＠IT](https://www.atmarkit.co.jp/ait/articles/1605/18/news015.html)
+
+## Github
+
+* リモートの任意のブランチと同じ状態（HEADの位置・インデックス・ワーキングツリーを一致させた状態）にする
+
+`git reset --hard origin/{develop}`
+
+* リモートのタグを取得
+
+`git pull --tags`
+
+* 特定のタグにチェックアウトする
+
+`git checkout refs/tags/{タグ名}`
+
+* 追跡対象ファイルをインデックスから削除する
+
+`git rm --cached {ファイル名}`
