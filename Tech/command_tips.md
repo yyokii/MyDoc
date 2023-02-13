@@ -141,4 +141,6 @@ rwxrwxrwx → 777
 
 * Slackへの通知設定
 
-`/github subscribe {organization}/{repository name} issues pulls releases reviews:“channel” comments:“channel” branches commits`
+`/github subscribe {owner}/{repository name} issues pulls commits releases reviews comments branches`
+
+`/github settings` でスレッドへの通知機能をオフにできる
