@@ -138,3 +138,7 @@ rwxrwxrwx → 777
 * 追跡対象ファイルをインデックスから削除する
 
 `git rm --cached {ファイル名}`
+
+* Slackへの通知設定
+
+`/github subscribe {organization}/{repository name} issues pulls releases reviews:“channel” comments:“channel” branches commits`
