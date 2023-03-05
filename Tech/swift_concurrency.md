@@ -12,6 +12,7 @@
   * 「SwiftLee」のCounccyrency関連記事がまとまっているページです
 * [Task.initのクロージャーに[weak self]はいらない。Task.detachedとTaskGroup.addTaskも同様](https://blog.personal-factory.com/2022/08/06/not-require-weak-self-in-task-init/)
 * [[Swift] actor reentrancy のありがたみと注意点 - Qiita](https://qiita.com/maiyama18/items/c815f13f17d8e4095f68)
+* [Explore structured concurrency in Swift | WWDC NOTES](https://www.wwdcnotes.com/notes/wwdc21/10134/)
 
 
 読み物リスト
