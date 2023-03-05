@@ -13,11 +13,6 @@
 * [Task.initのクロージャーに[weak self]はいらない。Task.detachedとTaskGroup.addTaskも同様](https://blog.personal-factory.com/2022/08/06/not-require-weak-self-in-task-init/)
 * [[Swift] actor reentrancy のありがたみと注意点 - Qiita](https://qiita.com/maiyama18/items/c815f13f17d8e4095f68)
 * [Explore structured concurrency in Swift | WWDC NOTES](https://www.wwdcnotes.com/notes/wwdc21/10134/)
-
-
-読み物リスト
-
+* [SwiftPodcast/Swift Concurrency WWDC22.md at main · stzn/SwiftPodcast](https://github.com/stzn/SwiftPodcast/blob/main/episodes/Swift%20Concurrency%20WWDC22.md)
 * 【同人誌版】Swift Concurrency入門 - Personal Factory - BOOTH
-* Swift Concurrency Next Step by shiz | トーク | iOSDC Japan 2022 - fortee.jp
-* Swift Concurrency by Example - free quick start tutorials for Swift developers
-* SwiftPodcast/Swift Concurrency WWDC22.md at main · stzn/SwiftPodcast
+* [Swift concurrency: Behind the scenes - WWDC21 - Videos - Apple Developer](https://developer.apple.com/videos/play/wwdc2021/10254/)
