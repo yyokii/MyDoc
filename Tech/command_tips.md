@@ -138,3 +138,9 @@ rwxrwxrwx → 777
 * 追跡対象ファイルをインデックスから削除する
 
 `git rm --cached {ファイル名}`
+
+* Slackへの通知設定
+
+`/github subscribe {owner}/{repository name} issues pulls commits releases reviews comments branches`
+
+`/github settings` でスレッドへの通知機能をオフにできる
