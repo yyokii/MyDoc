@@ -87,3 +87,8 @@
 
 * [Cloud Firestoreを実践投入するにあたって考えたこと - Qiita](https://qiita.com/1amageek/items/d606dcee9fbcf21eeec6)
 * [How to model a many-to-many relationship in Firestore \|by Louis Coulet \|Firebase Tips & Tricks \|Mar, 2021 \|Medium](https://medium.com/firebase-tips-tricks/how-to-secure-many-to-many-relationships-in-firestore-d19f972fd4d3)
+
+## 検索
+
+全文検索、部分検索は他のサービスを利用しないとできない
+[全文検索  |  Firestore  |  Firebase](https://firebase.google.com/docs/firestore/solutions/search?hl=ja)
