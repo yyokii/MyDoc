@@ -146,6 +146,21 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 `keytool -list -v -keystore {file_name}.p12 -storetype PKCS12 -storepass {password} `
 
+## SwiftUI
+
+### Views vs Modifiers
+
+> On the flip side, if all that we’re doing is applying a set of styles to a single view, then implementing that as either a “modifier-like” extension, or using a proper ViewModifier type, will most often be the way to go. And for everything in between — such as our earlier “featured label” example — it all really comes down to code style and personal preference as to which solution will be the best fit for each given project.
+> 
+> Just look at how SwiftUI’s built-in API was designed — containers (such as HStack and VStack) are views, while styling APIs (such as padding and foregroundColor) are implemented as modifiers. So, if we follow that same approach as much as possible within our own projects, then we’ll likely end up with UI code that feels consistent and inline with SwiftUI itself.
+
+View: コンテナーとして機能するようなものである場合にViewとした方がViewの階層の可読性は良い
+Modifire: 単一のViewに対してのスタイルの適用をしたいのであればこれで十分
+
+それ以外は好み。
+
+[SwiftUI views versus modifiers | Swift by Sundell](https://www.swiftbysundell.com/articles/swiftui-views-versus-modifiers/)
+
 ## UIKit
 
 - [深く知りたい Core Animation まとめ 1（レイヤー編）【iOS / Swift】 - SNOOZE LOG](https://snoozelag.hatenablog.com/entry/2021/12/18/003933)
