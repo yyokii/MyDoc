@@ -305,3 +305,12 @@ data:image/svg+xml;base64,{base64エンコードされたデータ}
 | Realization | 実現<br />BがAを実現している                                 | A <\|.. B                                     |
 | Aggregation | 集約<br />Aが1つ以上のBを保持する。<br />AとBの生存期間は異なる | A *.. B                                       |
 | Composition | コンポジション<br />Aが1つ以上のBを保持する。<br />AとBの生存期間は同じ（= Aが存在しくなるとBも存在しない） | A o.. B                                       |
+
+## JavaScritptの非同期処理の仕組み
+
+JavaScriptはシングルスレッド言語であるが、非同期処理の実行が可能。それはイベントループ、キュー、WebAPIを利用しているから。
+
+![js-async-flow](https://user-images.githubusercontent.com/20992687/233397036-a8f68526-9129-489a-ac3d-efbc6a9178c1.gif)
+
+* [イベントループの非同期 | JavaScript Camp](https://www.jscamp.app/jp/docs/javascript25/)
+* [シングルプロセス・シングルスレッドとコールバック | TypeScript入門『サバイバルTypeScript』](https://typescriptbook.jp/reference/single-process-and-callback)
