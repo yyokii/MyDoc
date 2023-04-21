@@ -1,10 +1,22 @@
-[Stop using MVVM for SwiftUI | Apple Developer Forums](https://developer.apple.com/forums/thread/699003?page=1) のまとめです。（11/20時点 ~5ページまで）
+## Resources
+
+* [Stop using MVVM for SwiftUI | Apple Developer Forums](https://developer.apple.com/forums/thread/699003?page=1) 
+* [Practical Mv Pattern Crud | AzamSharp](https://azamsharp.com/2022/10/06/practical-mv-pattern-crud.html)
 
 ## Summary
 
-SwiftUIとProperty WrapperによってSwiftUIのViewはデータをリアクティブに扱える宣言的に記述できるフレームワークである。
+SwiftUIとProperty WrapperによってSwiftUIのViewはデータをリアクティブに扱える宣言的に記述できるフレームワークである。従ってRxSwiftを用いていた時のようなViewとModelをブリッジするViewModelのようなものは必要ないはずである。
 
-プレゼンテーションロジックをViewが行うならば、ViewとModelをブリッジするViewModelのようなものは必要ないはず
+設計の手順
+
+* 境界コンテキストに基づき、aggregate root model、service、objectを定義する
+*  複数のビューから参照されるべきmodelはEnvironmentObjectとして定義する
+
+命名
+
++ objectは名詞とし、それで表したいものを表現する
++ modelは~Model
++ serviceは~Service
 
 ## Philosophy
 
@@ -130,3 +142,5 @@ Repository
 > - Define state object tasks as async, e.g “func load() async”, because for some situations you need to do other jobs after data load completed and async is more simple / sequencial than checking the “phase” (.loaded) using onChange(of:)
 
 > *What if the data format in your model does not correspond with how you want to show it on screen?* Depends on your needs. From my experience I find using local state (1.2) for form data, then convert to your model the best approach. Form should follow the Model. Remember **View = f(Model)**.
+
+## Test
