@@ -256,3 +256,70 @@ xcrun simctl openurl booted 'URL'
 
 * [CocoaPods] podspecファイル内でローカルの podspec を参照する
 `spec.source = { :git => "file:///Users/{user name}/Desktop/{directory name}" }`
+
+## Core Data
+
+### fault
+
+> *フォルトは、*アプリケーションが消費するメモリの量を減らします。フォルトは、まだ完全には実現されていない管理オブジェクトを表すプレースホルダー オブジェクト、または関係を表すコレクション オブジェクトです。
+>
+> - 管理対象オブジェクトのフォルトは適切なクラスのインスタンスですが、その永続変数はまだ初期化されていません。
+> - リレーションシップ フォールトは、リレーションシップを表すコレクション クラスのサブクラスです。
+>
+> フォルトにより、Core Data はオブジェクト グラフに境界を設定できます。障害が認識されないため、管理対象オブジェクトの障害が消費するメモリが少なくなり、障害に関連する管理対象オブジェクトをメモリに表示する必要がまったくなくなります。
+
+* [Core Data Programming Guide: Faulting and Uniquing](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreData/FaultingandUniquing.html)
+* [What Is a Core Data Fault](https://cocoacasts.com/what-is-a-core-data-fault)
+
+### fetched properties
+
+> フェッチされたプロパティの効果は、フェッチ リクエストを自分で実行し、結果を一時的な属性に配置するのと似ていますが、フレームワークが詳細を管理します。特に、フェッチされたプロパティはリクエストされるまでフェッチされず、オブジェクトがフォルトになるまで結果がキャッシュされます。
+
+[NSFetchedPropertyDescription | Apple Developer Documentation](https://developer.apple.com/documentation/coredata/nsfetchedpropertydescription)
+
+### Core DataとCloudKitの連携
+
+何が嬉しいか
+
+* 複数端末で同期できる
+* 機種変更の際の復元が比較的楽
+* 特定のユーザー（apple ID）と共有できる
+
+>  CloudKit does not support unique constraints, undefined attributes, or required relationships.
+
+https://developer.apple.com/documentation/coredata/mirroring_a_core_data_store_with_cloudkit/creating_a_core_data_model_for_cloudkit が詳しい
+
+プッシュ通知を利用してCloudKitの変更をCoreDataに伝えている
+
+#### CloudKitへ同期するかしないかを切り替える
+
+NSPersistentCloudKitContainerを生成し、`storeDescription.cloudKitContainerOptions = nil`と設定すれば良さそう。
+
+https://developer.apple.com/forums/thread/695714  
+→ 再起動しないと他のデバイスからの同期が機能しない。バグ？
+
+https://stackoverflow.com/questions/65355720/coredatacloudkit-on-off-icloud-sync-toggle  
+→ この方法も問題があると言及している
+
+configurationを作成する方法も考えられる。
+
+* Cloudオン時
+  * CloudのDBから参照するようにする
+* Cloudオフ時
+  * LocalのDBから参照するようにする
+
+同じエンティティを複数のConfigurationで管理した場合、データ差異があったらどうなるんだろう？
+基本的には同じ（ミラー）となる前提だとは思う、つまりこの方式の場合単純にデータ量が2倍になる？
+
+### 参考
+
+* [Using Core Data With CloudKit](https://developer.apple.com/videos/play/wwdc2019/202)
+  * Core Data With CloudKitの基本的な話。
+* https://developer.apple.com/videos/play/wwdc2021/10015
+  * 複数の iCloud ユーザー間でデータを共有するアプリについて
+  * NSPersistentCloudKitContainerを用いた[サンプルアプリ](https://developer.apple.com/documentation/coredata/synchronizing_a_local_store_to_the_cloud)の動作を知るために役立つ
+* https://developer.apple.com/videos/play/wwdc2022/10119/a
+  * CoreData、CloudKitの最適化の話。検証/テスト、チェック、デバッグ etc.
+* https://developer.apple.com/videos/play/wwdc2020/10650/
+  * パブリックなデータ保存場所としてCloudKitを利用する
+* https://zenn.dev/treastrain/articles/9db1ac5fb17904
