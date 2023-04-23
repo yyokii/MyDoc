@@ -313,6 +313,7 @@ configurationを作成する方法も考えられる。
 
 ### 参考
 
+* [Core Data | Apple Developer Documentation](https://developer.apple.com/documentation/coredata)
 * [Using Core Data With CloudKit](https://developer.apple.com/videos/play/wwdc2019/202)
   * Core Data With CloudKitの基本的な話。
 * https://developer.apple.com/videos/play/wwdc2021/10015
