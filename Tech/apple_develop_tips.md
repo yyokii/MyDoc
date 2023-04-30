@@ -163,7 +163,7 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 > 
 > Just look at how SwiftUI’s built-in API was designed — containers (such as HStack and VStack) are views, while styling APIs (such as padding and foregroundColor) are implemented as modifiers. So, if we follow that same approach as much as possible within our own projects, then we’ll likely end up with UI code that feels consistent and inline with SwiftUI itself.
 
-View: コンテナーとして機能するようなものである場合にViewとした方がViewの階層の可読性は良い
+View: コンテナーとして機能するようなものである場合にViewとした方がViewの階層の可読性は良い  
 Modifire: 単一のViewに対してのスタイルの適用をしたいのであればこれで十分
 
 それ以外は好み。
