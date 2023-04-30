@@ -157,7 +157,54 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
-### Views vs Modifiers
+### 起動経路
+
+- [[Xcode 12] アプリの起動について変更になった部分まとめ | DevelopersIO](https://dev.classmethod.jp/articles/xcode12_change_appdelegate/)
+- [SwiftUI App Lifecycle Explained – LearnAppMaking](https://learnappmaking.com/swiftui-app-lifecycle-how-to/)
+
+### Animation
+
+- [amosgyamfi/swiftui-animation-library: SwiftUI Animation Library.](https://github.com/amosgyamfi/swiftui-animation-library)
+  凝ったアニメーションを作成する際に参考になりそう。
+
+### Binding
+
+> A property wrapper type that can read and write a value owned by a source of truth.
+
+[Binding | Apple Developer Documentation](https://developer.apple.com/documentation/swiftui/binding)
+
+> データ管理をするうえで重要な概念である**Single Source of Truth（単一の信頼できる情報源）** についてお話します。
+>
+> 一言でいうと管理するデータはひとつに絞った方がいいという考え方です。
+> マスターとなるデータを１つ決めて、コピーはつくらず、それだけを更新していき、他システムに反映していきます。
+
+[SwiftUI のデータ管理 Single Source of Truth 編](https://blog.personal-factory.com/2021/01/20/whats-the-single-source-of-truth-in-swiftui/)
+
+参照型ではない値を渡す場合に利用される場合が多い。
+
+また下記のようなイニシャライザが存在する。
+
+`init(get:set:)`
+
+> Creates a binding with closures that read and write the binding value.
+
+[init(get:set:) | Apple Developer Documentation](<https://developer.apple.com/documentation/swiftui/binding/init(get:set:)-7ufcp>)
+
+例えばアクティブ状態を監視する`Binding`は次のように定義できる
+
+```swift
+public var isActiveBinding: Binding<Bool> {
+        .init(get: { self.isActive },
+              set: { self.isActive = $0 }
+        )
+    }
+```
+
+### Extension vs Views vs Modifiers
+
+View を拡張したい場合は extension を使用し、状態保持が必要な場合は View の作成や ViewModifier を検討する。
+
+View か Modifierかは、
 
 > On the flip side, if all that we’re doing is applying a set of styles to a single view, then implementing that as either a “modifier-like” extension, or using a proper ViewModifier type, will most often be the way to go. And for everything in between — such as our earlier “featured label” example — it all really comes down to code style and personal preference as to which solution will be the best fit for each given project.
 > 
@@ -168,7 +215,8 @@ Modifire: 単一のViewに対してのスタイルの適用をしたいのであ
 
 それ以外は好み。
 
-[SwiftUI views versus modifiers | Swift by Sundell](https://www.swiftbysundell.com/articles/swiftui-views-versus-modifiers/)
+* [SwiftUI views versus modifiers | Swift by Sundell](https://www.swiftbysundell.com/articles/swiftui-views-versus-modifiers/)
+* [View を拡張したい場合は原則として extension を使用し、状態保持が必要な場合のみ `ViewModifier` を実装する。 · YusukeHosonuma/Effective-SwiftUI · Discussion #31](https://github.com/YusukeHosonuma/Effective-SwiftUI/discussions/31)
 
 ## UIKit
 
