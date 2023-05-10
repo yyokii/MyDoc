@@ -1,5 +1,17 @@
 # Swift
 
+## protocol
+
+### associatedtypeをもつprotocolはジェネリクスの制約としてのみ利用可能
+
+これは例えばそのようなprotocolをプロパティの型制約として使用した際に`protocol can only be used as a generic constraint because it has Self or associated type requirements` というエラーが出ることからもわかる。
+
+associatedtypeを使用する場合、そのprotocolを利用した型が確定するまでassociatedtypeの具体的な値は不明。そのためその型を宣言するためには、associatedtypeに対して型制約を指定する必要があるが、プロパティへの型制約などではそれが確定しないので「ジェネリクスの制約としてのみ利用可能」となる。
+
+associatedtypeやSelfを利用したprotocolとしては`View`や`Equatable`, `Identifiable`などがある。
+
+[How to fix the error “protocol can only be used as a generic constraint because it has Self or associated type requirements” - free Swift 5.4 example code and tips](https://www.hackingwithswift.com/example-code/language/how-to-fix-the-error-protocol-can-only-be-used-as-a-generic-constraint-because-it-has-self-or-associated-type-requirements)
+
 ## Keypath
 
 ### 種類
