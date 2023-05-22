@@ -51,6 +51,71 @@ UI/UXのパターンとしては、以下である。
 
 ## ChatGPT
 
+| 比較項目                     |    OpenAI    | Azure OpenAI Service |
+| :--------------------------- | :----------: | :------------------: |
+| 1. 基本性能                  |   やや劣る   |      優れている      |
+| 2. セキュリティ/プライバシー | 明らかに劣る |      優れている      |
+| 3. 料金                      |     同等     |         同等         |
+| 4. リリース速度/利用開始方法 |  優れている  |       やや劣る       |
+| 5. 組み込み方法/サポート体制 |  組織による  |      組織による      |
+
+* Azureの方はプロンプトインジェクションの対応もゼロから自前でやる必要はない。
+  [Azure OpenAI Service content filtering - Azure OpenAI | Microsoft Learn](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/content-filter) 
+* Azure OpenAI Serviceの利用開始に申請が必要
+
+> ### Azure OpenAI ServiceのChatGPT APIを利用するケース
+>
+> ・ 「BOTCHAN AI」などのお客様に提供するAIサービスの本番、Staging環境、テスト環境
+> ・ 他のAzure Cognitive Servicesとの接続検証/技術調査
+>
+> ### OpenAI社のChatGPT APIを利用するケース
+>
+> ・ 「ChatGPTで〇〇やってみた」系の記事を試すとき(基本 OpenAI社のAPIが前提となっているため)
+> ・ ChatGPT系のツールを試すとき(ツールの仕様上、OpenAIのAPIしか使えないことが多いため)
+> ・ 新しい機能やモデルがリリースされたときの先行調査
+
+[CTOの視点から見たAzure OpenAI ServiceとOpenAIのChatGPT APIの深堀り比較 - Qiita](https://qiita.com/lazy-kz/items/32e8e7c86bdce67beb48) より
+
+![gpt azure architecture](/Users/yoki/Desktop/スクリーンショット 2023-05-21 21.02.26.png)
+
+[0518LLMmeetup_LLMシステムの非機能要件対応_現場レポート.pdf - Speaker Deck](https://speakerdeck.com/hirosatogamo/0518llmmeetup-llmsisutemunofei-ji-neng-yao-jian-dui-ying-xian-chang-repoto) より
+
+### API料金
+
+### [OpenAI](https://openai.com/pricing)
+
+1000トークンあたりの料金。
+
+* 英語の場合は1トークン1単語（必ずそうなのかは？）
+* 日本語の場合は1トークン1文字かそれ以下ぐらい、と見積もるのが良さそう
+  [OpenAI 言語モデルで日本語を扱う際のトークン数推定指標](https://zenn.dev/microsoft/articles/dcf32f3516f013)
+
+2023/5/23 現在
+
+GPT-4
+
+| **Model**   | **Prompt**        | **Completion**    |
+| ----------- | ----------------- | ----------------- |
+| 8K context  | $0.03 / 1K tokens | $0.06 / 1K tokens |
+| 32K context | $0.06 / 1K tokens | $0.12 / 1K tokens |
+
+（Promptは、ユーザーがGPTに提供するテキスト入力。Completionは、GPTが提供するテキスト出力）
+
+Chat
+
+| **Model**     | **Usage**          |
+| ------------- | ------------------ |
+| gpt-3.5-turbo | $0.002 / 1K tokens |
+
+### 開発での工夫
+
+* GPTで完結しないor不得意な作業はコマンド化したものを返してもらいそれを元に他で作業をする
+
+  * [2022/05/18 STUDIO に GPT 入れてみた - Speaker Deck](https://speakerdeck.com/ryunosukeheaven/18-studio-ni-gpt-ru-retemita)
+  * アウトプットの質向上
+  * 待ち時間削減
+  * トークン数の節約
+
 ### プロンプト
 
 bashスクリプト生成
@@ -101,6 +166,54 @@ https://github.com/hirokidaichi/wanna/blob/main/wanna/chatter.py
 * メモリ: チェーンやエージェントで状態を保持。
 * 評価 (BETA)
 
+## Agent（LLMの技術を用いた自律型エージェント）
+
+Agentとは下記のような役割をするもの（明確な定義は見つけられなかったので各所のまとめ）
+
+* 人間のインプットを元に自律的に行動を選択する
+* 外部ツール（検索、APIリクエスト、ファイル操作など）を適宜使用
+* 実行結果（エラーも含め）を元に行動の修正
+* 実行したことを記憶している
+
+### 懸念点
+
+* 精度
+  * 最初のインプット（ゴール）が曖昧だとアウトプットはもちろんぶれる
+  * 無限ループに陥ることがある
+* 推論を繰り返すので・・
+  * コスト↑
+  * 時間↑
+    * （もちろん何をするかとどんな手順をとるかによるが）5~10分待つぐらいの肌感
+
+### 参考
+
+* [全自動でデータ分析してくれるAIエージェントを作った - Speaker Deck](https://speakerdeck.com/dory/llm-agent-meetuptokyo2)
+* [LLM Meetup Tokyo #2 手続きを記憶するコマンド型エージェントの実装 - Speaker Deck](https://speakerdeck.com/rynsuke/llm-meetup-tokyo-number-2-shou-sok-kiwoji-yi-surukomantoxing-esientonoshi-zhuang)
+* [LLM Meetup Tokyo #2 開催レポ＆LTまとめ｜mah_lab / 西見 公宏](https://note.com/mahlab/n/n24d04dc996e7)
+
+## ReAct
+
+> LLMのpromptingの方法の一つです。LLMに質疑応答させたり、意思決定させたりという場面で力を発揮するほか、外部データベースや外部APIとLLMを組み合わせる場合にも使えます。
+> また、LangChainでもReActの考え方は多く活用されています（エージェントなど）
+
+[【Prompt Engineering】LLMを効率的に動かす「ReAct」論文徹底分解！😎](https://zenn.dev/ryo1443/articles/d727b2b9a6d08c) より
+
+ReAct論文: [[2210.03629] ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
+
+> LLMは凄まじい成果を発揮しているが、推論（Chain of Thoughtなど）と行動（検索・計画の生成などなど）については別テーマとして研究されてきた。本論文では、LLMを使用して推論と行動の両者を活用し、2つの相乗効果を生む方法（ReAct）を提案する。
+> 　ReActを様々な言語タスクと意思決定タスクに適用し、効率性を実証する。具体的には、質疑応答と事実検証においてWikipediaAPIを活用して種々の問題を克服する。更に、2つの対話型の意思決定ベンチマーク（ALFWorldとWebShop）について、promptに1つか2つの例を入れるのみで、模倣学習と強化学習に対して34%と10%の成功率の向上を上げた。
+
+## ファインチューニング
+
+> 　機械学習（厳密にはニューラルネットワーク）における**ファインチューニング**（**Fine-tuning**：**微調整**）とは、あるデータセットを使って**事前学習**（**Pre-training**）した訓練済みモデルの一部もしくは全体を、別のデータセットを使って再トレーニングすることで、新しいタスク向けに機械学習モデルのパラメーターを微調整することである（図1）。一般的に、再トレーニングの際の学習率はより小さな値にするため、既に調整済みのパラメーターへの影響もより小さなものとなる。
+
+[ファインチューニング（Fine-tuning：微調整）とは？：AI・機械学習の用語辞典 - ＠IT](https://atmarkit.itmedia.co.jp/ait/articles/2301/26/news019.html)
+
+## アンサンブル学習
+
+> アンサンブル・メソッドを用いた[機械学習](https://ja.wikipedia.org/wiki/機械学習)である。統計や機械学習で使われるアンサンブル・メソッドでは、さまざまな学習[アルゴリズム](https://ja.wikipedia.org/wiki/アルゴリズム)の有限集合を使用することで、単一の学習アルゴリズムよりも優れた結果を得る。
+
+[アンサンブル・ラーニング - Wikipedia](https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%82%B5%E3%83%B3%E3%83%96%E3%83%AB%E3%83%BB%E3%83%A9%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0)
 
 ## Temperature
 
@@ -125,3 +238,27 @@ https://ai.stackexchange.com/a/32478
   * 2023/3月時点でAIの人間の生活への影響についての想定がわかる
   * ビル・ゲイツがAIの時代について述べたもの。彼はAIが革命的な技術であり、マイクロプロセッサ、パーソナルコンピュータ、インターネット、携帯電話の創造と同じくらい基本的な開発であると述べている。AIは人々の働き方、学び方、旅行の方法、医療の受け方、コミュニケーションの方法を変える。また、AIは世界の最悪の不平等を減らすことができ、特に教育と健康において大きな可能性があると述べている。しかし、AIの発展には様々なリスクが伴う。それは労働力、法制度、プライバシー、バイアスなどについての難しい問題を提起します。また、AIはHallucinationをにより、幻覚を経験させることもある。それにもかかわらず、ビル・ゲイツはAIの可能性について非常に楽観的で、その影響力と可能性について深く考えることを促している。 
 * [Hallucination (artificial intelligence) - Wikiwand](https://www.wikiwand.com/en/Hallucination_(artificial_intelligence))
+
+## memo
+
+* json色付け→AI（コンピュータ）のアウトプット色付けだなあと
+  そのうち色付けるとこもAIがしてくれるようになるだろうが
+  * 開発フローの遷移
+    * requester → エンジニアwith AI → サービス
+    * requester → AI（もちろん色付けも） → サービス
+    * requesterが認識しなくとも自動で適切なサービスが適切なタイミングで提供される
+
+* Agentのコスト高い問題、途中のはllmがわかる言葉でやるとトークン数削減できるのでは？
+
+* OpenAIのAPIを利用したサービスについて
+
+  * UI/UXを工夫してChatGPTでやるより楽にしてるよ系
+    * たくさん
+    * プラットフォームに乗せることで
+    * 利用幅を広げる系もこれ
+      * LINE: AIチャットくん
+      * AI Type: キーボード
+
+  * ChatGPTでやるのがそもそも難しいもの系
+    * デザイン作成での利用
+    * Agentの利用
