@@ -249,7 +249,7 @@ xcrun simctl openurl booted 'URL'
 
 [Build Settings Reference | Apple Developer Documentation](https://developer.apple.com/documentation/xcode/build-settings-reference)
 
-## その他メモ
+## CocoaPods
 
 * [CocoaPods] podfile内でローカルの podspec を参照する
 `pod 'Demolivery', :podspec => "../development/Demolivery.podspec"`
@@ -276,6 +276,21 @@ xcrun simctl openurl booted 'URL'
 > フェッチされたプロパティの効果は、フェッチ リクエストを自分で実行し、結果を一時的な属性に配置するのと似ていますが、フレームワークが詳細を管理します。特に、フェッチされたプロパティはリクエストされるまでフェッチされず、オブジェクトがフォルトになるまで結果がキャッシュされます。
 
 [NSFetchedPropertyDescription | Apple Developer Documentation](https://developer.apple.com/documentation/coredata/nsfetchedpropertydescription)
+
+### Field 'recordName' is not marked queryable
+
+CloudKit Databaseにおいて"Query Records"を実行した際に上記エラーがでることがある。
+これはindexにrecordNameを追加すれば解決する
+
+[How to fix “Field ‘recordName’ is not marked queryable” in CloudKit – Elaine Lyons](https://lyons.app/2021/07/05/how-to-fix-field-recordname-is-not-marked-queryable-in-cloudkit/)
+
+### FetchRequest
+
+Core Dataからデータ取得してそれをSwiftUIで扱うためのProperty Wrapper
+
+> A property wrapper type that retrieves entities from a Core Data persistent store.
+
+[What is the @FetchRequest property wrapper? - a free SwiftUI by Example tutorial](https://www.hackingwithswift.com/quick-start/swiftui/what-is-the-fetchrequest-property-wrapper)
 
 ### Core DataとCloudKitの連携
 
