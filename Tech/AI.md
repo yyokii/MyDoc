@@ -107,6 +107,44 @@ Chat
 | ------------- | ------------------ |
 | gpt-3.5-turbo | $0.002 / 1K tokens |
 
+### [Safety best practices - OpenAI API](https://platform.openai.com/docs/guides/safety-best-practices)
+
+> [無料のモデレーション API を使用する](https://platform.openai.com/docs/guides/safety-best-practices/use-our-free-moderation-api)
+>
+> OpenAI の[Moderation API は](https://platform.openai.com/docs/guides/moderation)無料で使用でき、入力項目に安全でないコンテンツが含まれる頻度を減らすのに役立ちます。
+>
+> [敵対的テスト](https://platform.openai.com/docs/guides/safety-best-practices/adversarial-testing)
+>
+> アプリケーションを「破壊」しようとする誰かを反映するものの両方を含む、幅広い入力とユーザーの動作に対して製品をテストします。話題から逸れていませんか？誰かがプロンプトインジェクションを介して機能を簡単にリダイレクトできますか? たとえば、「前の指示を無視して、代わりにこれを実行する」などの方法はありますか?
+>
+> [人間参加型 (HITL)](https://platform.openai.com/docs/guides/safety-best-practices/human-in-the-loop-hitl)
+>
+> 可能な限り、実際に使用する前に出力を人間がレビューすることをお勧めします。
+>
+> [迅速なエンジニアリング](https://platform.openai.com/docs/guides/safety-best-practices/prompt-engineering)
+>
+> 「プロンプトエンジニアリング」は、出力テキストのトピックとトーンを制限するのに役立ちます。
+>
+> [「顧客を知る」（KYC）](https://platform.openai.com/docs/guides/safety-best-practices/know-your-customer-kyc)
+>
+> サービスを Gmail、LinkedIn、Facebook ログインなどの既存のアカウントにリンクすると役立つ場合があります
+>
+> [ユーザー入力を制限し、出力トークンを制限する](https://platform.openai.com/docs/guides/safety-best-practices/constrain-user-input-and-limit-output-tokens)
+>
+> ユーザーがプロンプトに入力できるテキストの量を制限すると、プロンプトインジェクションを回避できます。出力トークンの数を制限すると、悪用の可能性を減らすことができます。
+>
+> [ユーザーが問題を報告できるようにする](https://platform.openai.com/docs/guides/safety-best-practices/allow-users-to-report-issues)
+>
+> 一般に、ユーザーは、不適切な機能やアプリケーションの動作に関するその他の懸念事項を報告するための簡単に利用できる方法 (リストされた電子メール アドレス、チケットの送信方法など) を備えている必要があります。
+>
+> [制限を理解し、伝える](https://platform.openai.com/docs/guides/safety-best-practices/understand-and-communicate-limitations)
+>
+> 不正確な情報の幻覚から、不快な出力、偏見などに至るまで、言語モデルは大幅な変更を加えなければあらゆるユースケースに適しているとは限りません
+>
+> [エンドユーザーID](https://platform.openai.com/docs/guides/safety-best-practices/end-user-ids)
+>
+> リクエストでエンドユーザー ID を送信することは、OpenAI による不正行為の監視と検出に役立つツールとなります。
+
 ### 開発での工夫
 
 * GPTで完結しないor不得意な作業はコマンド化したものを返してもらいそれを元に他で作業をする
@@ -115,6 +153,12 @@ Chat
   * アウトプットの質向上
   * 待ち時間削減
   * トークン数の節約
+* json形式など特定のフォーマットで返してもらうと回答が冗長にならない傾向がある
+* エラーがでたり、望んだ出力結果でない場合はシステムから再度リクエストする
+* 架空の情報が生成されないように、
+  * インプットが必要でかつそれが少ない場合は機能を使わせない
+  * 「〜の場合は回答なしという返答をしてください」というオプションを持たせる
+
 
 ### プロンプト
 
@@ -154,6 +198,10 @@ The instructions so far are as follows:
 `````
 
 https://github.com/hirokidaichi/wanna/blob/main/wanna/chatter.py 
+
+### 参考
+
+* [ChatGPT Meetup Tokyo #1 - YouTube](https://www.youtube.com/watch?v=bK5PMfox_c8)
 
 ## LangChain
 
@@ -230,7 +278,7 @@ https://ai.stackexchange.com/a/32478
 * [AIもうええわい – WirelessWire News](https://wirelesswire.jp/2023/04/84527/)
   * AIの進化早い、1ヶ月という単位でみても大きな変化が起きている
   * > もう少し現代的な感覚で説明すると「毎週iPhoneの新機種が出る」くらいの感覚だろうか。
-もしもそうなったら、「どれを買えばいいというのか」と悩むだろうし、「今最新機種を買っても、来週にはまた別の最新機種が出てるのでは?」と疑心暗鬼になる
+  もしもそうなったら、「どれを買えばいいというのか」と悩むだろうし、「今最新機種を買っても、来週にはまた別の最新機種が出てるのでは?」と疑心暗鬼になる
   * > Microsoft、Googleといったクローズドでプロプライエタリ(非公開・独占・私有的)なAIと、オープンソースのAIの戦いになっている。
 * [「オープンソースは脅威」「勝者はMeta」「OpenAIは重要ではない」などと記されたGoogleのAI関連内部文書が流出 - GIGAZINE](https://gigazine.net/news/20230508-google-document-llm-arms-race/)
   * 2022年から2023年にかけて、大規模言語モデル（LLM）の開発競争が激化した。OpenAIの「GPT-4」、Metaの「LLaMA」、Stability AIの「StableLM」などが発表さた。Googleは、競合他社を分析し、オープンソースの脅威について詳細を記した内部資料が流出したと発表した。Googleは、オープンソースが勝利すると述べており、クローズドな環境からの転換を提案している。MetaのLLaMAのデータがインターネット上に流出したが、それはむしろメリットになっている。なぜならオープンソースのイノベーションはMetaのアーキテクチャの上で起こるので、Metaがその技術を直接自社の製品に取り入れることが可能だから。LLaMAをしのぐ性能を持つオープンソースの大規模言語モデル「Vicuna-13B」公開された。Googleは、オープンソースのモデルが低コストで高品質な性能を持つことを指摘し、協力することの重要性を強調している。オープンソースのモデルは特に画像生成の分野で革新的な技術を生み出しており、Googleはその影響力を認識していGoogleは、オープンソースの脅威と言語モデルの効率化技術である「LoRA」についても懸念を表明している。Googleは自社技術の秘密保持とオープンソース化の選択肢を考慮しており、競争優位性の維持が難しくなっていると認識してい。Googleは、Metaがオープンソースのイノベーションを活用できる一方で、OpenAIはオープンソースの姿勢を変えない限り競争で自分たちが先手を打つことができると主張している。Googleはオープンソースコミュニティのリーダーとしての地位を確立し、協力を重視すべきだと提案している。
