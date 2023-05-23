@@ -123,6 +123,15 @@ Pubic な API の宣言の集まり
 - [Module と Framework ってどう違うんですか？ in Swift PM](https://www.notion.so/Module-Framework-in-Swift-PM-4d0d94563991440fb7c55711671b81de)
 - [Swift におけるインポートとリンクの仕組みを探る - Speaker Deck](https://speakerdeck.com/kishikawakatsumi/swiftniokeruinpototorinkufalseshi-zu-miwotan-ru)
 
+## フォント
+
+AppleはWWDC 2015でオリジナルフォントのSan Franciscoを発表。それ以後iOSでデフォルトで利用されるシステムフォントはSan Francisco。
+しかし、San Franciscoには日本語のグリフが含まれていないのでシステムフォントを指定したテキストはアルファベットの部分をSan Franciscoで表示し、ひらがなや漢字の部分をHiragino Sansで表示するようになっている。そしてAppleのシステムフォントにはHiragino Sansをやや小さく表示する（元の約93.5%のサイズにする）という調整が入っている。これはSan FranciscoのアルファベットとHiragino Sansひらがなや漢字が並んだときに同じくらいの大きさに見えるようにという調整のため。
+
+そのためFigmaなどのデザインツールで作成・指定した日本語のラベルのサイズをそのまま実装に利用すると、想定していたよりも少し小さく表示されてしまうことになる。これは日本語の文字の場合にのみ発生し、そもそもテキストオブジェクトにアルファベットや数字のみしか使用しない場合などは気にする必要はない。
+
+[UIデザイナーに必要なiOSのTypographyの知識｜よつくら｜note](https://spinners.work/posts/kudakurage-figma-ios-ja-system-font-size-plugin/)
+
 ## LLDB
 
 - 値の書き換え
@@ -148,18 +157,66 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
-### Views vs Modifiers
+### 起動経路
+
+- [[Xcode 12] アプリの起動について変更になった部分まとめ | DevelopersIO](https://dev.classmethod.jp/articles/xcode12_change_appdelegate/)
+- [SwiftUI App Lifecycle Explained – LearnAppMaking](https://learnappmaking.com/swiftui-app-lifecycle-how-to/)
+
+### Animation
+
+- [amosgyamfi/swiftui-animation-library: SwiftUI Animation Library.](https://github.com/amosgyamfi/swiftui-animation-library)
+  凝ったアニメーションを作成する際に参考になりそう。
+
+### Binding
+
+> A property wrapper type that can read and write a value owned by a source of truth.
+
+[Binding | Apple Developer Documentation](https://developer.apple.com/documentation/swiftui/binding)
+
+> データ管理をするうえで重要な概念である**Single Source of Truth（単一の信頼できる情報源）** についてお話します。
+>
+> 一言でいうと管理するデータはひとつに絞った方がいいという考え方です。
+> マスターとなるデータを１つ決めて、コピーはつくらず、それだけを更新していき、他システムに反映していきます。
+
+[SwiftUI のデータ管理 Single Source of Truth 編](https://blog.personal-factory.com/2021/01/20/whats-the-single-source-of-truth-in-swiftui/)
+
+参照型ではない値を渡す場合に利用される場合が多い。
+
+また下記のようなイニシャライザが存在する。
+
+`init(get:set:)`
+
+> Creates a binding with closures that read and write the binding value.
+
+[init(get:set:) | Apple Developer Documentation](<https://developer.apple.com/documentation/swiftui/binding/init(get:set:)-7ufcp>)
+
+例えばアクティブ状態を監視する`Binding`は次のように定義できる
+
+```swift
+public var isActiveBinding: Binding<Bool> {
+        .init(get: { self.isActive },
+              set: { self.isActive = $0 }
+        )
+    }
+```
+
+### Extension vs Views vs Modifiers
+
+View を拡張したい場合は extension を使用し、状態保持が必要な場合は View の作成や ViewModifier を検討する。
+
+View か Modifierかは、
 
 > On the flip side, if all that we’re doing is applying a set of styles to a single view, then implementing that as either a “modifier-like” extension, or using a proper ViewModifier type, will most often be the way to go. And for everything in between — such as our earlier “featured label” example — it all really comes down to code style and personal preference as to which solution will be the best fit for each given project.
 > 
 > Just look at how SwiftUI’s built-in API was designed — containers (such as HStack and VStack) are views, while styling APIs (such as padding and foregroundColor) are implemented as modifiers. So, if we follow that same approach as much as possible within our own projects, then we’ll likely end up with UI code that feels consistent and inline with SwiftUI itself.
 
-View: コンテナーとして機能するようなものである場合にViewとした方がViewの階層の可読性は良い
+View: コンテナーとして機能するようなものである場合にViewとした方がViewの階層の可読性は良い  
 Modifire: 単一のViewに対してのスタイルの適用をしたいのであればこれで十分
 
 それ以外は好み。
 
-[SwiftUI views versus modifiers | Swift by Sundell](https://www.swiftbysundell.com/articles/swiftui-views-versus-modifiers/)
+* [SwiftUI views versus modifiers | Swift by Sundell](https://www.swiftbysundell.com/articles/swiftui-views-versus-modifiers/)
+* [View を拡張したい場合は原則として extension を使用し、状態保持が必要な場合のみ `ViewModifier` を実装する。 · YusukeHosonuma/Effective-SwiftUI · Discussion #31](https://github.com/YusukeHosonuma/Effective-SwiftUI/discussions/31)
 
 ## UIKit
 

@@ -5,7 +5,11 @@
 
 ## Summary
 
-SwiftUIとProperty WrapperによってSwiftUIのViewはデータをリアクティブに扱える宣言的に記述できるフレームワークである。従ってRxSwiftを用いていた時のようなViewとModelをブリッジするViewModelのようなものは必要ないはずである。
+SwiftUIとProperty WrapperによってSwiftUIのViewはデータをリアクティブに扱える宣言的に記述できるフレームワークである。従ってRxSwiftを用いていた時のようなViewとModelをブリッジする、1Viewに対して1つ存在するViewModelのようなものは必要ないはずである。
+
+> Registration and other objects are Source of Truths, model objects, part of our model. That objects are independent from a specific view and this is one important difference from MVVM. I see, from other platforms some people use the name VM for the “Source of Truth” (shared, view independent, …) but this is not MVVM. Also we can’t share a state using true MVVM, for SwiftUI (and other declarative platforms) EnvironmentObject is key for many use cases and situations. 
+> 
+https://developer.apple.com/forums/thread/699003?page=4
 
 設計の手順
 

@@ -1,5 +1,17 @@
 # Swift
 
+## protocol
+
+### associatedtypeをもつprotocolはジェネリクスの制約としてのみ利用可能
+
+これは例えばそのようなprotocolをプロパティの型制約として使用した際に`protocol can only be used as a generic constraint because it has Self or associated type requirements` というエラーが出ることからもわかる。
+
+associatedtypeを使用する場合、そのprotocolを利用した型が確定するまでassociatedtypeの具体的な値は不明。そのためその型を宣言するためには、associatedtypeに対して型制約を指定する必要があるが、プロパティへの型制約などではそれが確定しないので「ジェネリクスの制約としてのみ利用可能」となる。
+
+associatedtypeやSelfを利用したprotocolとしては`View`や`Equatable`, `Identifiable`などがある。
+
+[How to fix the error “protocol can only be used as a generic constraint because it has Self or associated type requirements” - free Swift 5.4 example code and tips](https://www.hackingwithswift.com/example-code/language/how-to-fix-the-error-protocol-can-only-be-used-as-a-generic-constraint-because-it-has-self-or-associated-type-requirements)
+
 ## Keypath
 
 ### 種類
@@ -267,52 +279,3 @@ SwiftUI で利用する主な`propertyWrapper`とその`wrappedValue`/`projected
 map() は Sequence を操作しないで、Element を加工する  
 flatMap() は Sequence を消して Element を取り出すので、また Sequence を作成して返す必要があり
 
-## SwiftUI
-
-### 起動経路
-
-- [[Xcode 12] アプリの起動について変更になった部分まとめ | DevelopersIO](https://dev.classmethod.jp/articles/xcode12_change_appdelegate/)
-- [SwiftUI App Lifecycle Explained – LearnAppMaking](https://learnappmaking.com/swiftui-app-lifecycle-how-to/)
-
-### Animation
-
-- [amosgyamfi/swiftui-animation-library: SwiftUI Animation Library.](https://github.com/amosgyamfi/swiftui-animation-library)
-  凝ったアニメーションを作成する際に参考になりそう。
-
-### Binding
-
-> A property wrapper type that can read and write a value owned by a source of truth.
-
-[Binding | Apple Developer Documentation](https://developer.apple.com/documentation/swiftui/binding)
-
-> データ管理をするうえで重要な概念である**Single Source of Truth（単一の信頼できる情報源）** についてお話します。
->
-> 一言でいうと管理するデータはひとつに絞った方がいいという考え方です。
-> マスターとなるデータを１つ決めて、コピーはつくらず、それだけを更新していき、他システムに反映していきます。
-
-[SwiftUI のデータ管理 Single Source of Truth 編](https://blog.personal-factory.com/2021/01/20/whats-the-single-source-of-truth-in-swiftui/)
-
-参照型ではない値を渡す場合に利用される場合が多い。
-
-また下記のようなイニシャライザが存在する。
-
-`init(get:set:)`
-
-> Creates a binding with closures that read and write the binding value.
-
-[init(get:set:) | Apple Developer Documentation](<https://developer.apple.com/documentation/swiftui/binding/init(get:set:)-7ufcp>)
-
-例えばアクティブ状態を監視する`Binding`は次のように定義できる
-
-```swift
-public var isActiveBinding: Binding<Bool> {
-        .init(get: { self.isActive },
-              set: { self.isActive = $0 }
-        )
-    }
-```
-
-### ViewModifier
-
-再利用可能なモディファイアを作成したい場合に利用する。
-[ViewModifier | Apple Developer Documentation](https://developer.apple.com/documentation/swiftui/viewmodifier)
