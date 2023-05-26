@@ -1,3 +1,7 @@
+## [だれでもAIメーカー | だれでもAIメーカー](https://dare-ai.com/)
+
+* プラットフォーム系のサービスはいろんな人に使われておもしろい
+
 ## [Duck, a chat-based note app for your knowledge base](https://site.ducknote.app/)
 
 * [メルカリを退職し、個人でWebアプリを作りました - urahiroshiの日記](https://urahiroshi.hatenablog.com/entry/2023/04/25/132958)
