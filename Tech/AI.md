@@ -1,5 +1,48 @@
 # AI
 
+## UXデザイン
+
+### [生成AI時代におけるUXデザイン | 生成AIをフル活用したUX設計手法＆生成AI時代のユーザー体験の変化について - Speaker Deck](https://speakerdeck.com/kajikent/sheng-cheng-aishi-dai-niokeruuxdezain)
+
+* AIと良きパートナーになれると最高に楽しい
+  * （感想）まだ「あーあれAIでよかったな」と思うことがあり生かしきれていない感はある。一手目を自動的にAIがやってくれると一番良いのだが。常にインプットを監視してるとできるが、なんかそれは電力的にまだイマイチなUXだなあと。
+* プロンプト
+  * 選択肢を与えることによる制限で回答の質を高め、反復と点数化による効率的に質をあげることが有効
+<img width="300" alt="スクリーンショット 2023-05-29 12 37 55" src="https://github.com/yyokii/MyDoc/assets/20992687/0486d780-c034-42ff-90c7-e9408f1a4477">
+
+<img width="300" alt="スクリーンショット 2023-05-29 12 38 02" src="https://github.com/yyokii/MyDoc/assets/20992687/fb18f965-15c6-469d-a3e7-e29cbe1fcda7">
+
+<img width="600" alt="スクリーンショット 2023-05-29 13 39 24" src="https://github.com/yyokii/MyDoc/assets/20992687/3fa30932-8a46-4b57-8af2-265d79875a91">
+
+
+#### UX 5レイヤーを用いたUX設計とAIの活用
+
+<img width="600" alt="スクリーンショット 2023-05-29 13 10 07" src="https://github.com/yyokii/MyDoc/assets/20992687/75d57376-6107-413a-a286-c939efb0cca0">
+
+* Starategy layer
+  * リサーチ: https://www.perplexity.ai/, 記事の読み込み回答を返信してくれ、ソースも表示される。
+  * リサーチ: https://wnr.ai/, テンプレートがあるのでそれに則った出力をしてくれる。資料の整理に使える
+  * story board: midjourney利用
+
+* Scope layer
+  * user story map: gptに作成してもらう
+
+<img width="400" alt="スクリーンショット 2023-05-29 13 29 20" src="https://github.com/yyokii/MyDoc/assets/20992687/ad5e22c1-e55e-487c-b109-c20a55f2bfbd">
+
+
+* Structure layer
+  * information architecture diagram: gptによるmermaidの生成
+* Skelton layer
+  * lp design 設計: gptによる構成案作成
+  * ワイヤーフレーム: uizardのauto designer
+* Surface layer
+  * midjourneyによる素材の生成
+
+
+
+Strategyのところが一番大事で、そこにセンスとか、哲学とかがないとその後の軸がぶれる。そこを支える何かに価値を感じる
+
+
 ## AIとエンジニア
 
 [Are Developers Needed in the Age of AI? | Hups](https://hups.com/blog/are-developers-needed-in-the-age-of-ai)では、AI、特に生成AIがソフトウェア開発の開発者の役割にどのような影響を与える可能性があるかを探求している。彼はAIが完璧ではないとしながらも、AIが創造的で技術的なタスクを実行でき、開発チームのありかたを根本的に変える可能性があると主張している。
