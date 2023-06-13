@@ -10,10 +10,8 @@
   * 選択肢を与えることによる制限で回答の質を高め、反復と点数化による効率的に質をあげることが有効
   <img width="300" alt="スクリーンショット 2023-05-29 12 37 55" src="https://github.com/yyokii/MyDoc/assets/20992687/0486d780-c034-42ff-90c7-e9408f1a4477">
 
-<img width="300" alt="スクリーンショット 2023-05-29 12 38 02" src="https://github.com/yyokii/MyDoc/assets/20992687/fb18f965-15c6-469d-a3e7-e29cbe1fcda7">
-
-<img width="600" alt="スクリーンショット 2023-05-29 13 39 24" src="https://github.com/yyokii/MyDoc/assets/20992687/3fa30932-8a46-4b57-8af2-265d79875a91">
-
+<img width="500" alt="スクリーンショット 2023-05-29 12 38 02" src="https://github.com/yyokii/MyDoc/assets/20992687/fb18f965-15c6-469d-a3e7-e29cbe1fcda7">
+<img width="500" alt="スクリーンショット 2023-05-29 13 39 24" src="https://github.com/yyokii/MyDoc/assets/20992687/3fa30932-8a46-4b57-8af2-265d79875a91">
 
 #### UX 5レイヤーを用いたUX設計とAIの活用
 
@@ -122,7 +120,7 @@ UI/UXのパターンとしては、以下である。
 
 [CTOの視点から見たAzure OpenAI ServiceとOpenAIのChatGPT APIの深堀り比較 - Qiita](https://qiita.com/lazy-kz/items/32e8e7c86bdce67beb48) より
 
-![gpt azure architecture](/Users/yoki/Desktop/スクリーンショット 2023-05-21 21.02.26.png)
+![azureを用いたLLMシステムの参考アーキテクチャ](https://github.com/yyokii/MyDoc/assets/20992687/dbee5c8d-d394-4a0a-8338-e6f8a5aa0163)
 
 [0518LLMmeetup_LLMシステムの非機能要件対応_現場レポート.pdf - Speaker Deck](https://speakerdeck.com/hirosatogamo/0518llmmeetup-llmsisutemunofei-ji-neng-yao-jian-dui-ying-xian-chang-repoto) より
 
