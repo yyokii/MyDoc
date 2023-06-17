@@ -35,7 +35,6 @@ iOS開発ポジションである場合は上述の給与面を望みますが�
 ### プログラミング言語
 
 業務で経験のあるもののみ記載しています。
-Swift, Kotlin以外は触っていない期間が1年以上経つので習熟度は低いです。
 
 - Swift
   - 3.0（2016年）~
@@ -56,6 +55,7 @@ Swift, Kotlin以外は触っていない期間が1年以上経つので習熟度
 - Backlog
 - ClickUp
 - Docker
+- Figma
 - Firebase
 - PlantUML
 - Swagger
