@@ -349,6 +349,17 @@ Core Dataからデータ取得してそれをSwiftUIで扱うためのProperty W
 
 [What is the @FetchRequest property wrapper? - a free SwiftUI by Example tutorial](https://www.hackingwithswift.com/quick-start/swiftui/what-is-the-fetchrequest-property-wrapper)
 
+### Databaseの種類
+
+* Public: アプリ利用者全員がアクセス可能
+* Private: AppleIDに紐づいた特定ユーザのみがアクセス可能
+* Shared: 他の特定の iCloud ユーザーがアクセス可能
+
+> Core Data with CloudKit uses a specific record zone in the CloudKit private database, which is accessible only to the current user.
+> 
+> (訳)
+> CloudKit を使用した Core Data は、現在のユーザーのみがアクセスできる CloudKit プライベート データベース内の特定のレコード ゾーンを使用します。
+
 ### Core DataとCloudKitの連携
 
 何が嬉しいか
