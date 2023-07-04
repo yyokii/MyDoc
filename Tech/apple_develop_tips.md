@@ -407,3 +407,36 @@ configurationを作成する方法も考えられる。
 * https://developer.apple.com/videos/play/wwdc2020/10650/
   * パブリックなデータ保存場所としてCloudKitを利用する
 * https://zenn.dev/treastrain/articles/9db1ac5fb17904
+
+## Locale
+
+Locale = 言語（Language） + 地域（Region）
+
+[Locale識別子の例]
+en_US（英語＋米国地域）
+ja_JP（日本語＋日本地域）
+en_JP（英語＋日本地域）
+Fr_FR（フランス語＋フランス地域）
+
+地域（Region）は端末の情報が取得されますが、言語（Language）についてはそのアプリが対応しているローカライズ言語と、端末の「使用する言語の優先順位」の中で一致する最上位の言語が採用される。Xcodeで新規作成したプロジェクトでは、通常ローカライズ言語に登録されているのはEnglishのみなので、端末のロケール設定を「日本語」＋「日本地域」にしても、アプリ側で取得できるLocale情報は”en_JP”となる。
+
+下記のようにして`preferredLanguages` から `Locale` を作り直すと`languageCode` や `regionCode` の設定値を取得可能。
+
+```swift
+extension Locale {
+    static var appLanguageLocale: Locale {
+        if let languageCode = Locale.preferredLanguages.first {
+            return Locale(identifier: languageCode)
+        } else {
+            return Locale.current
+        }
+    }
+}
+```
+
+もしくは各 Localizable.strings にkeyを設定してそれを取得することも可能。
+
+```
+"key" = "ja";
+"key" = "en";
+```
