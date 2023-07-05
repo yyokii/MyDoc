@@ -218,6 +218,14 @@ Modifire: 単一のViewに対してのスタイルの適用をしたいのであ
 * [SwiftUI views versus modifiers | Swift by Sundell](https://www.swiftbysundell.com/articles/swiftui-views-versus-modifiers/)
 * [View を拡張したい場合は原則として extension を使用し、状態保持が必要な場合のみ `ViewModifier` を実装する。 · YusukeHosonuma/Effective-SwiftUI · Discussion #31](https://github.com/YusukeHosonuma/Effective-SwiftUI/discussions/31)
 
+### 余白
+
+> 要素間の余白はVStack/HStackの spacing を用いて表現する.  
+> 要素の配置によって生じる余白は .frame(maxWidth:maxHeight:) を用いて表現する.  
+> 要素外側の余白は、どの要素が持つべき余白であるかを意識して padding を用いて表現する
+
+[SwiftUIのlayoutシステム](https://shtnkgm.com/blog/2023-04-05-swiftui-layout.html)
+
 ## UIKit
 
 - [深く知りたい Core Animation まとめ 1（レイヤー編）【iOS / Swift】 - SNOOZE LOG](https://snoozelag.hatenablog.com/entry/2021/12/18/003933)
