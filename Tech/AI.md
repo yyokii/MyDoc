@@ -498,6 +498,11 @@ https://ai.stackexchange.com/a/32478
 
 ## 気になった記事など
 
+* 読めてないが気になるもの
+  * [ChatGPT Meetup Tokyo #3 - 資料一覧 - connpass](https://chatgpt.connpass.com/event/284058/presentation/)
+  * [LLM in Production Meetup #0 kick off - 資料一覧 - connpass](https://llm-in-production.connpass.com/event/287806/presentation/)
+  * [生成系AIの実応用に向けて - Speaker Deck](https://speakerdeck.com/line_developers/toward-practical-applications-of-generative-ai)
+
 * [ChatGPT Plugins Don't Have PMF](https://matt-rickard.com/chatgpt-plugins-dont-have-pmf)
 
   * 記事「ChatGPT Plugins Don't Have PMF」では、Sam Altmanの視点から、ブラウジングプラグインを除くChatGPTプラグインがプロダクトマーケットフィット（PMF）を持っていないと述べられている。そして、近いうちにAPIに追加される可能性は低いとされている。著者はこの状況についていくつかの仮説を提示している。
