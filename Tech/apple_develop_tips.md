@@ -218,6 +218,14 @@ Modifire: 単一のViewに対してのスタイルの適用をしたいのであ
 * [SwiftUI views versus modifiers | Swift by Sundell](https://www.swiftbysundell.com/articles/swiftui-views-versus-modifiers/)
 * [View を拡張したい場合は原則として extension を使用し、状態保持が必要な場合のみ `ViewModifier` を実装する。 · YusukeHosonuma/Effective-SwiftUI · Discussion #31](https://github.com/YusukeHosonuma/Effective-SwiftUI/discussions/31)
 
+### 余白
+
+> 要素間の余白はVStack/HStackの spacing を用いて表現する.  
+> 要素の配置によって生じる余白は .frame(maxWidth:maxHeight:) を用いて表現する.  
+> 要素外側の余白は、どの要素が持つべき余白であるかを意識して padding を用いて表現する
+
+[SwiftUIのlayoutシステム](https://shtnkgm.com/blog/2023-04-05-swiftui-layout.html)
+
 ## UIKit
 
 - [深く知りたい Core Animation まとめ 1（レイヤー編）【iOS / Swift】 - SNOOZE LOG](https://snoozelag.hatenablog.com/entry/2021/12/18/003933)
@@ -349,6 +357,17 @@ Core Dataからデータ取得してそれをSwiftUIで扱うためのProperty W
 
 [What is the @FetchRequest property wrapper? - a free SwiftUI by Example tutorial](https://www.hackingwithswift.com/quick-start/swiftui/what-is-the-fetchrequest-property-wrapper)
 
+### Databaseの種類
+
+* Public: アプリ利用者全員がアクセス可能
+* Private: AppleIDに紐づいた特定ユーザのみがアクセス可能
+* Shared: 他の特定の iCloud ユーザーがアクセス可能
+
+> Core Data with CloudKit uses a specific record zone in the CloudKit private database, which is accessible only to the current user.
+> 
+> (訳)
+> CloudKit を使用した Core Data は、現在のユーザーのみがアクセスできる CloudKit プライベート データベース内の特定のレコード ゾーンを使用します。
+
 ### Core DataとCloudKitの連携
 
 何が嬉しいか
@@ -396,3 +415,36 @@ configurationを作成する方法も考えられる。
 * https://developer.apple.com/videos/play/wwdc2020/10650/
   * パブリックなデータ保存場所としてCloudKitを利用する
 * https://zenn.dev/treastrain/articles/9db1ac5fb17904
+
+## Locale
+
+Locale = 言語（Language） + 地域（Region）
+
+[Locale識別子の例]
+en_US（英語＋米国地域）
+ja_JP（日本語＋日本地域）
+en_JP（英語＋日本地域）
+Fr_FR（フランス語＋フランス地域）
+
+地域（Region）は端末の情報が取得されますが、言語（Language）についてはそのアプリが対応しているローカライズ言語と、端末の「使用する言語の優先順位」の中で一致する最上位の言語が採用される。Xcodeで新規作成したプロジェクトでは、通常ローカライズ言語に登録されているのはEnglishのみなので、端末のロケール設定を「日本語」＋「日本地域」にしても、アプリ側で取得できるLocale情報は”en_JP”となる。
+
+下記のようにして`preferredLanguages` から `Locale` を作り直すと`languageCode` や `regionCode` の設定値を取得可能。
+
+```swift
+extension Locale {
+    static var appLanguageLocale: Locale {
+        if let languageCode = Locale.preferredLanguages.first {
+            return Locale(identifier: languageCode)
+        } else {
+            return Locale.current
+        }
+    }
+}
+```
+
+もしくは各 Localizable.strings にkeyを設定してそれを取得することも可能。
+
+```
+"key" = "ja";
+"key" = "en";
+```

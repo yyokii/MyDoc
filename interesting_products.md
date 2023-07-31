@@ -1,3 +1,9 @@
+## [Bento - A Link in Bio, but Rich and Beautiful.](https://bento.me/en/home)
+
+* [A new chapter, Linktree acquires Bento](https://bento.me/home/new-chapter)
+  * 前からサービス自体は知っていたが、この記事を見て改めていいサービスだなと思った。
+* クリエイターを支援するサービス、シンプルだがリッチで触りたくなるUI
+
 ## [だれでもAIメーカー | だれでもAIメーカー](https://dare-ai.com/)
 
 * プラットフォーム系のサービスはいろんな人に使われておもしろい

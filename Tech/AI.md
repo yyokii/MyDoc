@@ -10,10 +10,8 @@
   * 選択肢を与えることによる制限で回答の質を高め、反復と点数化による効率的に質をあげることが有効
   <img width="300" alt="スクリーンショット 2023-05-29 12 37 55" src="https://github.com/yyokii/MyDoc/assets/20992687/0486d780-c034-42ff-90c7-e9408f1a4477">
 
-<img width="300" alt="スクリーンショット 2023-05-29 12 38 02" src="https://github.com/yyokii/MyDoc/assets/20992687/fb18f965-15c6-469d-a3e7-e29cbe1fcda7">
-
-<img width="600" alt="スクリーンショット 2023-05-29 13 39 24" src="https://github.com/yyokii/MyDoc/assets/20992687/3fa30932-8a46-4b57-8af2-265d79875a91">
-
+<img width="500" alt="スクリーンショット 2023-05-29 12 38 02" src="https://github.com/yyokii/MyDoc/assets/20992687/fb18f965-15c6-469d-a3e7-e29cbe1fcda7">
+<img width="500" alt="スクリーンショット 2023-05-29 13 39 24" src="https://github.com/yyokii/MyDoc/assets/20992687/3fa30932-8a46-4b57-8af2-265d79875a91">
 
 #### UX 5レイヤーを用いたUX設計とAIの活用
 
@@ -38,10 +36,7 @@
 * Surface layer
   * midjourneyによる素材の生成
 
-
-
-Strategyのところが一番大事で、そこにセンスとか、哲学とかがないとその後の軸がぶれる。そこを支える何かに価値を感じる
-
+Strategyのところが一番大事で、そこにセンスとか、哲学とかがないとその後の軸がぶれる。そこを支える何かに価値を感じる。
 
 ## AIとエンジニア
 
@@ -60,7 +55,28 @@ json色付けというフロントエンドの責務の一つは、AI（コン�
   * requesterが認識しなくとも自動で適切なサービスが適切なタイミングで提供される
 
 こういう風に変遷していくとサービスを作る敷居はどんどん下がりそう。
-サービスを単に作るというよりは、その後の改善サイクルの回数と質がより大事になりそう。
+サービスを単に作るというよりは、その後の改善サイクルの回数と質がより大事になりそう。課題解決より課題発見力があると楽しくなりそう。
+
+> 問題はコモディティ化する中で、今までは儲かる漁師に数えられていたタイプの漁師にも、価値を失っていくタイプがある。
+どのタイプか想像ができるだろうか。それは、最初に挙げた「トレーダー」タイプと「エキスパート」タイプの漁師なのだ。  
+> ...  
+> 長いプログラマー人生の中で、ケースバイケースでこのタイプを行き来しながら、社会の課題を発見していくのがいいのではないか、と考えている
+
+[プログラマーとして技術のコモディティ化にどう向き合うか｜Ken Wagatsuma](https://note.com/kenwagatsuma/n/n9e49dd78d1b1)
+
+自分は現状どのプログラマーでもない気がする。器用貧乏感。あえて言うなら「インベスター」タイプのプログラマー、が現実味ある将来像なのかもしれない。カッコ良くも思える。
+
+そこを伸ばすとして、必要な要素は下記のように思う。
+
+* 技術トレンドの追跡
+* ビジネスと技術の統合
+* ネットワーキング
+* 継続的な学習
+
+そして特にビジネス、ネットワーキングの箇所が弱い。
+なんとかそこを改善したい。
+ハッカソンに出て、賞をとってそれをネタに発信するなり勉強会に行って繋がりを増やし、作ったもので稼ぐということにもより貪欲になるとか？
+ビジネスの部分がどうも遠い感あるんだよなあ。
 
 ## AI and Me
 
@@ -122,7 +138,7 @@ UI/UXのパターンとしては、以下である。
 
 [CTOの視点から見たAzure OpenAI ServiceとOpenAIのChatGPT APIの深堀り比較 - Qiita](https://qiita.com/lazy-kz/items/32e8e7c86bdce67beb48) より
 
-![gpt azure architecture](/Users/yoki/Desktop/スクリーンショット 2023-05-21 21.02.26.png)
+![azureを用いたLLMシステムの参考アーキテクチャ](https://github.com/yyokii/MyDoc/assets/20992687/dbee5c8d-d394-4a0a-8338-e6f8a5aa0163)
 
 [0518LLMmeetup_LLMシステムの非機能要件対応_現場レポート.pdf - Speaker Deck](https://speakerdeck.com/hirosatogamo/0518llmmeetup-llmsisutemunofei-ji-neng-yao-jian-dui-ying-xian-chang-repoto) より
 
@@ -499,6 +515,23 @@ ReAct論文: [[2210.03629] ReAct: Synergizing Reasoning and Acting in Language M
 https://ai.stackexchange.com/a/32478
 
 ## 気になった記事など
+
+* 読めてないが気になるもの
+  * [ChatGPT Meetup Tokyo #3 - 資料一覧 - connpass](https://chatgpt.connpass.com/event/284058/presentation/)
+  * [LLM in Production Meetup #0 kick off - 資料一覧 - connpass](https://llm-in-production.connpass.com/event/287806/presentation/)
+  * [生成系AIの実応用に向けて - Speaker Deck](https://speakerdeck.com/line_developers/toward-practical-applications-of-generative-ai)
+
+* [ChatGPT Plugins Don't Have PMF](https://matt-rickard.com/chatgpt-plugins-dont-have-pmf)
+
+  * 記事「ChatGPT Plugins Don't Have PMF」では、Sam Altmanの視点から、ブラウジングプラグインを除くChatGPTプラグインがプロダクトマーケットフィット（PMF）を持っていないと述べられている。そして、近いうちにAPIに追加される可能性は低いとされている。著者はこの状況についていくつかの仮説を提示している。
+
+    **コンセプトは正しいが、まだ十分ではない**: GPT-4は間違ったプラグインを選択するか、複数の呼び出しを確実に連鎖させることができないかもしれない。著者は、ほとんどのエージェントやプラグインフレームワークがこの問題に直面していると指摘している。外部APIへの呼び出しを開始できるかもしれないが、しばしば壊れやすく、誤動作を起こすことが多い。キラーアプリもない。より強力なワークフローは、より多くのプラグインを同時に呼び出すことができる大きなコンテキストウィンドウで解放されるかもしれないと著者は提案している。
+
+    **コンセプトが間違っている**: Altmanは、多くの人々が自分たちのアプリをChatGPTの中に欲しいと思っていたが、実際にはChatGPTを自分たちのアプリの中に欲しいと思っていたと発言している。また、著者は言語モデルは「横方向」の拡張を持つだろうと提案している。つまり、ウェブ検索やデータベースに接続するが、App Storeのようなインターフェースを通じて一般的なAPIを呼び出すことはないだろう。
+
+    **コンセプトは正しいが、実装が間違っている**: チャットがプラグインにとって適切なユーザーエクスペリエンスでない可能性があると著者は提案している。他の潜在的な問題としては、現在の価格で提供するコスト、より広範な採用の必要性、成功したアプリストアを構築する難しさなどが挙げられている。
+
+  * 使う人にも依る。LLMの実用としていろいろできるコンシェルジュ、というイメージがありそういう意味でコンシェルジュが利用する道具が増えるという意味でpluginのコンセプトは適している。一方で使いづらさ、いまいちさがあるのも事実。応答速度や正確性、操作性がやはり気になる。プラグインを選ぶというよりそこさえも自動でやってくれるUXを求めているところがある。ということで個人的には「コンセプトは正しいが、まだ十分ではない」寄りの意見である。大衆にはアプリの中でAI（ChatGPTなど）を用いる方が受けるは自然。OpenAIとしてはpluginというコンセプトは間違っていないと思う。
 
 * [(3) ChatGPT Hack Online Session（AI+Crypto Hackathon サイドイベント） - YouTube](https://www.youtube.com/watch?v=eJn08_bgecM)
 
