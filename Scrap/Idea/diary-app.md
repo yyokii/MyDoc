@@ -27,6 +27,9 @@
   * 4
 * ゴールとその最遅スケジュールは？
   * 5月末までにリリースしている
+    * 7月中旬にリリースした
+      * 一旦リリースした感じ
+      * 時間かかりすぎたなあ
 * 大まかな流れは？
   * 機能一覧書き出し
     * ✅ 日記を保存
@@ -67,8 +70,12 @@
 
 メモ
 
+* 結局dark modeのデザインもすきなので、画像は消してdark mode 対応した
+
+  * 画像気にするの面倒だしまあこれでいいだろう
+
 * メモ
-  
+
   * ```
     DiaryDetailViewの toolbarからShareView（or その簡易実装であるDemo画面）へNavigationLinkで遷移しようとするとメモリをひたすら消費する。
      NavigationLinkのクロージャー内がずっと呼ばれる。→ それより前の処理も追いたいかも
@@ -89,12 +96,10 @@
      わからん。ShareViewのcolomunsを
       lazy var columns にすれば一旦、事象は発生しなくはなる。
     ```
-  
-  * 
-  
+
 * 記事のネタ
 
-  * contentShapeでhittestの領域を変更できる https://developer.apple.com/forums/thread/123717
+  * contentShapeでhittestの領域を変更できる https://developer.apple.com/forums/thread/123717 
 
   * テキストインプット画面、キーボードを回避した透過画面作成
 
@@ -141,6 +146,5 @@
   * Package.swiftでの依存関係の記載
 
   * importの都度記載
-
 
 * アニメーションはデザイン当て込みの後まで我慢した方がいいかも。気になっていろいろ試してしまう。それが目的なら良いが。

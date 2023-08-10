@@ -56,6 +56,47 @@ Four Keysという指標がある。
 * [Your calendrical fallacy is thinking…](https://yourcalendricalfallacyis.com/)
   * カレンダー関連の実装で気を付けるべきことが書かれている
 
+## 設計
+
+### A Philosophy of Software Design
+
+Design Principles
+
+* 複雑さは漸進的なものだ：小さなことに汗をかかなければならない。Complexity is incremental: you have to sweat the small stuff (see p. 11). 
+* 動くコードだけでは十分ではない。Working code isn’t enough (see p. 14). 
+* システム設計を改善するために、継続的に小さな投資を行う。Make continual small investments to improve system design (see p. 15). 
+* モジュールは深くあるべきだ。Modules should be deep (see p. 23) 
+* インターフェースは、最も一般的な使い方をできるだけシンプルにするように設計されるべきである。Interfaces should be designed to make the most common usage as simple as possible (see p. 27). 
+* モジュールは単純な実装よりも単純なインタフェースを持つことの方が重要である。It’s more important for a module to have a simple interface than a simple implementation (see pp. 61, 74). 
+* 汎用モジュールはいっそう深いものである。General-purpose modules are deeper (see p. 39). 
+* 汎用的なコードと特殊なコードを分離する。Separate general-purpose and special-purpose code (see pp. 45, 68). 
+* 異なるレイヤーは異なる抽象度を持つべきである。Different layers should have different abstractions (see p. 51). 
+* 複雑さを下方に引き下げる。Pull complexity downward (see p. 61). 
+* エラーを存在しないように定義する。Define errors out of existence (see p. 81).
+* 設計は2回行う。Design it twice (see p. 91). 
+* コメントには、コードから明らかでないことを記述する。Comments should describe things that are not obvious from the code (see p. 101). 
+* ソフトウェアは、書きやすさではなく、読みやすさを重視して設計すべきである。Software should be designed for ease of reading, not ease of writing (see p. 151). 
+* ソフトウェア開発の増分は、機能ではなく抽象化であるべきである。The increments of software development should be abstractions, not features (see p. 156). 
+* 重要なものとそうでないものを分け、重要なものを強調する。Separate what matters from what doesn’t matter and emphasize the things that matter (see p. 171).
+
+Red Flags
+
+* 浅いモジュール：クラスやメソッドのインターフェイスが、その実装よりも単純でない。Shallow Module: the interface for a class or method isn’t much simpler than its implementation (see pp. 25, 110).
+* 情報漏洩：設計上の決定が複数のモジュールに反映される。Information Leakage: a design decision is reflected in multiple modules (see p. 31). 
+* 時間的分解：コード構造は、情報隠蔽ではなく、操作の実行順序に基づいている。Temporal Decomposition: the code structure is based on the order in which operations are executed, not on information hiding (see p. 32).
+*  過剰な露出： よく使われる機能を使うために、めったに使われない機能を意識することを呼び出し側に強いるAPI。Overexposure: An API forces callers to be aware of rarely used features in order to use commonly used features (see p. 36). 
+* パススルー・メソッド(Pass-Through Method): メソッドは引数を似たシグネチャを持つ別のメソッドに渡す以外、ほとんど何もしない。Pass-Through Method: a method does almost nothing except pass its arguments to another method with a similar signature (see p. 52).
+* 繰り返し：nontrivialなコードの断片が何度も繰り返される。Repetition: a nontrivial piece of code is repeated over and over (see p. 68).
+* 特別なコードと一般的なコードの混在：特別な目的のコードが、一般的な目的のコードからきれいに分離されていない。Special-General Mixture: special-purpose code is not cleanly separated from general purpose code (see p. 71).
+* 結合したメソッド：2つのメソッドが非常に多くの依存関係を持ち、一方の実装を理解す るには、もう一方の実装を理解しなければ難しい。Conjoined Methods: two methods have so many dependencies that its hard to understand the implementation of one without understanding the implementation of the other (see p. 75). 
+* コメントでコードが繰り返される：コメント内のすべての情報は、コメントの隣のコードからすぐにわかる。Comment Repeats Code: all of the information in a comment is immediately obvious from the code next to the comment (see p. 104). 
+* 実装の文書がインタフェースを汚染する：インタフェースのコメントには、文書化されたものを見る人が必要としない実装の詳細が記述されている。Implementation Documentation Contaminates Interface: an interface comment describes implementation details not needed by users of the thing being documented (see p. 114).
+* 曖昧な名前：変数名やメソッド名があまりに不正確で、有用な情報をあまり伝えない。Vague Name: the name of a variable or method is so imprecise that it doesn’t convey much useful information (see p. 123).
+* 名前を選ぶのが難しい：実体の正確で直感的な名前を思いつくのが難しい。Hard to Pick Name: it is difficult to come up with a precise and intuitive name for an entity (see p. 125). 
+* 記述が難しい：完璧であるためには、変数やメソッドのドキュメントは長くなければならない。Hard to Describe: in order to be complete, the documentation for a variable or method must be long. (see p. 133). 
+* 自明でないコード：コードの動作や意味を簡単に理解することができない。Nonobvious Code: the behavior or meaning of a piece of code cannot be understood easily. (see p. 150).
+
+
 ## Cache
 
 ブラウザがウェブページの要素（画像、CSS、JavaScriptファイルなど）をローカルに保存するもので、これによりウェブページの読み込み速度が向上し、全体的なユーザーエクスペリエンスが改善される。ユーザーが同じページを再度訪れると、すでにダウンロードされ保存されている要素が表示されるため、ページの読み込み時間が大幅に短縮される。
@@ -318,9 +359,18 @@ data:image/svg+xml;base64,{base64エンコードされたデータ}
 
 ## JavaScritptの非同期処理の仕組み
 
-JavaScriptはシングルスレッド言語であるが、非同期処理の実行が可能。それはイベントループ、キュー、WebAPIを利用しているから。
+JavaScriptはシングルスレッド言語であるが、非同期処理の実行が可能。それはイベントループ、キュー、WebAPI（ブラウザが提供する機能）を利用しているから。
 
 ![js-async-flow](https://user-images.githubusercontent.com/20992687/233397036-a8f68526-9129-489a-ac3d-efbc6a9178c1.gif)
 
+> `setTimeout`関数を返す`bar`を呼び出します。 `setTimeout`に渡した`Callback`が`WebAPI`に追加され、`setTimeout`関数と`bar`がコールスタックからポップされます。
+>
+> タイマーが開始し、その間に `foo`が呼び出され、`First`がログに記録されます。 `foo`は`undefined`を返し、 `baz`が呼び出され、`callback`がキューに追加されます `baz`は`Third`をログに記録します。イベントループは、 `baz`が戻った後、コールスタックが空であることを確認します。その後、コールバックがコールスタックに追加されます。 `コールバック`は`Second`を記録します。
+>
+> これにより、「イベントループ」に自信が持てるようになることを願っています。
+
+
+
 * [イベントループの非同期 | JavaScript Camp](https://www.jscamp.app/jp/docs/javascript25/)
 * [シングルプロセス・シングルスレッドとコールバック | TypeScript入門『サバイバルTypeScript』](https://typescriptbook.jp/reference/single-process-and-callback)
+

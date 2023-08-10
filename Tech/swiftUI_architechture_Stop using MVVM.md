@@ -146,5 +146,8 @@ Repository
 > - Define state object tasks as async, e.g “func load() async”, because for some situations you need to do other jobs after data load completed and async is more simple / sequencial than checking the “phase” (.loaded) using onChange(of:)
 
 > *What if the data format in your model does not correspond with how you want to show it on screen?* Depends on your needs. From my experience I find using local state (1.2) for form data, then convert to your model the best approach. Form should follow the Model. Remember **View = f(Model)**.
+>
+> （翻訳）
+> モデルのデータ形式が画面上での表示方法に対応していない場合はどうすればよいでしょうか?ニーズに応じて異なります。私の経験から、フォーム データにローカル状態 (1.2) を使用してからモデルに変換するのが最良のアプローチであることがわかりました。フォームはモデルに従う必要があります。 View = f(Model) を覚えておいてください。
 
 ## Test
