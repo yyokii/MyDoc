@@ -1,5 +1,16 @@
 # AI
 
+## 生成AIの価値
+
+* コンテンツ生成コストが下がる
+* システムとユーザーの自然な対話
+* 非構造化データのベクトル化
+* 別/マルチモーダルなアウトプット
+* 専門知識の民主化
+* 言語障壁をなくす
+
+[成功する生成 AI プロダクトのつくり方 - Speaker Deck](https://speakerdeck.com/kajikent/cheng-gong-surusheng-cheng-ai-purodakutonotukurifang?slide=25)
+
 ## UXデザイン
 
 ### [生成AI時代におけるUXデザイン | 生成AIをフル活用したUX設計手法＆生成AI時代のユーザー体験の変化について - Speaker Deck](https://speakerdeck.com/kajikent/sheng-cheng-aishi-dai-niokeruuxdezain)
