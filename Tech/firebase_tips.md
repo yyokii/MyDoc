@@ -2,7 +2,7 @@
 
 ## ドキュメント
 
-* ドキュメントの最大サイズ	1 MiB（1,048,576 バイト）
+* ドキュメントの最大サイズは1 MiB（1,048,576 バイト）
   * [使用量と上限  |  Firestore  |  Firebase](https://firebase.google.com/docs/firestore/quotas?hl=ja)
   * [ストレージ サイズの計算  |  Firestore  |  Firebase](https://firebase.google.com/docs/firestore/storage-size?hl=ja)
 
