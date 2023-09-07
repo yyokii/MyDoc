@@ -1,5 +1,11 @@
 # Firestore
 
+## ドキュメント
+
+* ドキュメントの最大サイズ	1 MiB（1,048,576 バイト）
+  * [使用量と上限  |  Firestore  |  Firebase](https://firebase.google.com/docs/firestore/quotas?hl=ja)
+  * [ストレージ サイズの計算  |  Firestore  |  Firebase](https://firebase.google.com/docs/firestore/storage-size?hl=ja)
+
 ## アトミックオペレーション
 
 * > Cloud Firestore は、データを読み書きするアトミック オペレーションをサポートしています。一連のアトミック オペレーションでは、すべてのオペレーションが正常に完了するか、またはどのオペレーションも適用されないかのいずれかです。Cloud Firestore には 2 種類のアトミック オペレーションがあります。
@@ -72,7 +78,7 @@
 
 | 対応方針       | 内容                                              | 備考                                              |
 | -------------- | ------------------------------------------------- | ------------------------------------------------- |
-| Query          | ドキュメントフィールドを検索してNの要素を取得する |                                                   |
+| Key Query          | ドキュメントフィールドを検索してNの要素を取得する |                                                   |
 | Sub Collection | SubCollectionを作成し要素をドキュメントを追加する | CollectionGroupを利用して親をまたいでの検索も可能 |
 
 ### N:N
