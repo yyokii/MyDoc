@@ -1,5 +1,8 @@
 ## キャリア
 
+* [エンジニアの心構え - Speaker Deck](https://speakerdeck.com/recruitengineers/engineer_2023?slide=58)
+  * <img src="https://github.com/yyokii/MyDoc/assets/20992687/d6b6c6bb-a3f8-42df-9aa0-e6b0ed480817" width="400">
+  * <img src="https://github.com/yyokii/MyDoc/assets/20992687/32486d01-6e8e-4f92-b869-073ffd8cb68b" width="400">
 * [ゲーム作りで「第１世代目はなぜ一線級を保ちつづけるのか？」と、そのなり方、落とし穴｜かえるD](https://note.com/kaerusanu/n/n6a5de71356e8)
 
   * 第1世代目でありたいし、それの心地よさを追い求めている自分がいる。それによって得たもので作ることもまた楽しいし。
