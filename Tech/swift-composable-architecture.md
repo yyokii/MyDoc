@@ -393,3 +393,58 @@ let store = TestStore(initialState: Feature.State()) {
 ```
 
 これらは、Composable Architectureの機能の構築とテストの基本です。コンポジション、モジュール性、適応性、複雑なeffectなど、探求すべきことがたくさんあります。Examplesディレクトリには、より高度な使用法を見るために探索するプロジェクトがたくさんあります。
+
+## StoreTaskにおける `finish()`とストリーミング処理
+
+```swift
+.task {
+    await viewStore.send(.listenGroups).finish()
+    await viewStore.send(.listenPersons).finish()
+}
+```
+
+.listen~はAsyncThrowingStreamを扱う処理を行っている（Firestoreからのデータをlistenしている）。
+この場合、上記のようにすると後半のタスクは呼ばれない。
+
+  * 原因
+
+    1. `viewStore.send(.listenGroups)`と`viewStore.send(.listenPersons)`はストリームを開始するため、基本的に完了することはない。Firestoreからデータを継続的にlistenしているため。
+
+    2. `finish()` メソッドはタスクの終了を待つ。 この場合、ストリームが基本的に終わらないため、`finish()`を使用すると、そのタスクは「完了」することがない。
+
+    3. 複数の`await`を一つの`.task`内に置くと、一つ目の`await`が完了するまで二つ目は開始されない。 そのため、一つ目の`await`が終わらず、二つ目は決して実行されない。
+
+  * 解決策
+
+    - `finish()`メソッドを取り除き、並列にタスクを実行させる
+
+      ```swift
+      .task {
+          await viewStore.send(.listenGroups)
+          await viewStore.send(.listenPersons)
+      }
+      ```
+      ここでは、2つの`await`式が並列に実行され、互いにブロックし合うことはない。
+      
+    - task modifierを分けて、並列にタスクを実行させる
+
+      ```swift
+      .task {
+          await viewStore.send(.listenGroups).finish()
+      }
+      .task {
+          await viewStore.send(.listenPersons).finish()
+      }
+      ```
+
+## Stack Point
+
+* ```swift
+  .ifLet(\.$destination, action: /Action.destination) {
+      Destination()
+  }
+  ```
+
+  これのつけ忘れで、
+
+  `To fix this, invoke "BindingReducer()" from your feature reducer's "body".` が発生しバインディングがうまくいかず、どこ直せばいいか分からずスタックした。
