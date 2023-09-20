@@ -1,4 +1,3 @@
-# Swift
 
 ## 数値型とその範囲
 
@@ -279,11 +278,6 @@ SwiftUI で利用する主な`propertyWrapper`とその`wrappedValue`/`projected
 |  `ObservedObject<ObjectType>`   |      `ObjectType { get }`       |  `ObservedObject<ObjectType>.Wrapper { get }`   |
 | `EnvironmentObject<ObjectType>` |      `ObjectType { get }`       | `EnvironmentObject<ObjectType>.Wrapper { get }` |
 |      `Environment<Value>`       |         `Value { get }`         |                   × (未定義)                    |
-
-## SwiftUI 利用時の Property Wrapper 選択フローチャート
-
-![property_wrapper_for_swiftUI](https://user-images.githubusercontent.com/20992687/120320715-7176a180-c31d-11eb-893d-cf305e6fe931.jpg)
-[引用: SwiftUI のデータ管理 Property Wrapper 編](https://blog.personal-factory.com/2021/01/23/how-to-use-propertywrapper-in-swiftui/)
 
 ## Rx
 
