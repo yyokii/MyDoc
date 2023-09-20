@@ -81,6 +81,26 @@ Four Keysという指標がある。
 
 ## 設計
 
+### [Domain model purity vs. domain model completeness (DDD Trilemma)](https://enterprisecraftsmanship.com/posts/domain-model-purity-completeness/)
+
+- Domain model completenessは、ドメインモデルにすべてのアプリケーションのドメインロジックが含まれている場合。
+  - その逆はドメインロジックの断片化。ドメインロジックがドメインレイヤー以外のレイヤーに存在する場合にこれになる。
+- Domain model purityは、ドメインモデルがプロセス外に依存しない場合。
+- ほとんどのユースケースでは、次の3つの属性すべてを達成することはできない。
+  - Domain model completeness
+  - Domain model purity
+  - パフォーマンス
+- trilemma
+  - すべての外部の読み取りと書き込みをビジネス処理側に押しやる - Domain model completenessとpurityを達せするが、パフォーマンスを妥協する。
+    - （例）ユーザー情報の全てを関数に渡す
+  - ドメインモデルにプロセス外の依存関係を注入する - パフォーマンスとDomain model completenessを達成するが、Domain model purityを犠牲にする。
+    - （例）ユーザー情報を取得できるIFを持つものを関数に渡す
+  - ドメインレイヤーとコントローラーの間で意思決定プロセスを分割する - パフォーマンスとDomain model purityの両方を達成できるが、completenessを妥協する。
+    - （例）他のユーザー情報を必要とするバリデーション処理はコントローラー側で対応する
+- アプリケーションのパフォーマンスに大きなダメージを与えることなく、すべての外部の読み取りと書き込みをビジネス処理側に押しやることができる場合は、このオプションを選択するのが良い。
+- それ以外の場合は、completenessよりもドメインモデルのpurityを優先するのが良い。
+  - ドメインロジックの断片化の方が、ドメインモデルがプロセス外のものに依存するよりもまし。ビジネスロジックは、アプリケーションの最も重要な部分。それはまた、最も複雑な部分でもある。プロセス外の依存関係と連携するという追加の責務と混在させると、そのロジックの複雑性は上がる。また、ドメインモデルをテストする際にモックやスタブが必要なくなるというメリットもある。
+
 ### A Philosophy of Software Design
 
 Design Principles
