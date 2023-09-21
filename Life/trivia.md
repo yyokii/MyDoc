@@ -24,4 +24,4 @@
 
 参考
 
-*  [「アルファベット」「ローマ字」「ラテン文字」の違い](
+* [「アルファベット」「ローマ字」「ラテン文字」の違い](https://linnameigetz.com/alphabet-ratenmoji-romaji)
