@@ -157,6 +157,11 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
+### ViewModifierの設定順序
+
+[ViewModifier](https://developer.apple.com/documentation/swiftui/viewmodifier) はViewに追加の設定を行いその結果を返却する。
+従って上から順に設定される。
+
 ### [SwiftUIでSingle Source of Truthを達成するための実装方針](https://blog.smartbank.co.jp/entry/2022/12/06/swiftui-single-source-of-truth)
 
 Viewをステートレスに保ち、状態の流れを単方向にすることのメリット
