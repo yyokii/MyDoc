@@ -420,6 +420,10 @@ xcrun simctl list devicetypes
 xcrun simctl openurl booted 'URL'
 ```
 
+## Xcodeで作成するファイルでヘッダーコメントをなくす
+
+* 例えば、 `/Applications/Xcode-15.0.0.app/Contents/Developer/Library/Xcode/Templates/File Templates/MultiPlatform` にファイルテンプレートがあるので、Swiftのものをコピペしヘッダーコメントがないswiftファイルを作成しそれに置き換える。
+
 ## Xcode デバッグについて
 
 * [Advanced Debugging with Xcode and LLDB - WWDC18 - Videos - Apple Developer](https://developer.apple.com/videos/play/wwdc2018/412 )
