@@ -437,6 +437,36 @@ let store = TestStore(initialState: Feature.State()) {
       }
       ```
 
+## Storeの初期化の書き方
+
+```
+let store = Store(
+  initialState: SomeReducer.State(...),
+  reducer: { SomeReducer() },
+  withDependencies: {
+    $0.someDependency = ...
+  }
+)
+
+or
+
+let store = Store(
+  initialState: SomeReducer.State(...)
+) {
+  SomeReducer()
+} withDependencies: {
+  $0.someDependency = ...
+}
+
+```
+
+* `SomeReducer.State(...)`とすることで補完が効くようになる
+* SomeReducerを`trailing closure`を使って書くかどうかは個人的にはどちらでも良いと思った。`closure`が1つのみである場合は`trailing closure`形式で書くのが良いという公式ガイドラインもあった気もする。明示的に引数名ある方がわかりやすさもあるとは思う。[TCAのrepositry](https://github.com/search?q=repo%3Apointfreeco%2Fswift-composable-architecture%20%7D%20withDependencies%3A%20%7B&type=code)では後者の書き方で書いてる。こういうのは公式に則るのが良いとも思うので、どちらかといえば後者かなあと。
+
+参考
+
+[個人的な Effective TCA](https://zenn.dev/kalupas226/articles/5b0bf98c922aa0)
+
 ## Stack Point
 
 * ```swift
