@@ -29,12 +29,11 @@
 
 * 高階関数を利用時にlazyを利用することで不必要な配列を生成しない
 
-  * `let newCars = allCars.lazy.filter({$0.isNew})`
-
-  
+  * `let newCars = allCars.lazy.filter({$0.isNew})`  
 
 ## コーディングスタイル
 
+* 定義済みの値があればその値を参照し変更を容易にする
 * 複数要素を設定可能な場合は配列で記述し、複数のオプションが選択可能であることを示唆する
   * `accessQueue.sync(flags: [.barrier])`
 * ifなどの条件部分が分かりにくい場合は変数化してその命名で意図を明確にする
