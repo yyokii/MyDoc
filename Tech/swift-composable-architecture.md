@@ -394,6 +394,116 @@ let store = TestStore(initialState: Feature.State()) {
 
 これらは、Composable Architectureの機能の構築とテストの基本です。コンポジション、モジュール性、適応性、複雑なeffectなど、探求すべきことがたくさんあります。Examplesディレクトリには、より高度な使用法を見るために探索するプロジェクトがたくさんあります。
 
+## [ComposableArchitecture | Documentation](https://pointfreeco.github.io/swift-composable-architecture/main/documentation/composablearchitecture)
+
+
+
+## [Identified Collections](https://www.pointfree.co/blog/posts/60-open-sourcing-identified-collections)
+
+### 課題
+
+以下のような `TODO` を管理するアプリケーションを考える。
+
+```swift
+struct Todo: Identifiable {
+  var description = ""
+  let id: UUID
+  var isComplete = false
+}
+```
+
+view model にその配列を以下のように保持できる。
+
+```swift
+class TodosViewModel: ObservableObject {
+    @Published var todos: [Todo] = []
+}
+```
+
+View においてTODOのリストを表示し、アクションをした場合にAPIリクエストしたり、アナリティクスを送信したり、またはユニットテストのために、view model において以下のような func を作成することがある。
+
+```swift
+class TodosViewModel: ObservableObject {
+  …
+  func todoCheckboxToggled(at id: Todo.ID) {
+    guard let index = self.todos.firstIndex(where: { $0.id == id })
+    else { return }
+
+    self.todos[index].isComplete.toggle()
+    // TODO: Update todo on backend using an API client
+  }
+}
+```
+
+idを引数に取る場合、`firstIndex(where:)` を利用する必要があり、そしてこれは `O(n)` である。
+https://developer.apple.com/documentation/swift/dictionary/firstindex(where:)
+
+`index: Int` を引数に取るようにすることで `O(1)` でアクセスできるが、
+
+```swift
+List(Array(self.viewModel.todos.enumerated()), id: \.element.id) { index, todo in
+  …
+}
+```
+
+* List 部分の記述が増える
+* body の評価時に新しい Array が割り当てられる可能性がある。新しい配列を作成することは、パフォーマンスの観点から最適ではない
+* view model の func においては、非同期処理をする前に以下のようにしないと意図しないものを更新したり、そもそも存在しない可能性もある
+
+```swift
+class TodosViewModel: ObservableObject {
+  …
+  func todoCheckboxToggled(at index: Int) async {
+    self.todos[index].isComplete.toggle()
+
+    // 1️⃣ Get a reference to the todo's id before kicking off the async work
+    let id = self.todos[index].id
+
+    do {
+      // 2️⃣ Update the todo on the backend
+      let updatedTodo = try await self.apiClient.updateTodo(self.todos[index])
+
+      // 3️⃣ Find the updated index of the todo after the async work is done
+      let updatedIndex = self.todos.firstIndex(where: { $0.id == id })!
+
+      // 4️⃣ Update the correct todo
+      self.todos[updatedIndex] = updatedTodo
+    } catch {
+      // Handle error
+    }
+  }
+}
+```
+
+
+
+### 解決策
+
+以上のような課題を `IdentifiedArray` で解決できる。
+
+```swift
+class TodosViewModel: ObservableObject {
+  @Published var todos: IdentifiedArrayOf<Todo> = []
+  
+  func todoCheckboxToggled(at id: Todo.ID) async {
+    self.todos[id: id]?.isComplete.toggle()
+
+    do {
+      // 1️⃣ Update todo on backend and mutate it in the todos identified array.
+      self.todos[id: id] = try await self.apiClient.updateTodo(self.todos[id: id]!)
+    } catch {
+      // Handle error
+    }
+
+    // No step 2️⃣ 😆
+  }
+}
+```
+
+id による添字でアクセスでき、非同期処理時の `index` がずれる問題もきにしなくてよくなる。
+
+
+
 ## StoreTaskにおける `finish()`とストリーミング処理
 
 ```swift
@@ -448,3 +558,63 @@ let store = TestStore(initialState: Feature.State()) {
   これのつけ忘れで、
 
   `To fix this, invoke "BindingReducer()" from your feature reducer's "body".` が発生しバインディングがうまくいかず、どこ直せばいいか分からずスタックした。
+
+## Actionの記述をわかりやすくする
+
+Actionは増えてくると読みづらくなる。
+また、Actionの種別はある程度分けることが可能である。
+
+[Thoughts on "Action Boundaries" to keep Actions organized and their intent explicit · pointfreeco/swift-composable-architecture · Discussion #1440](https://github.com/pointfreeco/swift-composable-architecture/discussions/1440#discussioncomment-3799435) より下記の`TCAFeatureAction`を利用することで見通しが良くなる。
+
+```swift
+public protocol TCAFeatureAction {
+    associatedtype ViewAction
+    associatedtype DelegateAction
+    associatedtype InternalAction
+
+    static func view(_: ViewAction) -> Self
+    static func delegate(_: DelegateAction) -> Self
+    static func `internal`(_: InternalAction) -> Self
+ }
+ 
+ public enum MyFeatureAction: TCAFeatureAction {
+   enum ViewAction: Equatable {
+      case didAppear
+      case toggle(Todo)
+      case dismissError
+   }
+
+   enum InternalAction: Equatable {
+     case listResult(Result<[Todo], TodoError>)
+     case toggleResult(Result<Todo, TodoError>)
+   }
+
+   enum DelegateAction: Equatable {
+     case ignored
+   }
+
+  case view(ViewAction)
+  case `internal`(InternalAction)
+  case delegate(DelegateAction)
+}
+```
+
+view, delegate, internalの他に下記が考えれる
+
+* 対象機能が他に切り出したReducerを利用している際のAction
+  * これは上記のものとは別の意味合いなので、そのまま追記
+* 遷移先のAction
+  * これも上記のものとは別の意味合い。  `struct Destination: Reducer` を作成し `case destination(PresentationAction<Destination.Action>)` のように記述するのが良さそう
+
+参考
+
+* [TCAFeatureAction で Action を見やすく・安全にしよう](ht tps://zenn.dev/kalupas226/articles/e214cf384a7b84)
+
+## Tips
+
+* [RFC: General tips and tricks · pointfreeco/swift-composable-architecture · Discussion #1666](https://github.com/pointfreeco/swift-composable-architecture/discussions/1666#discussioncomment-4212335) ここを見るとTipsが見つかるかも
+  * TestabilityのためにStateやActionをEquatableにするのは大事
+    * https://github.com/pointfreeco/swift-composable-architecture/discussions/1666#discussioncomment-4140589
+    * 一方で、`ViewStore`の観点からは、全`State`を監視するのではなく、必要な部分の`State`のみを監視することが望ましい。全`State`を監視すると、`State`の不要な変更に対してもビューが更新される可能性があるため、パフォーマンスの問題や不要なビューの再描画が発生する可能性がある。
+      * 解決策として、テスト時に`Equatable`プロトコルをつけるなどがある
+  * 
