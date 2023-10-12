@@ -17,6 +17,13 @@
 - [Apple A5 - Wikipedia](https://ja.wikipedia.org/wiki/Apple_A5)
 - [Apple A6 - Wikipedia](https://ja.wikipedia.org/wiki/Apple_A6)
 
+## OS更新
+
+- 例えばiOSにおいて直近2世代をサポートするケースにおいて、3世代目をいつ切るか
+  - 9割以上いるOSに絞る
+  - 切る場合はお知らせを先にし、猶予（3ヶ月ぐらい？）後に対応をする（先に切ってしまうと強制アップデート機能のタイミングでOS更新を余儀無くされるユーザーが発生する）
+- Androidは端末が多いので、OSで切るしかない（iOSも端末を考える必要が特になければOSを切るので良い）
+
 ## iOS とフレームワーク
 
 > iOS + Swift の上でオープンソースのフレームワークを使うことは辞めた方が良いと思います。OS そのものが勢いよく進化しているので、フレームワークを使うメリットが少ないし、すぐに陳腐化してしまう可能性があります。ブラウザーの上で Vue や React などのフレームワークが意味を持つのは、ブラウザーそのものの開発環境が貧弱な上に、ブラウザーごとに細かな違いがあるからです。そこを勘違いしないように注意してください。
@@ -40,7 +47,7 @@
 #### 入出力装置とドット/ピクセル
 
 - 液晶モニター（2 枚のガラス板の間に液晶を入れ、電圧の変化によって画面を表示させるモニタ。[液晶モニターとは - コトバンク](https://kotobank.jp/word/%E6%B6%B2%E6%99%B6%E3%83%A2%E3%83%8B%E3%82%BF%E3%83%BC-11966)）
-- - 赤青緑の 3 ドットで 1 ピクセルになる
+- 赤青緑の 3 ドットで 1 ピクセルになる
 - デジタルカメラ
   - 1 ドット＝ 1 ピクセル。
   - 1 ドットでは 1 色の色情報しか読み取れないが、色情報を周囲の別の色の素子から推測して、1 ドットに 3 色分の色情報を持たせている。
@@ -156,6 +163,132 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 `keytool -list -v -keystore {file_name}.p12 -storetype PKCS12 -storepass {password} `
 
 ## SwiftUI
+
+### Preview
+
+- Previewがクラッシュした際はログには詳細がでないので、アラートから詳細確認画面に遷移しクラッシュしたスレッドの情報を見ることで原因がわかる
+
+### ViewModifierの設定順序
+
+[ViewModifier](https://developer.apple.com/documentation/swiftui/viewmodifier) はViewに追加の設定を行いその結果を返却する。
+従って上から順に設定される。
+
+### [SwiftUIでSingle Source of Truthを達成するための実装方針](https://blog.smartbank.co.jp/entry/2022/12/06/swiftui-single-source-of-truth)
+
+Viewをステートレスに保ち、状態の流れを単方向にすることのメリット
+
+> - Single Source of Truthの達成
+>   - 状態を複製するのではなく移動させることで、Single Source of Truthを達成することができます。状態の不整合の発生を防ぎやすくなり、バグを防ぐのに役立ちます。
+> - 再利用性の向上
+>   - 他画面でのViewの使い周しが容易になります。
+> - 処理の割り込みが可能
+>   - 親Viewは子Viewの状態の変更前に処理を挟むことが可能で、状態を変更するかイベントを無視するかの判断が可能になります。
+> - Previewの表示が容易
+>   - ViewModelのような大きな状態管理オブジェクトを渡さないことで、Previewを表示する際に用意するパラメータが少なく済みます。
+
+やり方
+
+* Viewの状態を表現する情報源を1箇所に集約する
+
+  * ```swift
+    enum ProfileEditUIState {
+        case initial
+        case loading
+        case editing(profile: Profile)
+        case saving(profile: Profile)
+        case error(Error)
+    
+        var isSaveButtonDisabled: Bool {
+            switch self {
+            case .initial, .loading, .error: return false
+            case .editing(let profile): return profile.name.isEmpty
+            case .saving: return true
+        }
+    }
+      
+    @MainActor
+    class ProfileEditViewModel: ObservableObject {
+        @Published private(set) var uiState: ProfileEditUIState = .initial
+        ...
+    }
+    ```
+
+* ステートレスなView
+
+  * 切り出したViewにViewModelを渡すなどして、状態を持たないようにする
+
+    * Bindingを利用している箇所については、`Binding.init(get:set:) ` とViewModelへのイベント伝播を利用することで実現できる。
+
+    * ```swift
+      struct ProfileEditScreen: View {
+          ...
+          var body: some View {
+              ZStack {
+                  ...
+                  case .editing(let profile), .saving(let profile):
+                      ProfileEditContent(
+                          profile: profile,
+                          isSaveButtonDisabled: viewModel.uiState.isSaveButtonDisabled,
+                          onNameChanged: { name in
+                              // 🙆 ViewModelへテキスト変更イベントを伝播
+                              viewModel.onNameChanged(name: name)
+                          },
+                          onSaveButtonTapped: {
+                              Task {
+                                  await viewModel.onSaveButtonTapped()
+                              }
+                          }
+                      )
+                  ...
+                  }
+              }
+              ...　　　　　
+          }
+      }
+      
+      private struct ProfileEditContent: View {
+          let profile: Profile
+          let isSaveButtonDisabled: Bool
+          let onNameChanged: (String) -> Void
+          let onSaveButtonTapped: () -> Void
+      
+          var body: some View {
+              VStack {
+                  TextField(
+                      "Your Name",
+                      text: .init(get: {
+                          // 🙆 getterでは表示するテキストを返す
+                          profile.name
+                      }, set: { newValue in
+                          // 🙆 setterではイベントを親Viewへ伝播する
+                          onNameChanged(newValue)
+                      })
+                  )
+                          ...
+              }
+          }
+      }
+      
+      @MainActor
+      class ProfileEditViewModel: ObservableObject {
+          @Published private(set) var uiState: ProfileEditUIState = .initial
+          ...
+          // 🙆 UIStateを更新
+          func onNameChanged(name: String) {
+              guard case .editing(var profile) = uiState else { return }
+      
+              profile.name = name
+              uiState = .editing(profile: profile)
+          }
+      }
+      ```
+
+また、「複数のNavigationの管理は一箇所にまとめる」ことで遷移先が増えた場合の状態管理コストを下げることもできる。
+
+### SwiftUI 利用時の Property Wrapper 選択フローチャート
+
+![property_wrapper_for_swiftUI](https://user-images.githubusercontent.com/20992687/120320715-7176a180-c31d-11eb-893d-cf305e6fe931.jpg)
+[引用: SwiftUI のデータ管理 Property Wrapper 編](https://blog.personal-factory.com/2021/01/23/how-to-use-propertywrapper-in-swiftui/)
 
 ### 起動経路
 
@@ -297,6 +430,10 @@ xcrun simctl list devicetypes
 ```
 xcrun simctl openurl booted 'URL'
 ```
+
+## Xcodeで作成するファイルでヘッダーコメントをなくす
+
+* 例えば、 `/Applications/Xcode-15.0.0.app/Contents/Developer/Library/Xcode/Templates/File Templates/MultiPlatform` にファイルテンプレートがあるので、Swiftのものをコピペしヘッダーコメントがないswiftファイルを作成しそれに置き換える。
 
 ## Xcode デバッグについて
 

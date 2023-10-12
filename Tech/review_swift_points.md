@@ -29,12 +29,11 @@
 
 * 高階関数を利用時にlazyを利用することで不必要な配列を生成しない
 
-  * `let newCars = allCars.lazy.filter({$0.isNew})`
-
-  
+  * `let newCars = allCars.lazy.filter({$0.isNew})`  
 
 ## コーディングスタイル
 
+* 定義済みの値があればその値を参照し変更を容易にする
 * 複数要素を設定可能な場合は配列で記述し、複数のオプションが選択可能であることを示唆する
   * `accessQueue.sync(flags: [.barrier])`
 * ifなどの条件部分が分かりにくい場合は変数化してその命名で意図を明確にする
@@ -61,4 +60,8 @@
 * [ iOSアプリのコードレビューで見ているポイント 2020年5月版 ](https://cutmail.hatenablog.com/entry/2020/05/09/182304)
 * [自分がコードレビューで気をつけていること（2020.5 iOSアプリ開発版 ）](http://curiosity.co.jp/review202005ios/)
 
+
+## その他
+
+* Imageに`.renderingMode(.template)`と`resizable()`を追加しておく。画像のサイズが規定のサイズであったり、renderingModeはasset側で設定してあったりするので不要ではあるが、画像が差し替えになったケース等でasset側で正しい設定がなされていなかった場合に表示が崩れる可能性や、レビュー時にコードだけでは判断できないなどのデメリットがあるので基本追加する
 
