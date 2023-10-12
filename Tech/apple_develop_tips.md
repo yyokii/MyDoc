@@ -164,6 +164,10 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
+### Preview
+
+- Previewがクラッシュした際はログには詳細がでないので、アラートから詳細確認画面に遷移しクラッシュしたスレッドの情報を見ることで原因がわかる
+
 ### ViewModifierの設定順序
 
 [ViewModifier](https://developer.apple.com/documentation/swiftui/viewmodifier) はViewに追加の設定を行いその結果を返却する。
