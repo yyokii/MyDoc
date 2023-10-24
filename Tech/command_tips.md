@@ -123,6 +123,22 @@ rwxrwxrwx → 777
 
 ## Github
 
+* revertについて
+
+Revertはコミットを取り消すのではなく「対象コミットを打ち消すような修正コミットを新たに発行する」処理。
+従って、打ち消した処理がある状態にしたいケースではrevertをrevertする必要がある。
+
+（例）  
+mainとA、Bブランチがある.  
+Aにmainをmerge  
+Bにmainをmerge  
+BはAにPRを送っているので、一つ前でAをmergeしたかったことに気づく  
+Bのmainのmergeをrevert  
+BにAをmerge  
+（このままだと「Bのmainのmergeをrevert」があることにより、mainでのcommitが打ち消されている）  
+**「Bのmainのmergeをrevert」をrevertする必要がある**
+
+
 * リモートの任意のブランチと同じ状態（HEADの位置・インデックス・ワーキングツリーを一致させた状態）にする
 
 `git reset --hard origin/{develop}`
