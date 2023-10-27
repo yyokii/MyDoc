@@ -642,6 +642,8 @@ view, delegate, internalの他に下記が考えれる
 
 ## Tips
 
+* store.sendがあるが、ViewStoreがあるときはそっち経由でsendを呼ぶ
+  * https://github.com/pointfreeco/swift-composable-architecture/blob/9b0f600253f467f61cbd53f60ccc243cc4ff27cd/Sources/ComposableArchitecture/Store.swift#L192-L196
 * [RFC: General tips and tricks · pointfreeco/swift-composable-architecture · Discussion #1666](https://github.com/pointfreeco/swift-composable-architecture/discussions/1666#discussioncomment-4212335) ここを見るとTipsが見つかるかも
   * TestabilityのためにStateやActionをEquatableにするのは大事
     * https://github.com/pointfreeco/swift-composable-architecture/discussions/1666#discussioncomment-4140589
