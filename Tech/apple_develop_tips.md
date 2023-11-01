@@ -17,6 +17,21 @@
 - [Apple A5 - Wikipedia](https://ja.wikipedia.org/wiki/Apple_A5)
 - [Apple A6 - Wikipedia](https://ja.wikipedia.org/wiki/Apple_A6)
 
+## シングルAppモード
+
+> シングルAppモードでは、選択したAppがデバイス上で強制的に開かれ、ほかのAppは使用できません。このペイロードが有効な場合、Appはデバイスが再起動するとすぐに再度開きます。
+
+[Apple ConfiguratorでシングルAppモードを開始する - Apple サポート (日本)](https://support.apple.com/ja-jp/guide/apple-configurator-mac/cadbf9c172/mac)
+
+> シングルAPPモードは、iOS端末やiPadOS端末で起動できるアプリを1つのみに制限する機能です。設定を行うとホームボタンを押下しても指定したアプリからホーム画面および他のアプリへ遷移できなくなり、アプリの使用を限定することができます。
+加えて、タッチ操作の無効や音量調節ボタンの無効、自動ロックの無効設定することもできます。設定を管理者が遠隔から複数の端末に向けて一斉に行うことができるというのが、MDMからシングルAppモードを利用する一番のメリットになります。
+
+ユースケース  
+* 客室でお客様に端末をご利用いただく
+* 展示会・お店で動画を流す
+
+[Optimal Biz機能紹介 –iOS端末のキオスク化を実現するシングルAPPモード機能をご紹介 | Optimal Biz](https://www.optimalbiz.jp/blog/single-app-mode/)
+
 ## OS更新
 
 - 例えばiOSにおいて直近2世代をサポートするケースにおいて、3世代目をいつ切るか
