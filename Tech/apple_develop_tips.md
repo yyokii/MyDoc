@@ -380,6 +380,43 @@ Modifire: 単一のViewに対してのスタイルの適用をしたいのであ
 
 [SwiftUIのlayoutシステム](https://shtnkgm.com/blog/2023-04-05-swiftui-layout.html)
 
+### GeometryReader
+
+親Viewのサイズや位置にアクセスできるようにするView。
+これを利用することで相対サイズの指定も可能になる。
+
+SwiftUIのレイアウトの3ステップは下記であり、
+1. 親が子のサイズを提案
+2. 子はそれを使用して自分のサイズを決定
+3. 親は子を適切な位置に配置
+
+`GeometryReader` より受け取れる `GeometryProxy` は 提案されたサイズを保持している。  
+保持しているプロパティは以下の通り。
+
+```swift
+    /// The size of the container view.
+    public var size: CGSize { get }
+
+    /// Resolves the value of `anchor` to the container view.
+    public subscript<T>(anchor: Anchor<T>) -> T { get }
+
+    /// The safe area inset of the container view.
+    public var safeAreaInsets: EdgeInsets { get }
+
+    /// Returns the container view's bounds rectangle, converted to a defined
+    /// coordinate space.
+    public func frame(in coordinateSpace: CoordinateSpace) -> CGRect
+
+```
+
+`frame(in:)` で特定の座標空間での座標を取得できる。
+
+* `.global`: Viewが画面上のどこにあるか知りたい場合
+* `.local`: Viewの親に対する相対位置を知りたい場合
+* `.coordinateSpace(name:`: 他のViewに対する相対位置を知りたい場合
+
+[Understanding frames and coordinates inside GeometryReader - a free Hacking with iOS: SwiftUI Edition tutorial](https://www.hackingwithswift.com/books/ios-swiftui/understanding-frames-and-coordinates-inside-geometryreader#:~:text=SwiftUI's%20GeometryReader%20allows%20us%20to,most%20remarkable%20effects%20in%20SwiftUI.)
+
 ## UIKit
 
 - [深く知りたい Core Animation まとめ 1（レイヤー編）【iOS / Swift】 - SNOOZE LOG](https://snoozelag.hatenablog.com/entry/2021/12/18/003933)
