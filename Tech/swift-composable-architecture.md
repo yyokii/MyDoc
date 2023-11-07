@@ -640,6 +640,19 @@ view, delegate, internalの他に下記が考えれる
 
 * [TCAFeatureAction で Action を見やすく・安全にしよう](ht tps://zenn.dev/kalupas226/articles/e214cf384a7b84)
 
+## Delegate
+
+A → B → C
+
+という画面の遷移があり、A が C での Action を捕捉したい場合、
+` .destination(.presented(.B(.C(.delegate(.completed))))):`
+のように記述できるが、
+
+* A は結局 B からの Action を捕捉できれば十分（C まで見に行かなくても良い）
+* 読みづらい
+
+ので、単純な伝播になったとしても基本的には Delegate を書いてあげるのが良さそう。
+
 ## Tips
 
 * store.sendがあるが、ViewStoreがあるときはそっち経由でsendを呼ぶ
