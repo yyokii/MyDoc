@@ -424,6 +424,28 @@ SwiftUIのレイアウトの3ステップは下記であり、
 
 [Understanding frames and coordinates inside GeometryReader - a free Hacking with iOS: SwiftUI Edition tutorial](https://www.hackingwithswift.com/books/ios-swiftui/understanding-frames-and-coordinates-inside-geometryreader#:~:text=SwiftUI's%20GeometryReader%20allows%20us%20to,most%20remarkable%20effects%20in%20SwiftUI.)
 
+### AttributedString を利用してURLを処理する
+
+AttributedString を用いて markdown をレンダリングすることが可能だが、
+
+[Instantiating Attributed Strings with Markdown Syntax | Apple Developer Documentation](https://developer.apple.com/documentation/foundation/attributedstring/instantiating_attributed_strings_with_markdown_syntax)
+
+それがリンクを含む場合、そのハンドリングは以下のように行うことができる
+
+```.swift
+@Environment(\.openURL) var openURL
+
+var body: .......
+
+Text(someAttributedStringWithLink)         
+     .environment(\.openURL, OpenURLAction { url in
+           print(url) // do what you like
+           return .handled  // compiler won't launch Safari
+    })
+```
+
+[SwiftUI AttributedString handle li… | Apple Developer Forums](https://developer.apple.com/forums/thread/720669)
+
 ## UIKit
 
 - [深く知りたい Core Animation まとめ 1（レイヤー編）【iOS / Swift】 - SNOOZE LOG](https://snoozelag.hatenablog.com/entry/2021/12/18/003933)
