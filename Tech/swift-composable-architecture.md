@@ -396,7 +396,7 @@ let store = TestStore(initialState: Feature.State()) {
 
 ## [ComposableArchitecture | Documentation](https://pointfreeco.github.io/swift-composable-architecture/main/documentation/composablearchitecture)
 
-
+（随時記載）
 
 ## [Identified Collections](https://www.pointfree.co/blog/posts/60-open-sourcing-identified-collections)
 
@@ -475,8 +475,6 @@ class TodosViewModel: ObservableObject {
 }
 ```
 
-
-
 ### 解決策
 
 以上のような課題を `IdentifiedArray` で解決できる。
@@ -501,8 +499,6 @@ class TodosViewModel: ObservableObject {
 ```
 
 id による添字でアクセスでき、非同期処理時の `index` がずれる問題もきにしなくてよくなる。
-
-
 
 ## StoreTaskにおける `finish()`とストリーミング処理
 
