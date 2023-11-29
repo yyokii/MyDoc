@@ -651,6 +651,7 @@ A → B → C
 
 ## Tips
 
+* ForEachStore を利用した list で push 遷移している場合、list を更新すると子の State が再度作成され popする。 list が遷移処理を担うようにすることで pop しないようにできる。
 * store.sendがあるが、ViewStoreがあるときはそっち経由でsendを呼ぶ
   * https://github.com/pointfreeco/swift-composable-architecture/blob/9b0f600253f467f61cbd53f60ccc243cc4ff27cd/Sources/ComposableArchitecture/Store.swift#L192-L196
 * [RFC: General tips and tricks · pointfreeco/swift-composable-architecture · Discussion #1666](https://github.com/pointfreeco/swift-composable-architecture/discussions/1666#discussioncomment-4212335) ここを見るとTipsが見つかるかも
