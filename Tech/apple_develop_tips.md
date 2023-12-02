@@ -680,3 +680,12 @@ extension Locale {
 "key" = "ja";
 "key" = "en";
 ```
+
+## Blogs
+
+* [Hacking with Swift – learn to code iPhone and iPad apps with free Swift tutorials](https://www.hackingwithswift.com/)
+  * 言わずと知れた
+  * 広範なトピック
+* [Home | Swift with Majid](https://swiftwithmajid.com/)
+* [Articles | AzamSharp](https://azamsharp.com/articles)
+  * [Stop using MVVM for SwiftUI](https://developer.apple.com/forums/thread/699003) の人
