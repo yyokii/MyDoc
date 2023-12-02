@@ -1,3 +1,22 @@
+## スタックメモリとヒープメモリ
+
+| 特徴                  | スタックメモリ                                      | ヒープメモリ                                        |
+|----------------------|-------------------------------------------------|-------------------------------------------------|
+| メモリ割り当てのタイミング    | コンパイル時にのみ発生                              | 実行時に動的に発生                                  |
+| メモリ管理の方式          | LIFO（後入れ先出し）方式                            | ダイナミック割り当て                                |
+| アクセス速度            | 非常に高速                                         | 比較的遅い                                         |
+| データの寿命            | 関数が終了すると自動的に割り当て解除                   | 手動で解放または参照がなくなるまで残る                  |
+| メモリサイズ            | 限定されている                                       | 制限なし                                           |
+| スレッドセーフ          | 各スレッドには独自のスタックあり                       | スレッドの安全性が必要                               |
+| メモリの共有            | スレッドごとに独立                                  | 全スレッドと共有                                    |
+| 格納されるデータの種類    | 構造体、列挙型などの値型                             | クラス（参照型）                                    |
+| 特別な割り当ての条件      | 値型のサイズがコンパイル時に確定、再帰的に含まれない場合 | 値型がコンパイル時にサイズ不定、値型が参照型を保持している場合、値型が参照型によって保持されている場合 |
+
+[Memory management in Swift(Heap, Stack, ARC) | by Manasa M P | Medium](https://manasaprema04.medium.com/memory-management-in-swift-heap-stack-arc-6713ca8b70e1)
+
+memo:  
+TCA ではスタックオーバーフローが生じる問題があるが、ヒープメモリを利用することでそれを回避する方法がある。  
+[Potential for stack overflow with large app states · pointfreeco/swift-composable-architecture · Discussion #488](https://github.com/pointfreeco/swift-composable-architecture/discussions/488#discussioncomment-591715)
 
 ## 数値型とその範囲
 
