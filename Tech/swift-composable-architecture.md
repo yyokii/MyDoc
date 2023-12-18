@@ -649,6 +649,18 @@ A → B → C
 
 ので、単純な伝播になったとしても基本的には Delegate を書いてあげるのが良さそう。
 
+## @Dependency(\.dismiss) var dismiss
+
+> The @Dependency(\.dismiss) tool only works for features that are presented using the ifLet operator for tree-based navigation (see Tree-based navigation for more info) or forEach operator for stack-based navigation (see Stack-based navigation). If no parent feature is found that was presented with ifLet or forEach, then a runtime warning is emitted in Xcode letting you know that it is not possible to dismiss. Further, the runtime warning becomes a test failure when run in tests.
+>
+> If you are testing a child feature in isolation that makes use of @Dependency(\.dismiss) then you will need to override the dependency to get a passing test. You can even mutate some shared mutable state inside the dismiss closure to confirm that it is indeed invoked:
+>
+> @Dependency(\.dismiss) ツールは、ツリーベースのナビゲーションの 演算子を使用して表示される機能に対してのみ機能します (詳細については、ツリーベースのナビゲーション）、またはスタックベースのナビゲーションの演算子（スタックベースのナビゲーション<を参照） /span> で提示された親機能が見つからない場合は、Xcode で実行時警告が表示され、無視できないことが通知されます。さらに、実行時警告は、テストで実行するとテスト失敗になります。 または )。 ifLetforEachifLetforEach
+> 
+> @Dependency(\.dismiss) を使用する子機能を単独でテストしている場合は、テストに合格するために依存関係をオーバーライドする必要があります。 dismiss クロージャ内の一部の共有可変状態を変更して、それが実際に呼び出されたことを確認することもできます。
+
+[Tree-based navigation | Documentation](https://swiftpackageindex.com/pointfreeco/swift-composable-architecture/1.0.0/documentation/composablearchitecture/dismisseffect)
+
 ## Tips
 
 * ForEachStore を利用した list で push 遷移している場合、list を更新すると子の State が再度作成され popする。 list が遷移処理を担うようにすることで pop しないようにできる。
