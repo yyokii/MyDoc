@@ -63,6 +63,9 @@
 
 ## その他
 
-* デフォルト値が何かは分かりづらいので、`spacing` や `Spacer(minLength: 8)` を明示的に設定する
-* Imageに`.renderingMode(.template)`と`resizable()`を追加しておく。画像のサイズが規定のサイズであったり、renderingModeはasset側で設定してあったりするので不要ではあるが、画像が差し替えになったケース等でasset側で正しい設定がなされていなかった場合に表示が崩れる可能性や、レビュー時にコードだけでは判断できないなどのデメリットがあるので基本追加する
+* デフォルト値が何かは分かりづらいので、明示的な値の設定をする
+  * (SwifUI) `spacing` や `Spacer(minLength: 8)` を明示的に設定する
+* 任意の設定が保証されるようにに、明示的な設定をする
+  * (SwiftUI) Imageに`.renderingMode(.template)`と`resizable()`を追加しておく。画像のサイズが規定のサイズであったり、renderingModeはasset側で設定してあったりするので不要ではあるが、画像が差し替えになったケース等でasset側で正しい設定がなされていなかった場合に表示が崩れる可能性や、レビュー時にコードだけでは判断できないなどのデメリットがあるので基本追加する
+* (SwiftUI) テキストが長い場合には `.multilineTextAlignment(.leading)`, `.fixedSize(horizontal: false, vertical: true)` の設定をする
 
