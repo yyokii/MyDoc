@@ -543,7 +543,17 @@ id による添字でアクセスでき、非同期処理時の `index` がず�
       }
       ```
 
-## Storeの初期化の書き方
+## synchronous/asynchronous action の発行の違い
+
+synchronousなアクションは、元のアクションが送信されたときと同じコールスタックですぐに処理される。
+
+従って、アニメーションの実行などが想定通りにいかないことがある。
+
+そのような場合は例えば, `.run` を利用することで他のスタックで処理をすることができる。
+
+参考: https://github.com/pointfreeco/swift-composable-architecture/discussions/2530
+
+## Store の初期化の書き方
 
 ```
 let store = Store(
