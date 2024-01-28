@@ -303,3 +303,9 @@ SwiftUI で利用する主な`propertyWrapper`とその`wrappedValue`/`projected
 map() は Sequence を操作しないで、Element を加工する  
 flatMap() は Sequence を消して Element を取り出すので、また Sequence を作成して返す必要があり
 
+## KeyPath
+
+任意の型のプロパティへの参照を表す。プロパティを直接操作する代わりに、そのプロパティへのパスを使用して操作を行うことが可能になる。
+
+例えば、複数の型の特定のプロパティを示すことができる。
+https://zenn.dev/ueshun/articles/8c968b0fcda506
