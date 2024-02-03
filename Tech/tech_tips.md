@@ -401,6 +401,10 @@ data:image/svg+xml;base64,{base64エンコードされたデータ}
 | Aggregation | 集約<br />Aが1つ以上のBを保持する。<br />AとBの生存期間は異なる | A *.. B                                       |
 | Composition | コンポジション<br />Aが1つ以上のBを保持する。<br />AとBの生存期間は同じ（= Aが存在しくなるとBも存在しない） | A o.. B                                       |
 
+## 便利ツール
+
+*  https://tappy.yahoo.co.jp : スマートフォンのウェブ画面上のボタンやリンクなどの大きさを分析し、タップの成功率を表示するツール
+
 ## JavaScritptの非同期処理の仕組み
 
 JavaScriptはシングルスレッド言語であるが、非同期処理の実行が可能。それはイベントループ、キュー、WebAPI（ブラウザが提供する機能）を利用しているから。
@@ -412,8 +416,6 @@ JavaScriptはシングルスレッド言語であるが、非同期処理の実�
 > タイマーが開始し、その間に `foo`が呼び出され、`First`がログに記録されます。 `foo`は`undefined`を返し、 `baz`が呼び出され、`callback`がキューに追加されます `baz`は`Third`をログに記録します。イベントループは、 `baz`が戻った後、コールスタックが空であることを確認します。その後、コールバックがコールスタックに追加されます。 `コールバック`は`Second`を記録します。
 >
 > これにより、「イベントループ」に自信が持てるようになることを願っています。
-
-
 
 * [イベントループの非同期 | JavaScript Camp](https://www.jscamp.app/jp/docs/javascript25/)
 * [シングルプロセス・シングルスレッドとコールバック | TypeScript入門『サバイバルTypeScript』](https://typescriptbook.jp/reference/single-process-and-callback)
