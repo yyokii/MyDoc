@@ -365,7 +365,7 @@ public var isActiveBinding: Binding<Bool> {
     }
 ```
 
-### Extension vs Views vs Modifiers
+### Extension vs View vs Modifier
 
 View を拡張したい場合は extension を使用し、状態保持が必要な場合は View の作成や ViewModifier を検討する。
 
@@ -375,7 +375,16 @@ View か Modifierかは、
 > 
 > Just look at how SwiftUI’s built-in API was designed — containers (such as HStack and VStack) are views, while styling APIs (such as padding and foregroundColor) are implemented as modifiers. So, if we follow that same approach as much as possible within our own projects, then we’ll likely end up with UI code that feels consistent and inline with SwiftUI itself.
 
-View: コンテナーとして機能するようなものである場合にViewとした方がViewの階層の可読性は良い  
+View: コンテナーとして機能するようなものである場合にViewとした方がViewの階層の可読性は良い。例えばカードUIの表示については下記のようにすると分かりやすい。
+
+```.swift
+Card {
+  Text("Hello World")
+}
+```
+
+[A Girl and her @ViewBuilder | Amy is a cute iOS Developer](https://cuteios.dev/2024/01/10/viewbuilder.html)
+
 Modifire: 単一のViewに対してのスタイルの適用をしたいのであればこれで十分
 
 それ以外は好み。
