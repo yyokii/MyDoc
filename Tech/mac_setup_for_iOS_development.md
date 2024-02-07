@@ -2,10 +2,6 @@
 
 そのままではトライアル版なので、ライセンスが必要
 
-## [Creative Croud](https://helpx.adobe.com/jp/download-install/kb/creative-cloud-desktop-app-download.html)
-
-## [Docker](https://docs.docker.com/docker-for-mac/apple-m1/)
-
 ## Github テンプレート設定
 
 * `.zprofile` などにエイリアスを設定する
