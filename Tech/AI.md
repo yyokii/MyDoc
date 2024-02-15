@@ -11,7 +11,17 @@
 
 [成功する生成 AI プロダクトのつくり方 - Speaker Deck](https://speakerdeck.com/kajikent/cheng-gong-surusheng-cheng-ai-purodakutonotukurifang?slide=25)
 
-## UXデザイン
+## UI/UXデザイン
+
+### [Beyond Text: Making GenAI Applications Accessible to All](https://blog.langchain.dev/beyond-text-making-genai-applications-accessible-to-all/)
+
+* ユーザーは複雑さを拒否し、LLM（大規模言語モデル）は読み書き能力を必要とするため、UI/UXの改善が必要
+* > 空のイーゼルを持ち、どこからどのように始めればよいのかを延々と考えているアーティストを想像してみてください。キャンバスの捉え方はアーティストによって異なります。それは未知の、または無限の可能性に対する恐怖を表す場合があります。アーティストがキャンバスについてどう感じるかは、スキルセット、経験、環境、意図、期限、期待などの要因によって異なります。チャット ツールを使用しようとしているユーザーは、これらのアーティストのように感じるでしょう。
+  * いい表現だ
+* 快適性を高め、平均的なユーザーの参入障壁を下げるにはどうすればよいか
+  * プロンプトは短くフレンドリーに
+  * ショートカットを埋め込む
+  * ワンクリックで操作できるようにする
 
 ### [生成AI時代におけるUXデザイン | 生成AIをフル活用したUX設計手法＆生成AI時代のユーザー体験の変化について - Speaker Deck](https://speakerdeck.com/kajikent/sheng-cheng-aishi-dai-niokeruuxdezain)
 

@@ -1,4 +1,9 @@
-## Pros
+## native app と　web app
+
+* [WHY MOBILE APPS CONVERT HIGHER THAN THE MOBILE WEB FOR BUSINESS?](https://www.tekrevol.com/blogs/mobile-apps-vs-mobile-web/)
+* [Mobile App vs. Website App: Mobile App Conversion Rates Higher than Website App](https://www.linkedin.com/pulse/mobile-app-vs-website-conversion-rates-higher-than-apoorva-verma)
+  
+### Pros
 
 * ハードウェアの機能に完全にアクセスできる
   * ハードウェア特有の機能を用いた開発がサードパーティに依存することなく可能
@@ -7,13 +12,13 @@
 * オフライン対応が可能
   * 飛行機、地下トンネル、地下鉄など、サービスが制限されているか、サービスがない場所で立ち往生している状況でもサービスの提供が可能
 
-## Cons
+### Cons
 
 * インストールする、という障壁
 * 開発期間が長い
 * ストアを経由して更新する必要がある
 
-## 参考
+### 参考
 
 * [Pros and Cons of NATIVE vs HYBRID Mobile Application Development](https://www.apogaeis.com/blog/pros-and-cons-of-native-vs-hybrid-mobile-application-development/)
 * [Native vs. Hybrid App: Considering Pros and Cons of Each Option](https://www.cleveroad.com/blog/native-or-hybrid-app-development-what-to-choose)

@@ -17,6 +17,21 @@
 - [Apple A5 - Wikipedia](https://ja.wikipedia.org/wiki/Apple_A5)
 - [Apple A6 - Wikipedia](https://ja.wikipedia.org/wiki/Apple_A6)
 
+## シングルAppモード
+
+> シングルAppモードでは、選択したAppがデバイス上で強制的に開かれ、ほかのAppは使用できません。このペイロードが有効な場合、Appはデバイスが再起動するとすぐに再度開きます。
+
+[Apple ConfiguratorでシングルAppモードを開始する - Apple サポート (日本)](https://support.apple.com/ja-jp/guide/apple-configurator-mac/cadbf9c172/mac)
+
+> シングルAPPモードは、iOS端末やiPadOS端末で起動できるアプリを1つのみに制限する機能です。設定を行うとホームボタンを押下しても指定したアプリからホーム画面および他のアプリへ遷移できなくなり、アプリの使用を限定することができます。
+加えて、タッチ操作の無効や音量調節ボタンの無効、自動ロックの無効設定することもできます。設定を管理者が遠隔から複数の端末に向けて一斉に行うことができるというのが、MDMからシングルAppモードを利用する一番のメリットになります。
+
+ユースケース  
+* 客室でお客様に端末をご利用いただく
+* 展示会・お店で動画を流す
+
+[Optimal Biz機能紹介 –iOS端末のキオスク化を実現するシングルAPPモード機能をご紹介 | Optimal Biz](https://www.optimalbiz.jp/blog/single-app-mode/)
+
 ## OS更新
 
 - 例えばiOSにおいて直近2世代をサポートするケースにおいて、3世代目をいつ切るか
@@ -163,6 +178,23 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 `keytool -list -v -keystore {file_name}.p12 -storetype PKCS12 -storepass {password} `
 
 ## SwiftUI
+
+### Viewのサイズ指定
+
+* パディングを利用: Viewの周りに適切なパディングを設定することで、他の要素との関係性を明確にする。
+* 固定サイズの最小限の使用: デザインの必要性に応じて最小限に固定サイズを使用し、コンテンツの読みやすさや操作のしやすさを確保する。
+
+これにより、異なるデバイスや画面サイズに跨っても一貫性のあるレイアウトを維持できる。
+
+### Viewの分け方
+
+body 内が肥大化して可読性が落ちるのを防ぐために一部を分けることがあるが、  
+対象のViewが複数の表示状態をもったり、複数のケースで表示検証したい場合 = preview を使いたい場合は `struct`、  
+それ以外はチームの方針に合わせて `func` や computed property にするのが良さそう。
+
+`struct` にする場合は stateless で最小限のプロパティを持つ View にしておくとプレビューが楽。
+entity を丸ごと渡してるとそのモックを作らないといけないし、そういつentityは他でも使ってるのでmockを柔軟にする必要がある。
+
 
 ### Preview
 
@@ -333,7 +365,7 @@ public var isActiveBinding: Binding<Bool> {
     }
 ```
 
-### Extension vs Views vs Modifiers
+### Extension vs View vs Modifier
 
 View を拡張したい場合は extension を使用し、状態保持が必要な場合は View の作成や ViewModifier を検討する。
 
@@ -343,7 +375,16 @@ View か Modifierかは、
 > 
 > Just look at how SwiftUI’s built-in API was designed — containers (such as HStack and VStack) are views, while styling APIs (such as padding and foregroundColor) are implemented as modifiers. So, if we follow that same approach as much as possible within our own projects, then we’ll likely end up with UI code that feels consistent and inline with SwiftUI itself.
 
-View: コンテナーとして機能するようなものである場合にViewとした方がViewの階層の可読性は良い  
+View: コンテナーとして機能するようなものである場合にViewとした方がViewの階層の可読性は良い。例えばカードUIの表示については下記のようにすると分かりやすい。
+
+```.swift
+Card {
+  Text("Hello World")
+}
+```
+
+[A Girl and her @ViewBuilder | Amy is a cute iOS Developer](https://cuteios.dev/2024/01/10/viewbuilder.html)
+
 Modifire: 単一のViewに対してのスタイルの適用をしたいのであればこれで十分
 
 それ以外は好み。
@@ -358,6 +399,65 @@ Modifire: 単一のViewに対してのスタイルの適用をしたいのであ
 > 要素外側の余白は、どの要素が持つべき余白であるかを意識して padding を用いて表現する
 
 [SwiftUIのlayoutシステム](https://shtnkgm.com/blog/2023-04-05-swiftui-layout.html)
+
+### GeometryReader
+
+親Viewのサイズや位置にアクセスできるようにするView。
+これを利用することで相対サイズの指定も可能になる。
+
+SwiftUIのレイアウトの3ステップは下記であり、
+1. 親が子のサイズを提案
+2. 子はそれを使用して自分のサイズを決定
+3. 親は子を適切な位置に配置
+
+`GeometryReader` より受け取れる `GeometryProxy` は 提案されたサイズを保持している。  
+保持しているプロパティは以下の通り。
+
+```swift
+    /// The size of the container view.
+    public var size: CGSize { get }
+
+    /// Resolves the value of `anchor` to the container view.
+    public subscript<T>(anchor: Anchor<T>) -> T { get }
+
+    /// The safe area inset of the container view.
+    public var safeAreaInsets: EdgeInsets { get }
+
+    /// Returns the container view's bounds rectangle, converted to a defined
+    /// coordinate space.
+    public func frame(in coordinateSpace: CoordinateSpace) -> CGRect
+
+```
+
+`frame(in:)` で特定の座標空間での座標を取得できる。
+
+* `.global`: Viewが画面上のどこにあるか知りたい場合
+* `.local`: Viewの親に対する相対位置を知りたい場合
+* `.coordinateSpace(name:`: 他のViewに対する相対位置を知りたい場合
+
+[Understanding frames and coordinates inside GeometryReader - a free Hacking with iOS: SwiftUI Edition tutorial](https://www.hackingwithswift.com/books/ios-swiftui/understanding-frames-and-coordinates-inside-geometryreader#:~:text=SwiftUI's%20GeometryReader%20allows%20us%20to,most%20remarkable%20effects%20in%20SwiftUI.)
+
+### AttributedString を利用してURLを処理する
+
+AttributedString を用いて markdown をレンダリングすることが可能だが、
+
+[Instantiating Attributed Strings with Markdown Syntax | Apple Developer Documentation](https://developer.apple.com/documentation/foundation/attributedstring/instantiating_attributed_strings_with_markdown_syntax)
+
+それがリンクを含む場合、そのハンドリングは以下のように行うことができる
+
+```.swift
+@Environment(\.openURL) var openURL
+
+var body: .......
+
+Text(someAttributedStringWithLink)         
+     .environment(\.openURL, OpenURLAction { url in
+           print(url) // do what you like
+           return .handled  // compiler won't launch Safari
+    })
+```
+
+[SwiftUI AttributedString handle li… | Apple Developer Forums](https://developer.apple.com/forums/thread/720669)
 
 ## UIKit
 
@@ -385,6 +485,10 @@ iOS ではブラウザエンジンの選択肢がないだけでなく、WebKit 
 ## WKWebView vs SFSafariViewController
 
 [Appにおけるウェブビューを実現するには、WKWebViewとSFSafariViewControllerのどちらを使うべきですか - 見つける - Apple Developer](https://developer.apple.com/jp/news/?id=trjs0tcd)
+
+## Asset Catalog
+
+* 「Preserve Vector Data」オプションを有効にすると、ベクターベースの画像（PDFファイルとして追加された画像など）をアプリに組み込む際に、そのベクターデータを保持する。これにより、アプリが実行されるデバイス上で、必要に応じて画像を適切な解像度にスケーリングできるようになる。通常、ベクター画像はビルド時に特定の解像度のビットマップ画像に変換されるがこのオプションを利用することでそれが不要になる。ビルド時に生成される画像よりも大きく、または小さく表示したい場合に有効。
 
 ## Xcode 関連のコマンド
 
@@ -585,3 +689,12 @@ extension Locale {
 "key" = "ja";
 "key" = "en";
 ```
+
+## Blogs
+
+* [Hacking with Swift – learn to code iPhone and iPad apps with free Swift tutorials](https://www.hackingwithswift.com/)
+  * 言わずと知れた
+  * 広範なトピック
+* [Home | Swift with Majid](https://swiftwithmajid.com/)
+* [Articles | AzamSharp](https://azamsharp.com/articles)
+  * [Stop using MVVM for SwiftUI](https://developer.apple.com/forums/thread/699003) の人

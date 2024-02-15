@@ -396,7 +396,7 @@ let store = TestStore(initialState: Feature.State()) {
 
 ## [ComposableArchitecture | Documentation](https://pointfreeco.github.io/swift-composable-architecture/main/documentation/composablearchitecture)
 
-
+（随時記載）
 
 ## [Identified Collections](https://www.pointfree.co/blog/posts/60-open-sourcing-identified-collections)
 
@@ -475,8 +475,6 @@ class TodosViewModel: ObservableObject {
 }
 ```
 
-
-
 ### 解決策
 
 以上のような課題を `IdentifiedArray` で解決できる。
@@ -501,8 +499,6 @@ class TodosViewModel: ObservableObject {
 ```
 
 id による添字でアクセスでき、非同期処理時の `index` がずれる問題もきにしなくてよくなる。
-
-
 
 ## StoreTaskにおける `finish()`とストリーミング処理
 
@@ -547,7 +543,17 @@ id による添字でアクセスでき、非同期処理時の `index` がず�
       }
       ```
 
-## Storeの初期化の書き方
+## synchronous/asynchronous action の発行の違い
+
+synchronousなアクションは、元のアクションが送信されたときと同じコールスタックですぐに処理される。
+
+従って、アニメーションの実行などが想定通りにいかないことがある。
+
+そのような場合は例えば, `.run` を利用することで他のスタックで処理をすることができる。
+
+参考: https://github.com/pointfreeco/swift-composable-architecture/discussions/2530
+
+## Store の初期化の書き方
 
 ```
 let store = Store(
@@ -640,8 +646,36 @@ view, delegate, internalの他に下記が考えれる
 
 * [TCAFeatureAction で Action を見やすく・安全にしよう](ht tps://zenn.dev/kalupas226/articles/e214cf384a7b84)
 
+## Delegate
+
+A → B → C
+
+という画面の遷移があり、A が C での Action を捕捉したい場合、
+` .destination(.presented(.B(.C(.delegate(.completed))))):`
+のように記述できるが、
+
+* A は結局 B からの Action を捕捉できれば十分（C まで見に行かなくても良い）
+* 読みづらい
+
+ので、単純な伝播になったとしても基本的には Delegate を書いてあげるのが良さそう。
+
+## @Dependency(\.dismiss) var dismiss
+
+> The @Dependency(\.dismiss) tool only works for features that are presented using the ifLet operator for tree-based navigation (see Tree-based navigation for more info) or forEach operator for stack-based navigation (see Stack-based navigation). If no parent feature is found that was presented with ifLet or forEach, then a runtime warning is emitted in Xcode letting you know that it is not possible to dismiss. Further, the runtime warning becomes a test failure when run in tests.
+>
+> If you are testing a child feature in isolation that makes use of @Dependency(\.dismiss) then you will need to override the dependency to get a passing test. You can even mutate some shared mutable state inside the dismiss closure to confirm that it is indeed invoked:
+>
+> @Dependency(\.dismiss) ツールは、ツリーベースのナビゲーションの 演算子を使用して表示される機能に対してのみ機能します (詳細については、ツリーベースのナビゲーション）、またはスタックベースのナビゲーションの演算子（スタックベースのナビゲーション<を参照） /span> で提示された親機能が見つからない場合は、Xcode で実行時警告が表示され、無視できないことが通知されます。さらに、実行時警告は、テストで実行するとテスト失敗になります。 または )。 ifLetforEachifLetforEach
+> 
+> @Dependency(\.dismiss) を使用する子機能を単独でテストしている場合は、テストに合格するために依存関係をオーバーライドする必要があります。 dismiss クロージャ内の一部の共有可変状態を変更して、それが実際に呼び出されたことを確認することもできます。
+
+[Tree-based navigation | Documentation](https://swiftpackageindex.com/pointfreeco/swift-composable-architecture/1.0.0/documentation/composablearchitecture/dismisseffect)
+
 ## Tips
 
+* ForEachStore を利用した list で push 遷移している場合、list を更新すると子の State が再度作成され popする。 list が遷移処理を担うようにすることで pop しないようにできる。
+* store.sendがあるが、ViewStoreがあるときはそっち経由でsendを呼ぶ
+  * https://github.com/pointfreeco/swift-composable-architecture/blob/9b0f600253f467f61cbd53f60ccc243cc4ff27cd/Sources/ComposableArchitecture/Store.swift#L192-L196
 * [RFC: General tips and tricks · pointfreeco/swift-composable-architecture · Discussion #1666](https://github.com/pointfreeco/swift-composable-architecture/discussions/1666#discussioncomment-4212335) ここを見るとTipsが見つかるかも
   * TestabilityのためにStateやActionをEquatableにするのは大事
     * https://github.com/pointfreeco/swift-composable-architecture/discussions/1666#discussioncomment-4140589
