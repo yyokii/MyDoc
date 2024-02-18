@@ -690,6 +690,13 @@ extension Locale {
 "key" = "en";
 ```
 
+## TIPs
+
+* 特定の Location からそのタイムゾーンを知るには
+  *  [CLGeocoder](https://developer.apple.com/documentation/corelocation/clgeocoder) の使用
+  *  GCP の API
+  *  ・・・
+
 ## Blogs
 
 * [Hacking with Swift – learn to code iPhone and iPad apps with free Swift tutorials](https://www.hackingwithswift.com/)
