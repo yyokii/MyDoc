@@ -124,7 +124,8 @@ rwxrwxrwx → 777
 ## Github
 
 * 違うブランチで作業してcommitした場合
-　　* `git checkout -b new_branch` をすればそこまでの履歴を持ったブランチが作成される
+
+`git checkout -b new_branch` をすればそこまでの履歴を持ったブランチが作成される
 
 * revertについて
 
