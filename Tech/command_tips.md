@@ -123,6 +123,9 @@ rwxrwxrwx → 777
 
 ## Github
 
+* 違うブランチで作業してcommitした場合
+　　* `git checkout -b new_branch` をすればそこまでの履歴を持ったブランチが作成される
+
 * revertについて
 
 Revertはコミットを取り消すのではなく「対象コミットを打ち消すような修正コミットを新たに発行する」処理。
