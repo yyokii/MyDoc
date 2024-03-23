@@ -690,6 +690,10 @@ extension Locale {
 "key" = "en";
 ```
 
+## StoreKit
+
+https://www.revenuecat.com/blog/engineering/ios-in-app-subscription-tutorial-with-storekit-2-and-swift-jp/
+
 ## TIPs
 
 * 特定の Location からそのタイムゾーンを知るには
