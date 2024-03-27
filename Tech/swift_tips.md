@@ -41,7 +41,47 @@ associatedtypeやSelfを利用したprotocolとしては`View`や`Equatable`, `I
 
 [How to fix the error “protocol can only be used as a generic constraint because it has Self or associated type requirements” - free Swift 5.4 example code and tips](https://www.hackingwithswift.com/example-code/language/how-to-fix-the-error-protocol-can-only-be-used-as-a-generic-constraint-because-it-has-self-or-associated-type-requirements)
 
+## Swift Concurrnecy
+
+> * `Task.detached` は `Task.init` と違って優先度 / task local values / actor context を受け継がないという性質がある
+>
+> - `Task.detached` は処理をメインスレッドから逃すために使われることがあるが、 async 関数はあえて main actor に isolate しない限り必ずバックグラウンドで実行されるため、ほとんどの場面ではこの用途で `Task.detached` を使う必要はない
+
+```swift
+func someSuperHeavyComputation() {
+  // sync 関数なので呼び出し元のスレッドで実行される
+  // すごく重い計算を行うので、メインスレッドから呼び出されると
+  // メインスレッドを占有して UI のレスポンスに問題が発生する
+}
+
+final class MyViewController: UIViewController {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    Task {
+      await someAsyncFunction() // 中身がバックグラウンドスレッドで実行される
+      someSuperHeavyComputation() // ❗️ 中身がメインスレッドで実行開始されてしまう
+    }
+    
+    Task.detached {
+      await someAsyncFunction() // 中身がバックグラウンドスレッドで実行される
+      someSuperHeavyComputation() // ✅ 中身がバックグラウンドスレッドで実行開始される
+    }
+  }
+}
+```
+
+これは`someSuperHeavyComputation` をバックグラウンドスレッドにしたいケースである。
+こういう場合においてわざわざ諸々を引き継がないということを受け入れて `Task.detached` で書く意味はあまりないので、`someSuperHeavyComputation` を async にしてバックグラウンド実行するのが基本良さそう。
+
+[[swift] メインスレッドから処理を逃すために Task.detached を使う必要はない（ことが多い）](https://zenn.dev/mayaa/articles/792297c2a47935)
+
 ## Keypath
+
+任意の型のプロパティへの参照を表す。プロパティを直接操作する代わりに、そのプロパティへのパスを使用して操作を行うことが可能になる。
+
+例えば、複数の型の特定のプロパティを示すことができる。
+https://zenn.dev/ueshun/articles/8c968b0fcda506
 
 ### 種類
 
@@ -78,24 +118,6 @@ print(userGroups["id0"]?[0].age as Any)
 // 複雑なアクセスをKeyPath化することで名前を付けたり、再利用が可能になる
 let keyPath3: KeyPath<[String: [User]], Int?> = \.["id0"]?[0].age
 print(userGroups[keyPath: keyPath3] as Any)
-```
-
-## //MARK
-
-```
-// MARK: - IBOutlet
-
-// MARK: - Property
-
-// MARK: - Life Cycle
-
-// MARK: - Static Func
-
-// MARK: - Internal Func
-
-// MARK: - Private Func
-
-// MARK: - Action
 ```
 
 ## Opaque Result Type
@@ -303,9 +325,4 @@ SwiftUI で利用する主な`propertyWrapper`とその`wrappedValue`/`projected
 map() は Sequence を操作しないで、Element を加工する  
 flatMap() は Sequence を消して Element を取り出すので、また Sequence を作成して返す必要があり
 
-## KeyPath
-
-任意の型のプロパティへの参照を表す。プロパティを直接操作する代わりに、そのプロパティへのパスを使用して操作を行うことが可能になる。
-
-例えば、複数の型の特定のプロパティを示すことができる。
-https://zenn.dev/ueshun/articles/8c968b0fcda506
+## 
