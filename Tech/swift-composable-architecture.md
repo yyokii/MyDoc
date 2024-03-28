@@ -671,6 +671,10 @@ A → B → C
 
 [Tree-based navigation | Documentation](https://swiftpackageindex.com/pointfreeco/swift-composable-architecture/1.0.0/documentation/composablearchitecture/dismisseffect)
 
+## 所感
+
+* MVVMでTCAのような一方向のデータフローを実現できるが、テストの容易性、DI、ナビゲーション管理をVMで行う、などを自分で設計する必要がある。TCAを使用することでそのあたりを気にする必要がないというのはメリットであう。スケーラビリティとメンテナンス性を高めるための構造とパターンを提供しているのが主な役割であると思う。
+
 ## Tips
 
 * ForEachStore を利用した list で push 遷移している場合、list を更新すると子の State が再度作成され popする。 list が遷移処理を担うようにすることで pop しないようにできる。
