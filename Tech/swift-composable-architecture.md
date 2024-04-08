@@ -677,6 +677,7 @@ A → B → C
 
 ## Tips
 
+* なんかへんな挙動する、動かない時に `Reducer` 登録し忘れがち
 * ForEachStore を利用した list で push 遷移している場合、list を更新すると子の State が再度作成され popする。 list が遷移処理を担うようにすることで pop しないようにできる。
 * store.sendがあるが、ViewStoreがあるときはそっち経由でsendを呼ぶ
   * https://github.com/pointfreeco/swift-composable-architecture/blob/9b0f600253f467f61cbd53f60ccc243cc4ff27cd/Sources/ComposableArchitecture/Store.swift#L192-L196
