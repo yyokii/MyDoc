@@ -472,6 +472,12 @@ Text(someAttributedStringWithLink)
 - 一覧から項目を押して詳細画面に遷移する場合は戻るまで一覧のハイライトを残す
   - ユーザーが前にどの項目をみたか、ということに意識を割くことを防げる
   - [UITableView の UX 改善(今すぐ出来る！)](https://qiita.com/trsxxii/items/8f71ca67da4c6f4b78d2)
+ 
+## WebView
+
+WebViewのCookieが消える問題があるようなので、消えた時に復元するロジックを入れておくのが良さそう
+
+[Synchronization of native and WebView sessions with iOS | by Paul Hackenberger | Axel Springer Tech | Feb, 2024 | Medium](https://medium.com/axel-springer-tech/synchronization-of-native-and-webview-sessions-with-ios-9fe2199b44c9)
 
 ## WebKit
 
