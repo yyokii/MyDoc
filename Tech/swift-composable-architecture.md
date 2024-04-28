@@ -654,8 +654,9 @@ A → B → C
 ` .destination(.presented(.B(.C(.delegate(.completed))))):`
 のように記述できるが、
 
-* A は結局 B からの Action を捕捉できれば十分（C まで見に行かなくても良い）
-* 読みづらい
+* Delegate を書かない場合 B では .none するだけとなり、それだけを見ると親がその Action を扱っているかどうか分かりにくい
+* A は B からの Action を捕捉したい（C まで見に行かなくても良い）
+* 長い
 
 ので、単純な伝播になったとしても基本的には Delegate を書いてあげるのが良さそう。
 
