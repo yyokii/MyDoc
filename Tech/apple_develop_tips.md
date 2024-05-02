@@ -700,13 +700,6 @@ extension Locale {
 
 https://www.revenuecat.com/blog/engineering/ios-in-app-subscription-tutorial-with-storekit-2-and-swift-jp/
 
-## TIPs
-
-* 特定の Location からそのタイムゾーンを知るには
-  *  [CLGeocoder](https://developer.apple.com/documentation/corelocation/clgeocoder) の使用
-  *  GCP の API
-  *  ・・・
-
 ## Blogs
 
 * [Hacking with Swift – learn to code iPhone and iPad apps with free Swift tutorials](https://www.hackingwithswift.com/)
@@ -715,3 +708,13 @@ https://www.revenuecat.com/blog/engineering/ios-in-app-subscription-tutorial-wit
 * [Home | Swift with Majid](https://swiftwithmajid.com/)
 * [Articles | AzamSharp](https://azamsharp.com/articles)
   * [Stop using MVVM for SwiftUI](https://developer.apple.com/forums/thread/699003) の人
+
+## TIPs
+
+* 「Unable to boot the Simulator.」　でシミュレーターが起動しない
+　　* mac のストレージ管理 > デベロッパ > キャッシュ関連を消してみる
+   * Xcode Caches, Project Build Data and Indexes
+* 特定の Location からそのタイムゾーンを知るには
+  *  [CLGeocoder](https://developer.apple.com/documentation/corelocation/clgeocoder) の使用
+  *  GCP の API
+  *  ・・・
