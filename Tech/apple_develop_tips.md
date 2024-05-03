@@ -1,3 +1,9 @@
+読みたい
+
+* https://developer.apple.com/jp/documentation/technotes/tn3155-debugging-universal-links/
+
+---
+
 ## キャリア
 
 - [Why iOS Developers Feel Stuck In Their Careers & What To Do — Essential Developer](https://www.essentialdeveloper.com/articles/why-ios-developers-feel-stuck-in-their-careers-and-what-to-do)
