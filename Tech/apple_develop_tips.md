@@ -145,14 +145,15 @@ Pubic な API の宣言の集まり
 - [Module と Framework ってどう違うんですか？ in Swift PM](https://www.notion.so/Module-Framework-in-Swift-PM-4d0d94563991440fb7c55711671b81de)
 - [Swift におけるインポートとリンクの仕組みを探る - Speaker Deck](https://speakerdeck.com/kishikawakatsumi/swiftniokeruinpototorinkufalseshi-zu-miwotan-ru)
 
-## フォント
+## Font
 
-AppleはWWDC 2015でオリジナルフォントのSan Franciscoを発表。それ以後iOSでデフォルトで利用されるシステムフォントはSan Francisco。
+* monospacedDigitSystemFont: 数字を等幅にするFont
+  * > macOSやiOSのシステムフォントには、数字を等幅にするAPI (monospacedDigitSystemFont)があるのだけど、こいつの使い所はこういった「数字が連続的に変化するUI」で使う。でないと文字列の幅がガタガタ揺れてしまって見た目が美しくない。
+  * https://twitter.com/usagimaruma/status/1615952407258882048
+
+* AppleはWWDC 2015でオリジナルフォントのSan Franciscoを発表。それ以後iOSでデフォルトで利用されるシステムフォントはSan Francisco。
 しかし、San Franciscoには日本語のグリフが含まれていないのでシステムフォントを指定したテキストはアルファベットの部分をSan Franciscoで表示し、ひらがなや漢字の部分をHiragino Sansで表示するようになっている。そしてAppleのシステムフォントにはHiragino Sansをやや小さく表示する（元の約93.5%のサイズにする）という調整が入っている。これはSan FranciscoのアルファベットとHiragino Sansひらがなや漢字が並んだときに同じくらいの大きさに見えるようにという調整のため。
-
-そのためFigmaなどのデザインツールで作成・指定した日本語のラベルのサイズをそのまま実装に利用すると、想定していたよりも少し小さく表示されてしまうことになる。これは日本語の文字の場合にのみ発生し、そもそもテキストオブジェクトにアルファベットや数字のみしか使用しない場合などは気にする必要はない。
-
-[UIデザイナーに必要なiOSのTypographyの知識｜よつくら｜note](https://spinners.work/posts/kudakurage-figma-ios-ja-system-font-size-plugin/)
+そのためFigmaなどのデザインツールで作成・指定した日本語のラベルのサイズをそのまま実装に利用すると、想定していたよりも少し小さく表示されてしまうことになる。これは日本語の文字の場合にのみ発生し、そもそもテキストオブジェクトにアルファベットや数字のみしか使用しない場合などは気にする必要はない。 [UIデザイナーに必要なiOSのTypographyの知識｜よつくら｜note](https://spinners.work/posts/kudakurage-figma-ios-ja-system-font-size-plugin/)
 
 ## LLDB
 
