@@ -23,6 +23,21 @@
 - [Apple A5 - Wikipedia](https://ja.wikipedia.org/wiki/Apple_A5)
 - [Apple A6 - Wikipedia](https://ja.wikipedia.org/wiki/Apple_A6)
 
+## App Thinning
+
+App Thinning は、アプリの自動最適化および配信を支援する技術。これにより、ユーザーの端末に合わせて最適なアプリのバージョンを提供できる。  
+具体的には、App Thinning は「App Slicing」、「On-Demand Resources (ODR)」、「Bitcode」の三つの主要な技術に分けられる。
+
+* App Slicing: アプリの各バージョンが特定のデバイスに必要なリソースやバイナリのみを含むようにする技術。例えば、iPhone Xのユーザーがアプリをダウンロードする場合、Appleは arm64 アーキテクチャと @3x リソースのバイナリを選択して提供する。
+* On-Demand Resources (ODR): アプリが特定のリソースを必要とする時点でのみ、それらをダウンロードする機能を提供する。これにより、アプリの初期ダウンロードサイズを減少させ、端末のストレージを有効活用できる。
+* Bitcode: アプリをAppleの中間表現であるBitcodeにコンパイルし、App Storeにアップロードする。その後、Appleが異なるデバイスアーキテクチャに合わせて最適化された機械語に自動的に変換する。これにより、新しいプロセッサがリリースされた際に、開発者がアプリを再コンパイルすることなく対応できるようになる。しかし、Xcode14以降App StoreはXcodeからのビットコードの送信を受け付けなくなった（恐らく64bit対応してないデバイスがなくなり再コンパイルの必要がなくなったから？）。bitcodeが不要になると、App Store Connect上で新しいdSYMが吐き出されることがなくなる。つまりリリースビルド(アーカイブ)時に一緒に生成されたdSYMをFirebase Crashlyticsなどにアップロードすることになり、これはApp Store Connect上でそれが作られるまで待つ必要が無くなったことを意味する。
+
+参考
+* https://qiita.com/taki4227/items/db9b503e56ab25a8a375
+* https://help.apple.com/xcode/mac/current/#/devbbdc5ce4f
+* https://qiita.com/temoki/items/92999fcede0a7b89760f
+* https://akerun.hateblo.jp/entry/2022/12/22/xcode14_bitcode
+
 ## シングルAppモード
 
 > シングルAppモードでは、選択したAppがデバイス上で強制的に開かれ、ほかのAppは使用できません。このペイロードが有効な場合、Appはデバイスが再起動するとすぐに再度開きます。
