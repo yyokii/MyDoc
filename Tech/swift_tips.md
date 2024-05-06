@@ -1,3 +1,9 @@
+memo
+
+* `Referencing initializer 'init(_:id:content:)' on 'ForEach' requires that '{name}' conform to 'Hashable'`、 となるのでidを用いるForEachではHashable適合が必要。
+
+---
+
 ## スタックメモリとヒープメモリ
 
 | 特徴                  | スタックメモリ                                      | ヒープメモリ                                        |
