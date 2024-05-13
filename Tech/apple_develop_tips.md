@@ -2,6 +2,10 @@
 
 * https://developer.apple.com/jp/documentation/technotes/tn3155-debugging-universal-links/
 
+記載する
+
+* https://blog.smartbank.co.jp/entry/2023/08/30/swiftui-touch-target-size
+
 ---
 
 ## キャリア
