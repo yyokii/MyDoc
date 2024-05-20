@@ -81,6 +81,8 @@ Four Keysという指標がある。
 
 ## 設計
 
+* 共通化するかどうか迷ったら、それが変わりやすいかどうかを考える。基本的に変わるということを加味して分けた方が以後のコードがシンプルになる。部分的に共通のものを使用するのはあり。深いところから共通化するのを避けるのが良さそう。
+
 ### [Domain model purity vs. domain model completeness (DDD Trilemma)](https://enterprisecraftsmanship.com/posts/domain-model-purity-completeness/)
 
 - Domain model completenessは、ドメインモデルにすべてのアプリケーションのドメインロジックが含まれている場合。
