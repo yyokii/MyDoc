@@ -89,6 +89,8 @@ final class MyViewController: UIViewController {
 例えば、複数の型の特定のプロパティを示すことができる。
 https://zenn.dev/ueshun/articles/8c968b0fcda506
 
+[What is a KeyPath in Swift | Sarunw](https://sarunw.com/posts/what-is-keypath-in-swift/#key-paths-as-functions)
+
 ### 種類
 
 | クラス名                 | Writable    | 型の指定    |
