@@ -63,6 +63,7 @@
 
 ## その他
 
+* 任意のcaseの中での処理が同じ場合、`case a, b, c:` のように書いてまとめることを検討する
 * Text("", bundle: .module)、の bundle 以降を忘れてローカライズされてないがち
 * デフォルト値が何かは分かりづらいので、明示的な値の設定をする
   * (SwifUI) `spacing` や `Spacer(minLength: 8)` を明示的に設定する
