@@ -205,6 +205,15 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
+### Radius付きのボーダー
+
+```.swift
+.background {
+  RoundedRectangle(cornerRadius: 12)
+    .stroke(Color.black, lineWidth: 2)
+}
+```
+
 ### Viewのサイズ指定
 
 * パディングを利用: Viewの周りに適切なパディングを設定することで、他の要素との関係性を明確にする。
