@@ -500,6 +500,16 @@ class TodosViewModel: ObservableObject {
 
 id による添字でアクセスでき、非同期処理時の `index` がずれる問題もきにしなくてよくなる。
 
+## Warning: [Presentation] Attempt to present~
+
+https://github.com/pointfreeco/swift-composable-architecture/discussions/1278
+
+SwiftUIのバグでAttempt to present　~ のログが流れてViewが表示されないことがある。
+* 遅延をする
+* フラグを持ち前画面が消えたことを検知する
+
+をすることで回避は可能
+
 ## StoreTaskにおける `finish()`とストリーミング処理
 
 ```swift
