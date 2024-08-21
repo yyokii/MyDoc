@@ -1,3 +1,43 @@
+## PKCE
+
+PKCE (Proof Key for Code Exchange) フローのメリットは、OAuth 2.0 の認可コードグラントフローのセキュリティを強化する点にある。以下が、PKCE フローの主なメリット
+
+* 認可コードインジェクション攻撃の防止
+PKCE フローでは、認可コードのやり取りにおいて code_verifier と code_challenge を使用することで、認可コードが攻撃者によって盗まれたり、差し替えられたりしても、攻撃者はアクセストークンを取得できません。これにより、認可コードインジェクション攻撃（「コードインターセプト攻撃」）を防止します。
+
+* クライアントシークレットが不要
+従来の OAuth 2.0 の認可コードグラントフローでは、クライアントシークレットが必要でした。しかし、モバイルアプリや SPA ではクライアントシークレットを安全に保持することが困難です。PKCE フローは、クライアントシークレットを使用せずに同等のセキュリティを提供します。
+
+* セキュリティの簡易化
+PKCE フローを導入することで、クライアント側でのセキュリティ実装が簡素化され、より多くのアプリケーションで安全に OAuth 2.0 認証を利用できるようになります。特に、Web、モバイル、デスクトップアプリケーションなど、幅広いクライアントに対応できます。
+
+* CSRF 攻撃の防止
+PKCE フローでは、state パラメータを使用して CSRF 攻撃を防止します。このパラメータにより、認可リクエストと認可サーバーからのレスポンスが正しく関連付けられていることを確認できます。
+
+
+```mermaid
+
+sequenceDiagram
+    participant Client
+    participant Authorization Server
+    participant Attacker
+
+    Client->>Client: 1. Generate code_verifier, code_challenge, and state
+    Client->>Authorization Server: 2. Authorization request (includes code_challenge and state)
+    Authorization Server->>Client: 3. Returns authorization code (includes state)
+    Client->>Client: 4. Validate returned state
+
+    Attacker-->>Client: 5. Intercept authorization code (but can't use it without code_verifier)
+    
+    Client->>Authorization Server: 6. Sends authorization code and code_verifier
+    Authorization Server->>Authorization Server: 7. Verify code_verifier by comparing regenerated code_challenge
+    Authorization Server->>Client: 8. Issues access token if valid
+
+    note over Attacker: Even if authorization code is intercepted, it can't be used without code_verifier
+    note over Client,Authorization Server: state prevents CSRF attacks by ensuring the response matches the original request
+
+```
+
 ## N+1問題
 
 N+1 問題はデータベースでのクエリの最適化に関する問題。  
