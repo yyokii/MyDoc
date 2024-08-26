@@ -747,6 +747,35 @@ extension Locale {
 
 https://www.revenuecat.com/blog/engineering/ios-in-app-subscription-tutorial-with-storekit-2-and-swift-jp/
 
+## WKNavigationDelegate
+
+* decidePolicyForNavigationAction:decisionHandler:
+ナビゲーションを許可またはキャンセルするかを決定する。
+* decidePolicyForNavigationResponse:decisionHandler:
+レスポンスを確認した後に、ナビゲーションを許可またはキャンセルするかを決定する。
+* didStartProvisionalNavigation:
+ナビゲーションが開始されたときに呼び出される。
+* didReceiveServerRedirectForProvisionalNavigation:
+サーバーリダイレクトを受信したときに呼び出される。
+* didFailProvisionalNavigation:withError:
+データ読み込み開始時にエラーが発生したときに呼び出される。
+* didCommitNavigation:
+コンテンツの受信が開始されたときに呼び出される。
+* didFinishNavigation:
+ナビゲーションが完了したときに呼び出される。
+* didFailNavigation:withError:
+コミットされたメインフレームのナビゲーション中にエラーが発生したときに呼び出される。
+* didReceiveAuthenticationChallenge:completionHandler:
+認証チャレンジを受けたときに呼び出される。
+* webViewWebContentProcessDidTerminate:
+Webコンテンツプロセスが終了したときに呼び出される。
+* authenticationChallenge:shouldAllowDeprecatedTLS:
+廃止されたTLSバージョンを使用するネットワーク接続を確立しているときに呼び出される。
+* navigationAction:didBecomeDownload:
+ナビゲーションアクションがダウンロードに変わったときに呼び出される。
+* navigationResponse:didBecomeDownload:
+ナビゲーションレスポンスがダウンロードに変わったときに呼び出される。
+
 ## Blogs
 
 * [Hacking with Swift – learn to code iPhone and iPad apps with free Swift tutorials](https://www.hackingwithswift.com/)
