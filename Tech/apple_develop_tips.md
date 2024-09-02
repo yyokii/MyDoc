@@ -776,6 +776,12 @@ Webコンテンツプロセスが終了したときに呼び出される。
 * navigationResponse:didBecomeDownload:
 ナビゲーションレスポンスがダウンロードに変わったときに呼び出される。
 
+## Appleが公開しているURLスキーム
+
+* https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899
+* UIApplicationOpenURLOptionsKey
+* the specific case described in QA1924 Opening Keyboard Settings from a Keyboard Extension [This Q&A has been retired.]
+
 ## Blogs
 
 * [Hacking with Swift – learn to code iPhone and iPad apps with free Swift tutorials](https://www.hackingwithswift.com/)
