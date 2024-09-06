@@ -8,6 +8,14 @@
 
 ---
 
+## iOS関連の技術
+
+* Widget
+* Live Activities
+* DockKit
+* Core ML
+* 
+
 ## キャリア
 
 - [Why iOS Developers Feel Stuck In Their Careers & What To Do — Essential Developer](https://www.essentialdeveloper.com/articles/why-ios-developers-feel-stuck-in-their-careers-and-what-to-do)
