@@ -1,3 +1,5 @@
+## [OWASP MASVS と MASTG の採用 | owasp-mastg-ja](https://coky-t.gitbook.io/owasp-mastg-ja/0x02b-masvs-mastg-adoption)
+
 ## PKCE
 
 PKCE (Proof Key for Code Exchange) フローのメリットは、OAuth 2.0 の認可コードグラントフローのセキュリティを強化する点にある。以下が、PKCE フローの主なメリット
