@@ -2,6 +2,12 @@
 
 ## [モダンiOSナビゲーションパターン 日本語訳](https://usagimaru.github.io/iOSNavigationPatternsJP/)
 
+TODO
+
+## [キャンセルのキャンセル問題から考えるダイアログデザイン｜Goodpatch Blog グッドパッチブログ](https://goodpatch.com/blog/dialog-design)
+
+TODO
+
 ## フィッツの法則
 
 ### フィッツの法則
