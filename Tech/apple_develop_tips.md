@@ -213,6 +213,38 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
+### Navigation バーの戻るボタンのカスタマイズ
+
+```.swift
+.navigationBarBackButtonHidden()
+.toolbar {
+    ToolbarItem(placement: .topBarLeading) {
+      ~
+    }
+}
+```
+
+で戻るボタンを任意のViewで置き換えることができるが、hiddenを使っているのでエッジスワイプができない。
+
+https://forums.developer.apple.com/forums/thread/662510
+
+この場合以下のようなgesture検知を使うことで代替はできる。
+
+```.swift
+extension View {
+    public func onEdgeSwipe(_ action: @escaping () -> Void) -> some View {
+        self.highPriorityGesture(
+            DragGesture(minimumDistance: 40)
+                .onChanged { value in
+                    if value.startLocation.x < 50 {
+                        action()
+                    }
+                }
+        )
+    }
+}
+```
+
 ### Radius付きのボーダー
 
 ```.swift
@@ -236,8 +268,7 @@ body 内が肥大化して可読性が落ちるのを防ぐために一部を分
 それ以外はチームの方針に合わせて `func` や computed property にするのが良さそう。
 
 `struct` にする場合は stateless で最小限のプロパティを持つ View にしておくとプレビューが楽。
-entity を丸ごと渡してるとそのモックを作らないといけないし、そういつentityは他でも使ってるのでmockを柔軟にする必要がある。
-
+entity を丸ごと渡してるとそのモックを作らないといけないし、そういうentityは他でも使ってるのでmockを柔軟にする必要がある。
 
 ### Preview
 
