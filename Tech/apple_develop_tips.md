@@ -213,6 +213,40 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
+### Imageのサイズについて
+
+```swift
+Image(.demoItem)
+    .resizable()
+    .scaledToFill()
+    .frame(height: 200)
+```
+
+  .resizable
+にすることで親viewいっぱいにリサイズされたimageとなる。
+
+.scaledToFill()
+でそのスケールが適用される。
+
+.frame(height: 200)
+によってビューの描画範囲がきまる
+
+```swift
+Image(.demoItem)
+    .resizable()
+    .frame(height: 200)
+    .scaledToFill()
+```
+
+  .resizable
+にすることで親viewいっぱいにリサイズされたimageとなる。
+
+.frame(height: 200)
+によってビューの描画範囲を更新する。このviewいっぱいにリサイズされたimageとなる。
+
+.scaledToFill()
+でそのスケールが適用される。ビュー全体がスケーリングされるため画像自体には直接影響しない。
+
 ### Navigation バーの戻るボタンのカスタマイズ
 
 ```.swift
