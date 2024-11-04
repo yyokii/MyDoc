@@ -213,6 +213,14 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
+### あるViewがUIKitを使用しているかの確認
+
+* View Hierarchyを表示してViewの詳細をデバッグし、UpdateCoalescingCollectionViewをPrintする。baseClassが何になっているかで判断可能
+* Listの場合はUICollectionViewになっている
+* SwiftUIのViewであればCGDrawingViewとなっている
+
+https://zenn.dev/ikeh1024/articles/3baaa63f91f744
+
 ### Imageのサイズについて
 
 ```swift
