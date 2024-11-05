@@ -1,8 +1,24 @@
-memo
+## ExpressibleByStringLiteral
 
-* `Referencing initializer 'init(_:id:content:)' on 'ForEach' requires that '{name}' conform to 'Hashable'`、 となるのでidを用いるForEachではHashable適合が必要。
+Stringリテラルで初期化したからといって、Stringになるとはかぎらない。
 
----
+```.swift
+struct MyString: ExpressibleByStringLiteral {
+    let value: String
+
+    // 必要なイニシャライザを実装
+    init(stringLiteral value: String) {
+        self.value = value
+    }
+}
+
+// 文字列リテラルで初期化
+let greeting: MyString = "こんにちは、世界！"
+print(greeting.value) // 出力: こんにちは、世界！
+```
+
+* ExpressibleByStringLiteralに準拠することで、文字列リテラルを使ってカスタム型のインスタンスを生成できる
+* 必要なイニシャライザinit(stringLiteral:)を実装する必要がある
 
 ## スタックメモリとヒープメモリ
 
