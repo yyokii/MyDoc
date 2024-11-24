@@ -1,3 +1,8 @@
+後で見る
+* https://developer.apple.com/videos/play/wwdc2020/10040/: SwiftUI で有効なデータモデルについて説明されている。コンテキストの境界ごとにモデルを作成すれば良いことの詳細な説明がありそう。
+
+---
+
 ## Resources
 
 * [Stop using MVVM for SwiftUI | Apple Developer Forums](https://developer.apple.com/forums/thread/699003?page=1) 
