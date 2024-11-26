@@ -221,6 +221,13 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 https://zenn.dev/ikeh1024/articles/3baaa63f91f744
 
+### ImageへaspectRatioをつけると
+
+* ratio: 画像をその比率にリサイズ
+* contentMode: Viewをどう表示するかを決める。
+  * fill: 親Viewいっぱい表示
+  * fit: 表示可能範囲内でratioを維持したまま表示。
+
 ### Imageのサイズについて
 
 ```swift
@@ -237,7 +244,7 @@ Image(.demoItem)
 でそのスケールが適用される。
 
 .frame(height: 200)
-によってビューの描画範囲がきまる
+によってビューの描画範囲がきまる。画像のサイズよりframeの値が小さければ画像がはみ出る。
 
 ```swift
 Image(.demoItem)
@@ -253,7 +260,7 @@ Image(.demoItem)
 によってビューの描画範囲を更新する。このviewいっぱいにリサイズされたimageとなる。
 
 .scaledToFill()
-でそのスケールが適用される。ビュー全体がスケーリングされるため画像自体には直接影響しない。
+でそのスケールが適用される。
 
 ### Navigation バーの戻るボタンのカスタマイズ
 
