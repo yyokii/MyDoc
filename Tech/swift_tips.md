@@ -1,3 +1,17 @@
+## precondigion と assert
+
+### assert
+
+* デバッグ時に問題を見つけたい場合 = 必ず満たされるべき内部的な条件のチェック
+* リリースビルドでは条件チェックを不要にしたい場合。
+
+### precondition:
+
+* リリースビルドでも必須条件を保証したい場合。
+* 条件を満たさないとアプリが正しく動作しない場合。
+
+https://qiita.com/koher/items/ca7f388ab2a4e6747339
+
 ## ExpressibleByStringLiteral
 
 Stringリテラルで初期化したからといって、Stringになるとはかぎらない。
