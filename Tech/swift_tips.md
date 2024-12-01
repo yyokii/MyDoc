@@ -16,8 +16,8 @@ SystemRandomNumberGenerator は、基盤となるオペレーティングシス�
 
 https://developer.apple.com/documentation/swift/systemrandomnumbergenerator
 
-Foundation の実装なので、動的リンクされておりつまり実装がアプリ開発者の知らないところで発生する可能性があるがそれをどう判断するかであるが、
-ドキュメントに暗号論的に安全であることを保証するとあるのでそれを信頼するで良いと思う。
+Foundation の実装なので、動的リンクされておりつまり実装がアプリ開発者の知らないところで発生する可能性はある。
+が、ドキュメントに暗号論的に安全であることを保証するとあるのでそれを信頼するで良いと思う。
 
 * Appleプラットフォーム限定のアプリケーションの場合:
 
