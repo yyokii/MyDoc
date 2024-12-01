@@ -33,6 +33,8 @@ SystemRandomNumberGeneratorやUInt8.random(in:)を使用しても問題ない。
 
 リスクを完全に排除したい場合は、SecRandomCopyBytesを使用して使用する乱数生成器を明示的に指定することが望ましい。
 
+https://forums.swift.org/t/random-data-uint8-random-or-secrandomcopybytes/56165/12
+
 ## precondigion と assert
 
 ### assert
