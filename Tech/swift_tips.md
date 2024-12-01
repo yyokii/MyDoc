@@ -1,3 +1,38 @@
+## randomな値の生成について
+
+.random 系のメソッドはデフォルトでは「system’s default random generator」を使用していると記載されている。
+
+* https://developer.apple.com/documentation/swift/int/random(in:)-9mjpw
+* https://developer.apple.com/documentation/swift/array/randomelement()
+
+SystemRandomNumberGenerator は、基盤となるオペレーティングシステム（OS）が提供する乱数生成器を使用する。
+つまり、暗号論的に安全な乱数生成器が OS によって提供されている場合それが使用される。しかし、全てのプラットフォームで暗号論的に安全な乱数生成器が利用可能であるとは限らない。
+
+> Apple platforms use arc4random_buf(3).
+> 
+> Linux platforms use getrandom(2) when available; otherwise, they read from /dev/urandom.
+> 
+> Windows uses BCryptGenRandom.
+
+https://developer.apple.com/documentation/swift/systemrandomnumbergenerator
+
+Foundation の実装なので、動的リンクされておりつまり実装がアプリ開発者の知らないところで発生する可能性があるがそれをどう判断するかであるが、
+ドキュメントに暗号論的に安全であることを保証するとあるのでそれを信頼するで良いと思う。
+
+* Appleプラットフォーム限定のアプリケーションの場合:
+
+SystemRandomNumberGeneratorやUInt8.random(in:)を使用しても問題ない。
+コードがシンプルになり、可読性が向上する。
+
+* クロスプラットフォームを考慮する場合:
+  
+暗号論的に安全な乱数が必要な場合、プラットフォームに依存しない方法で乱数を生成する必要がある。
+例えば、SecRandomCopyBytesを使用するか、暗号論的に安全な乱数生成器を提供するライブラリを使用することを検討する。
+
+* セキュリティ要件が非常に高い場合:
+
+リスクを完全に排除したい場合は、SecRandomCopyBytesを使用して使用する乱数生成器を明示的に指定することが望ましい。
+
 ## precondigion と assert
 
 ### assert
