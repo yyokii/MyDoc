@@ -23,7 +23,7 @@
 ## パフォーマンス
 
 * 循環参照していないか
-  * 特に[クロージャ](http://d.hatena.ne.jp/keyword/%A5%AF%A5%ED%A1%BC%A5%B8%A5%E3)ーを使っている箇所で `self` が循環参照していないか。
+  * 特にクロージャーを使っている箇所で `self` が循環参照していないか。
 * 高階関数を利用時にlazyを利用することで不必要な配列を生成しない
   * `let newCars = allCars.lazy.filter({$0.isNew})`  
 
