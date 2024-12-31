@@ -1,3 +1,12 @@
+## TaskのSleep
+
+https://developer.apple.com/documentation/swift/task/sleep(for:tolerance:clock:)
+
+> This function doesn’t block the underlying thread.
+
+ブロックしないので、Task.sleep(for:) は指定された時間を待つ間スレッドを実際には停止せず、そのスレッドは他のタスクを処理できる状態のまま。
+したがってブロック懸念で別のスレッドで実行する必要はない。
+
 ## randomな値の生成について
 
 .random 系のメソッドはデフォルトでは「system’s default random generator」を使用していると記載されている。
