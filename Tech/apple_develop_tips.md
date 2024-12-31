@@ -213,7 +213,7 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
-### ViewでStateを初期化しない
+### ViewでStateやStateObjectのinitについて
 
 ❌
 
@@ -243,12 +243,66 @@ Stateや, StateObjec, EnvironmentObjectなどのプロパティラッパーはDy
 
 DynamicPropertyを使用する場合、メンバープロパティにViewのデータのために外部ストレージが必要であることを SwiftUI に伝える。  
 そして、その外部ストレージがプロパティに割り当てられると、SwiftUI は常にそこから読み取り、その値を実際のViewに割り当ててから、bodyを再計算する。
-initで値を渡しても値が外部ストレージにあればそれを使用するので実装意図通りの挙動にはならない。したがって初期化で値を渡してはいけない。
+initで値を渡しても値が外部ストレージにあればそれを使用するので、毎回新しいStateに更新されるわけではない。
 
 https://developer.apple.com/documentation/swiftui/dynamicproperty
 
-
 https://www.swiftcraft.io/articles/how-to-initialize-state-inside-the-views-init-
+
+StateObjectの初期化が一度しか呼ばれないことは、下記のように記載されている。
+
+```swift
+    /// ### Initialize using external data
+    ///
+    /// If the initial state of a state object depends on external data, you can
+    /// call this initializer directly. However, use caution when doing this,
+    /// because SwiftUI only initializes the object once during the lifetime of
+    /// the view --- even if you call the state object initializer more than
+    /// once --- which might result in unexpected behavior. For more information
+    /// and an example, see ``StateObject``.
+    ///
+    /// - Parameter thunk: An initial value for the state object.
+    @inlinable nonisolated public init(wrappedValue thunk: @autoclosure @escaping () -> ObjectType)
+```
+
+したがって、下記のような記述をした場合にModelの初期化だけが意図せず複数回実行されることになるので注意が必要
+
+```swift
+struct MovieDetailsView: View {
+    
+    @StateObject var viewModel: MovieDetailsViewModel
+    
+    init(movie: Movie) {
+        let viewModel = MovieDetailsViewModel(movie: movie)
+        _viewModel = StateObject(wrappedValue: viewModel)      
+    }
+    
+    var body: some View {
+        // ...
+    }
+}
+```
+
+この場合は下記のようにすれば一度しか実行されない（autoclosureがついているので初回のみクロージャーを実行しているはず）ことから、意図しない副作用が発生することはない。
+
+```swift
+struct MovieDetailsView: View {
+    
+    @StateObject var viewModel: MovieDetailsViewModel
+    
+    init(movie: Movie) {
+        _viewModel = StateObject(
+            wrappedValue: MovieDetailsViewModel(movie: movie)
+        )      
+    }
+    
+    var body: some View {
+        // ...
+    }
+}
+```
+
+https://www.swiftwithvincent.com/blog/bad-practice-creating-a-stateobject-wrapper
 
 ### あるViewがUIKitを使用しているかの確認
 
