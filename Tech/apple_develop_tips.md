@@ -213,9 +213,46 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
+### ViewでStateを初期化しない
+
+❌
+
+```swift
+struct SimpleView: View {
+    @State private var greeting: String
+    init(name: String) {
+        _greeting = State(initialValue: "Hello \(name)!")
+    }
+
+    var body: some View {
+        VStack {
+            Text(greeting)
+            Button(action: { greeting = "Hello Tim!" }) {
+                Text("Update greeting")
+            }
+        }
+    }
+}
+```
+
+State変数は、初期化子を通じて渡されるデータから初期化されるべきではない。
+
+Stateや, StateObjec, EnvironmentObjectなどのプロパティラッパーはDynamicPropertyに準拠している。
+
+> The view gives values to these properties prior to recomputing the view’s body.
+
+DynamicPropertyを使用する場合、メンバープロパティにViewのデータのために外部ストレージが必要であることを SwiftUI に伝える。  
+そして、その外部ストレージがプロパティに割り当てられると、SwiftUI は常にそこから読み取り、その値を実際のViewに割り当ててから、bodyを再計算する。
+initで値を渡しても値が外部ストレージにあればそれを使用するので実装意図通りの挙動にはならない。したがって初期化で値を渡してはいけない。
+
+https://developer.apple.com/documentation/swiftui/dynamicproperty
+
+
+https://www.swiftcraft.io/articles/how-to-initialize-state-inside-the-views-init-
+
 ### あるViewがUIKitを使用しているかの確認
 
-* View Hierarchyを表示してViewの詳細をデバッグし、UpdateCoalescingCollectionViewをPrintする。baseClassが何になっているかで判断可能
+* View Hierarchyを表示してViewの詳細をデバッグし、対象のViewをPrintしてみる。baseClassが何になっているかで判断可能
 * Listの場合はUICollectionViewになっている
 * SwiftUIのViewであればCGDrawingViewとなっている
 
