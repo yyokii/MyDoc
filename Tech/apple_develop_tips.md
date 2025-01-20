@@ -213,6 +213,15 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
+### PreferenceKey
+
+PreferenceKey 自体は「キー（型）」の定義をしているだけで、値そのものを保持しているわけではない。
+SwiftUI の内部では、ビュー階層を走査しながら各ビューが指定する preference(key:value:) を収集集約していく。その際に使われるのが PreferenceKey という仕組みで、「このキーに対応する値をどのように初期化し、どうやって集約（combine）していくか」をプロトコルで指定している。
+
+* static var defaultValue: Self.Value { get }: デフォルト値
+
+* static func reduce(value: inout Self.Value, nextValue: () -> Self.Value): SwiftUI が内部で子ビューから上がってきた次の値 (nextValue()) を取り出しつつ、引数の value（これまで集約してきた値）を更新する際の挙動
+
 ### ViewでStateやStateObjectのinitについて
 
 ❌
