@@ -684,7 +684,18 @@ Text(someAttributedStringWithLink)
 
 ## UIKit
 
-- [深く知りたい Core Animation まとめ 1（レイヤー編）【iOS / Swift】 - SNOOZE LOG](https://snoozelag.hatenablog.com/entry/2021/12/18/003933)
+### HuggingPriority と CompressionResistancePriority
+
+HuggingPriority は外から抑える力、CompressionResistancePriorityは内側から押す力、と捉えるとわかりやすい
+
+| プロパティ                             | 説明                                      | 高い優先度                                         | 低い優先度                             |
+|---------------------------------------|-----------------------------------------|--------------------------------------------------|---------------------------------------|
+| `setContentHuggingPriority`           | ビューが余ったスペースを埋めるために引き伸ばされるのを防ぐ力。 | ビューが引き伸ばされにくい。                     | ビューが引き伸ばされやすい。           |
+| `setContentCompressionResistancePriority` | ビューがスペース不足により縮小されるのを防ぐ力。 | ビューが縮小されにくい（内容が切れにくい）。      | ビューが縮小されやすい（内容が切れやすい）。 |
+
+### Core Animation
+
+[深く知りたい Core Animation まとめ 1（レイヤー編）【iOS / Swift】 - SNOOZE LOG](https://snoozelag.hatenablog.com/entry/2021/12/18/003933)
 
 ## UX
 
