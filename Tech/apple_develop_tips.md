@@ -213,6 +213,31 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 
 ## SwiftUI
 
+### safeAreaPadding
+
+SafeAreaとはiOS 11 から導入された、iPhone X 以降の端末において、ノッチやホームインジケータなどの UI 要素を考慮して、コンテンツが表示される領域を定義するためのもの。SafeArea は、デバイスの画面上でコンテンツが安全に表示される領域を示す。
+
+safaAreaPaddingを設定することでSafeAreaの領域を調整することができる。
+
+例えば、
+
+```.swift
+
+ScrollView(.horizontal) {
+    HStack {
+        ForEach(0..<10) { i in
+            Circle()
+                .frame(width: 50, height: 50)
+        }
+    }
+}
+.safeAreaPadding(50)
+
+```
+
+のようにすると両端から50ptの領域にインセットが追加され中の要素が50ptずつ内側に移動しつつ、
+しかしpaddingを設定した時のように要素が区切れることはない。
+
 ### PreferenceKey
 
 PreferenceKey 自体は「キー（型）」の定義をしているだけで、値そのものを保持しているわけではない。
