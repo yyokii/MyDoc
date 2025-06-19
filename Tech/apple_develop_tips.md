@@ -707,17 +707,17 @@ Text(someAttributedStringWithLink)
 
 [SwiftUI AttributedString handle li… | Apple Developer Forums](https://developer.apple.com/forums/thread/720669)
 
-## UIKit
+### SwiftUIのレンダリングループ
 
-### HuggingPriority と CompressionResistancePriority
-
-HuggingPriority は外から抑える力、CompressionResistancePriorityは内側から押す力、と捉えるとわかりやすい
-
-| プロパティ                             | 説明                                      | 高い優先度                                         | 低い優先度                             |
-|---------------------------------------|-----------------------------------------|--------------------------------------------------|---------------------------------------|
-| `setContentHuggingPriority`           | ビューが余ったスペースを埋めるために引き伸ばされるのを防ぐ力。 | ビューが引き伸ばされにくい。                     | ビューが引き伸ばされやすい。           |
-| `setContentCompressionResistancePriority` | ビューがスペース不足により縮小されるのを防ぐ力。 | ビューが縮小されにくい（内容が切れにくい）。      | ビューが縮小されやすい（内容が切れやすい）。 |
-
+* SwiftUIはUIKitと同様にCFRunLoop上に構築されたイベントループを使用
+* ビューのbody評価とスクリーンレンダリングは異なるタイミングで実行される
+* @Stateなどの変更によりビューが無効化されても、即座にbody評価は行われない
+* body評価はCFRunLoopのbeforeWaitingステージでrun loop observerにより実行される
+* 同一run loop内で複数回ビューが無効化されても、body評価は1回のみ
+* onAppearやonChangeハンドラーは初回body評価後に呼ばれ、これらが再度ビューを無効化する可能性がある
+* 2回目のbody評価が必要な場合でも、最初のbodyは画面にレンダリングされない（CATransactionがコミットされていないため）
+* Core AnimationのCATransactionにより実際の画面描画が管理される
+* 暗黙的なCATransactionは run loop cycleの最後にコミットされる
 ### Core Animation
 
 [深く知りたい Core Animation まとめ 1（レイヤー編）【iOS / Swift】 - SNOOZE LOG](https://snoozelag.hatenablog.com/entry/2021/12/18/003933)
