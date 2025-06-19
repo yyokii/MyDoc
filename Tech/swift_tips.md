@@ -1,3 +1,25 @@
+## ContinuousClock や Timer
+
+| API                 | 何ができる？                                                 | 精度・時計の性格                                             | RunLoop 依存               | 典型ユースケース                                             | 使うときの勘どころ                                           |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **ContinuousClock** | 単調に進むクロック。`measure{}`で経過時間計測、`sleep(for:)`で実時間ベース待機 | Timerより精度高い。スリープしても針は止まらない              | なし                       | 正確なパフォーマンス計測、バックグラウンドでも正確に秒を刻みたい処理 | タイミングを **秒単位でシビア** に扱う場合 ([developer.apple.com](https://developer.apple.com/documentation/swift/continuousclock?utm_source=chatgpt.com)) |
+| **Task.sleep**      | `await Task.sleep(nanoseconds:)` や `await Task.sleep(for:)`  での待機 | ContinuousClock を裏で利用。実時間に忠実、コードがサスペンドされている間はスレッド占有しない | なし                       | async 関数内で「○秒待ってから次を実行」したい時。ループに入れれば簡易ポーリングも可 | UIスレッドをブロックせずに寝かせたい時はこれ。([developer.apple.com](https://developer.apple.com/documentation/swift/task/sleep(nanoseconds%3A)?utm_source=chatgpt.com), [developer.apple.com](https://developer.apple.com/documentation/swift/task/sleep(_%3A)?utm_source=chatgpt.com)) |
+| **Timer**           | 指定間隔ごとにクロージャ／セレクタを呼ぶ                     | メインスレッドで実行される場合、UIが重いと遅れるし、モード次第で止まる | **あり**（RunLoop に載る） | UI のチカチカ更新、数秒後にアラート、ゆるいポーリング        | “目覚まし時計”。RunLoop のモードに注意。スクロール中も動かすなら `.common` で登録。([developer.apple.com](https://developer.apple.com/documentation/foundation/timer?utm_source=chatgpt.com)) |
+
+RunLoopは**Timerを動かす基盤**であり、ContinuousClockとは直接的な関連はありません。Timerを含むあらゆる**タイマーや入力ソースはRunLoop上に登録されて初めて機能**します[igasu.net](https://igasu.net/timer/#:~:text=,非リピートタイマーは発火した直後に自分自身を無効にする。)。例えば、Timerは内部的にRunLoopに追加されており、RunLoopが回って時間経過を監視しているからこそ、指定時間後に処理が実行されます。一方、ContinuousClockはあくまで時刻や経過時間を提供するものであり、RunLoopを介さずに動作します。このためContinuousClockの`sleep`や`measure`はRunLoopの停止中でも時間を計測できますが、実際に何らかのUI更新やイベント発火をするには、最終的にRunLoop上で処理する必要があります（例えば、非同期タスクからメインスレッドへ結果を渡してUI更新する等）。
+
+まとめると、**RunLoopはイベント循環の仕組みそのもの**であり、Timerはその上で動く「時間指定のイベント」、ContinuousClockは独立した「時間計測ツール」です。TimerはRunLoopなしには動かず、RunLoopはTimer以外にも入力イベント全般を扱い、ContinuousClockはRunLoopに左右されず時間を提供するという関係性になります。
+
+
+## struct vs String for id
+
+.id() にHashableなものを設定したい時にどちらをも使えるが、
+
+structの方がベター
+
+* 型で名前空間を分離できるので、同じ文字列 ID が他所で重複しても衝突しない
+* 誤用をコンパイラが検知：scrollTo() などで型不一致があればビルドエラーで気付ける (Stringだとタイプミスが起こっても気づけない)
+
 ## autoclosure
 
 クロージャーのラッピングを自動で行うシンタックスシュガーであり、呼び出し側の記述を簡潔にするために利用されるもの。
