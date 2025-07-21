@@ -1,3 +1,12 @@
+## AsyncStream vs AsyncThrowingStream
+
+|| `AsyncThrowingStream` | `AsyncStream` + `Result` |
+| --- | --- | --- |
+| **エラー通知**    | `finish(throwing:)` で **終了＋throw** を一手に処理。<br>呼び出し側は `for try await` | `yield(.failure(error))` → **終了は別途 `finish()`**。<br>呼び出し側は `for await result` → `switch` で判定 |
+| **利用側** | `do‐catch` | 成功／失敗を`switch`で受け取る |
+| **設計の意図**    | 失敗時はストリームが自動終了することを期待する。**致命的エラーで打ち切り**をしたい時など。| **継続可能エラー**や、<br>エラーを UI に流したいケース |
+
+
 ## ContinuousClock や Timer
 
 | API                 | 何ができる？                                                 | 精度・時計の性格                                             | RunLoop 依存               | 典型ユースケース                                             | 使うときの勘どころ                                           |
