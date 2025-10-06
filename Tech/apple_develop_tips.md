@@ -8,6 +8,44 @@
 
 ---
 
+## instruments
+
+1. Xcodeで「⌘+I」→「Profile」実行
+2. 「Time Profiler」テンプレートを選択
+3. 適当な期間で計測
+
+### パフォーマンス問題の確認
+
+- ⚠️ __Thermal State: "Serious"__ → デバイス過熱
+- 📊 __CPU使用率が高い__ → 青いグラフの状態
+- 🔄 __継続的な処理__ → グラフが一定
+
+### 分析の進め方
+
+- 下部タブで「Call Tree」選択
+
+よく使う設定:
+
+- ✅ Separate by Thread
+- ⚠️ Invert Call Tree → 用途に応じて選択
+- ✅ Hide System Libraries
+- ✅ Flatten Recursion
+
+**Invert OFF**
+
+MyClass.myFunction()  ← 関数名がはっきり見える
+├── 子関数の処理
+└── 実行時間が明確
+
+- 実行フローが追いやすい
+- 呼び出し階層が分かりやすい
+
+**Invert ON**
+
+- システムボトルネック分析向き
+- 重い処理の根本原因特定
+- ただし、Swift Concurrency等では見にくい場合あり
+
 ## 画像のOrientation
 
 * 撮影時のカメラセンサーの上端が、RAW 画像の “上端”になる
