@@ -122,10 +122,6 @@ App Thinning は、アプリの自動最適化および配信を支援する技�
 
 引用: 週刊 Life is Beautiful ２０２０年１２月２９日号
 
-## iOS の基礎
-
-- 公式チュートリアル: [iOS App Dev Tutorials | Apple Developer Documentation](https://developer.apple.com/tutorials/app-dev-training)
-
 ## iPhone の解像度
 
 ### （前提） ドットとピクセル
@@ -159,8 +155,6 @@ App Thinning は、アプリの自動最適化および配信を支援する技�
 > Thus, any content you draw in your drawRect: method is scaled appropriately for the underlying device’s screen.
 
 drawRect: メソッドで描画するコンテンツは、基礎となるデバイスの画面に合わせて適切にスケーリングされます。
-
-### 参考
 
 - [ドットとピクセルの違い](https://photo.nyanta.jp/DotAndPixel.html)
 - [The Ultimate Guide To iPhone Resolutions](https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions)
@@ -246,7 +240,7 @@ Pubic な API の宣言の集まり
 
 NS という接頭辞は Objective-C において名前空間が存在しなかったので、名前の衝突を避けるためにつけられていたものです。
 
-### 参考
+参考
 
 - [NS Prefix - そこから見渡す Swift 3 の景色 #startup_mobile](https://www.slideshare.net/tomohirokumagai54/ns-prefix-swift-3-startupmobile)
 - [ios - What does the NS prefix mean? - Stack Overflow](https://stackoverflow.com/questions/473758/what-does-the-ns-prefix-mean)
@@ -254,6 +248,16 @@ NS という接頭辞は Objective-C において名前空間が存在しなか�
 ## P12 証明書の中身の確認
 
 `keytool -list -v -keystore {file_name}.p12 -storetype PKCS12 -storepass {password} `
+
+## Picker と Menu
+
+| 観点      | Picker           | Menu                 |
+| ------- | ---------------- | -------------------- |
+| 主な目的    | **状態（State）を選ぶ** | **アクション（Action）を実行** |
+| 選択の持続性  | 継続               | なし                   |
+| タップ後の挙動 | 値がバインドされる        | 即アクション発火             |
+| 適したケース  | 設定・選択値           | 操作・行動                |
+| HIG 的意図 | 長い選択肢リストを扱う      | コンテキストアクションの提示       |
 
 ## SwiftUI
 
