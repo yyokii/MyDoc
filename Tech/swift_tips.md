@@ -1,3 +1,20 @@
+## Actor隔離の Case Study: Default MainActor Isolation 設定のあるプロジェクトでの DependencyClient
+
+* Default MainActor Isolation
+ defaultIsolation(MainActor) が有効な場合、
+ 明示的に nonisolated（または別 actor）を書かない宣言は MainActor に隔離される。
+
+ * @DependencyClient
+ これが生成するコードは @Sendable func ~
+ Default MainActor Isolation の場合にこれは MainActor と矛盾するのでエラーになる
+ → nonisolated（ nonisolated なものは actor に属さない）にする。 クロージャーに安全にアクセスできることを確認し、Sendable でマークする
+
+ * Dependency の KeyPath
+ Dependency の KeyPath では Sendable を要求される
+ → DependencyValues に定義するものにも nonisolated をつける
+
+これでビルドが通る。
+
 ## AsyncStream vs AsyncThrowingStream
 
 || `AsyncThrowingStream` | `AsyncStream` + `Result` |
