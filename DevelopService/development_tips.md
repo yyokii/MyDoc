@@ -1,5 +1,15 @@
 # サービス開発
 
+## [「ユーザー価値か、事業成果か？」 そんな意思決定で悩む前に PMがやるべきこと](https://speakerdeck.com/inagakikay/yuzajia-zhi-ka-shi-ye-cheng-guo-ka-yi-si-jue-ding-noqian-nisonnakotodenao-muqian-ni-pmgayarubekikoto)
+
+* PMの役割は、プロダクト価値を通じて事業成果を出すために「何をつくるか」を決め続けること。
+* 「ユーザー価値か、事業成果か」という二項対立にすぐ入らない。多くの場合、問題は目的ではなく、いま思いついている“打ち手”が悪いだけ。
+* まず考えるべきは、「その前に、もっと良いアイデアはないか？」。
+* 岩田聡さんの言葉でいうと、「アイデアとは、複数の問題を一気に解決するもの」。ユーザーと事業、複数のニーズを同時に満たせる打ち手を探す。
+* 例：ワンバンクの「ふたりで使える買い物メモ」。ユーザーの以前からの要望と、「支払い前にもアプリを開いてほしい」という事業課題を1つの機能で解いた。利用者のアプリ起動頻度は+55%。
+* 良いアイデアを見つけるには、実現したいことを明確にし、打ち手の選択肢を広げる。他プロダクトや他領域も見て、自分の「引き出し」を増やす。
+* 結局PMに必要なのは、安易なトレードオフで妥協せず、複数の問題をまとめて解くアイデアを粘って探すこと。資料ではこれを「執念」と表現している。
+
 ## Tips
 
 * One more thingを考えることで視野を広げる: [What I Learned as a Product Designer at Apple | by Andrea Pacheco | Medium](https://medium.com/@pachecoandrea/what-i-learned-as-a-product-designer-at-apple-35341d9ced8a)
