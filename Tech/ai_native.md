@@ -3,8 +3,6 @@
 
 ## [AI Native Development and Code Slop](https://earendil.com/posts/measuring-code-sloppiness/)
 
-## 記事の内容
-
 - LLMは「動くコード」をかなり高精度で書けるようになった。
 - ただし、不要な抽象化・重複・巨大関数などの **slop** は依然として発生する。
 - SlopCodeBenchでは、そのslopを定量化する指標として主に以下を使っている。
@@ -17,9 +15,9 @@
 - 筆者は、LLM自身にコード品質を評価させるだけでは不十分で、現状は人間の直感やtasteがまだ必要だと考えている。
 - 一方で、LOCやErosionなどの指標そのものを最適化目標にすると、指標がゲームされて意味を失う可能性もある。
 
-## Slopを測る指標
+### Slopを測る指標
 
-### Verbosity
+#### Verbosity
 
 コード全体のうち、AST-Grepで冗長と判定された行や、重複コードが占める割合。
 
@@ -32,7 +30,7 @@ Verbosity = |AST-Grep flagged lines ∪ clone lines| / LOC
 - `clone lines`: 他のコードと重複している行
 - `∪`: 両方に該当する行を重複せずまとめる
 
-### Erosion
+#### Erosion
 
 まず各関数 `f` の「mass」を以下で定義する。
 
@@ -58,7 +56,7 @@ Erosion = Σ[CC(f) > 10 の関数の mass(f)] / Σ[すべての関数の mass(f)
 
 ------
 
-## 私見
+### 私見
 
 - 現時点でAI生成コードにslopが溜まりやすい、という記事・論文の問題認識には共感する。
 - 一方で、将来的にはAI自身が過去の悪い設計を理解し、適切にリファクタできるようになる可能性をかなり信じている。
