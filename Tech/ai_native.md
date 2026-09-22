@@ -1,5 +1,25 @@
 # AI Native
 
+## [We Must Pace the Frontier](https://darioamodei.com/post/we-must-pace-the-frontier)
+
+* AI開発を止めるのではなく、**能力向上の速度を、安全性を検証できる速度に合わせるべき**だという主張。
+* 背景には、AIがAI開発そのものを加速し始め、能力向上のペースがさらに速くなる可能性がある。
+* 現在のAIは十分に高度になり、alignmentやdeception、agent behavior、interpretabilityなどを実際のモデルで研究できる段階に入った。
+
+  * alignment: AIを人間の意図に沿って動かす研究
+  * deception: AIが人間を欺くような振る舞いをしないかの研究
+  * misalignment: AIの目的や行動が人間の意図からズレる問題
+  * agent behavior: 自律的にタスクを進めるAIがどのように行動するかの研究
+  * interpretability: AI内部でなぜその判断が起きたのかを理解する研究
+* そのため、能力向上を1〜2年でも緩め、その時間を安全性・評価・運用改善に使う価値がある。
+* 特に重要なのは、**AIの能力が上がるたびに、安全性や評価能力も一定水準を満たしていることを確認する仕組み**を作ること。
+
+  * 「能力Xに到達したら、安全性Y・Zを満たすまで次に進まない」というcheckpoint方式。
+* Anthropicは、第三者評価者に社内への深いアクセスを与え、安全対策が実際に機能しているか外部から検証できる仕組みを提案している。
+* 将来的には、企業間・国家間でも共通の評価基準や開発ルールを作る必要があるとしている。
+* 核心は、**AIを賢くする速度より、AIを検証できる速度が遅くなってはいけない**ということ。
+* この考え方はソフトウェア開発にもそのまま当てはまり、AIによる実装速度が上がるほど、テスト・静的解析・監視・invariantなどの「変更を受け入れてよい条件」を強くする必要がある。
+
 ## [Don’t Become a Proxy Between AI and Code](https://strategizeyourcareer.com/p/ai-assisted-software-engineering-skills)
 
 私見を含めた整理
